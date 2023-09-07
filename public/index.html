@@ -8,36 +8,41 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
     <link rel="stylesheet" href="style.css" />
 
-    <title>Document</title>
+    <title>Rack Label tool</title>
 </head>
 
 <body>
-    <input type="file" id="upload" />
+    <!-- material file upload button -->
+    
+    <label for="upload" class="material-button">Upload File <span class="material-icons">file_upload</span></label>
+    <input style="display: none;" type="file" id="upload" />
+
     <br>
-    <button id="print-btn" class="material-button" disabled onclick="window.print()">Print <span class="material-icons">print</span></button>
+    <a href="https://github.com/PrimeGoose/label_maker_tool" target="_blank" class="material-button">How to use? <span class="material-icons">help</span></a>
     <br>
+    <button id="print-btn" class="material-button"  onclick="window.print()">Print <span class="material-icons">print</span></button>
  
     <div class="label-container"  id="render-here">
         <!--  -->
         <div class="label">
             <!-- chack digit -->
             <div class="label-digit bg-black border-bottom-white">
-                <div class="digit-text">Q0O</div>
+                <div class="digit-text" contenteditable="true">Q0O</div>
             </div>
             <!-- location  l2-->
             <div class="location bg-yellow border-bottom-black">
-                <div class="location-text">KB 22 A2</div>
+                <div class="location-text" contenteditable="true">KB 22 A2</div>
             </div>
         </div>
         <!--  -->
         <div class="label">
             <!-- location l1-->
             <div class="label-digit bg-black border-top-white">
-                <div class="digit-text">IDK</div>
+                <div class="digit-text" contenteditable="true">IDK</div>
             </div>
             <!-- check digit -->
             <div class="location bg-white border-top-black">
-                <div class="location-text">KB 22 A1</div>
+                <div class="location-text" contenteditable="true">KB 22 A1</div>
             </div>
 
         </div>
