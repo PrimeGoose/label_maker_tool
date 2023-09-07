@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.8/xlsx.full.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <link rel="stylesheet" href="style.css" />
+
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="file" id="upload" />
+    <br>
+    <button id="print-btn" class="material-button" disabled onclick="window.print()">Print <span class="material-icons">print</span></button>
+    <br>
+ 
+    <div class="label-container"  id="render-here">
+        <!--  -->
+        <div class="label">
+            <!-- chack digit -->
+            <div class="label-digit bg-black border-bottom-white">
+                <div class="digit-text">Q0O</div>
+            </div>
+            <!-- location  l2-->
+            <div class="location bg-yellow border-bottom-black">
+                <div class="location-text">KB 22 A2</div>
+            </div>
+        </div>
+        <!--  -->
+        <div class="label">
+            <!-- location l1-->
+            <div class="label-digit bg-black border-top-white">
+                <div class="digit-text">IDK</div>
+            </div>
+            <!-- check digit -->
+            <div class="location bg-white border-top-black">
+                <div class="location-text">KB 22 A1</div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <script type="text/javascript" src="script.js"></script>
+
+
+</body>
+
+</html>
