@@ -250,3 +250,26 @@ img {
 .material-icons {
     font-size: 1.5em;
 }
+
+
+
+.warning-toast {
+    position: fixed;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #f44336;
+    /* Red background color */
+    color: white;
+    /* White text color */
+    padding: 16px;
+    /* Padding */
+    border-radius: 4px;
+    /* Rounded corners */
+    max-width: 300px;
+    /* Maximum width */
+    text-align: center;
+    /* Centered text */
+    z-index: 1000;
+    /* On top */
+}

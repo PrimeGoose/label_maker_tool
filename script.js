@@ -1,14 +1,46 @@
-function togglePrintButton() {
-    const labelContainer = document.querySelector('.label-container');
-    const printButton = document.getElementById('print-btn');
 
-    printButton.disabled = labelContainer.innerHTML.trim() === '';
-}
+
+
+
+
+
 
 
 document.addEventListener('DOMContentLoaded', (event) => {
-    // Your script here
-});
+    const labels = document.querySelectorAll('.location-text, .digit-text');
+
+    labels.forEach(label => {
+        label.addEventListener('input', () => {
+
+        });
+    });
+
+
+    document.addEventListener('keydown', (e) => {
+        const editableElements = Array.from(document.querySelectorAll('[contenteditable="true"]'));
+        const currentFocus = document.activeElement;
+
+        if (editableElements.includes(currentFocus)) {
+            let index = editableElements.indexOf(currentFocus);
+
+            switch (e.key) {
+                case 'ArrowUp':
+                    index = index - 1 < 0 ? editableElements.length - 1 : index - 1;
+                    break;
+                case 'ArrowDown':
+                    index = (index + 1) % editableElements.length;
+                    break;
+                default:
+                    return; // Allow other keys to function normally
+            }
+
+            editableElements[index].focus();
+        }
+    });
+
+
+
+// Your script here
 document.getElementById('upload').addEventListener('change', handleFile);
 
 function handleFile(e) {
@@ -59,7 +91,7 @@ function updateLabels(data) {
     mainContainer.innerHTML = ''; // Clear existing labels
 
     // Group data by prefix
-   
+
     data.forEach(row => {
         const [labelDigitText, ...locationParts] = row['label'].split(' ');
         const locationText = locationParts.join(' ');
@@ -126,6 +158,7 @@ function updateLabels(data) {
         mainContainer.appendChild(document.createElement('br'));
     });
 
-    togglePrintButton();
+
 
 }
+});
