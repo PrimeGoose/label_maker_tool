@@ -13,19 +13,21 @@
 
 <body>
     <!-- material file upload button -->
-    
-    <label for="upload" class="material-button">Upload File <span class="material-icons">file_upload</span></label>
-    <input style="display: none;" type="file" id="upload" />
+    <!-- top tool bar -->
+    <div class="top-tool-bar">
+        <label for="upload" class="material-button">Upload File <span class="material-icons">file_upload</span></label>
+        <input style="display: none;" type="file" id="upload" />
 
-    <br>
-    <a href="https://github.com/PrimeGoose/label_maker_tool" target="_blank" class="material-button">How to use? <span class="material-icons">help</span></a>
-    <br>
-    <button id="print-btn" class="material-button"  onclick="window.print()">Print <span class="material-icons">print</span></button>
- 
-    <div class="label-container"  id="render-here">
-        <!--  -->
+        <a href="https://github.com/PrimeGoose/label_maker_tool" target="_blank" class="material-button">How to use? <span
+                class="material-icons">help</span></a>
+        <button id="print-btn" class="material-button" onclick="window.print()">Print <span class="material-icons">print</span></button>
+    </div>
+
+    <!-- the rack label -->
+    <div class="label-container" id="render-here">
+        <!-- Level 2 -->
         <div class="label">
-            <!-- chack digit -->
+            <!-- check digit -->
             <div class="label-digit bg-black border-bottom-white">
                 <div class="digit-text" contenteditable="true">Q0O</div>
             </div>
@@ -34,7 +36,7 @@
                 <div class="location-text" contenteditable="true">KB 22 A2</div>
             </div>
         </div>
-        <!--  -->
+        <!-- Level 1 -->
         <div class="label">
             <!-- location l1-->
             <div class="label-digit bg-black border-top-white">
