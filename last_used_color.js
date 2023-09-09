@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', async (event) => {
     document.getElementById('print-btn').addEventListener('click', save_lastUsed_color);
 
 
-    let last_used = getCookie('lastUsedColorHex')
+    let last_used = getCookie('lastUsedColorHex') || "yellow"
     console.log('lastUsedColorHex', last_used);
     document.querySelector('.selected-color').innerHTML = last_used;
 
