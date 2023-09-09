@@ -27,9 +27,21 @@
                 <button class="material-button" onclick="toggleColorPicker()">Color Picker <span class="material-icons">color_lens</span></button>
             </div> -->
 
+    <button id="theme-toggle-button" class="material-button">
+        <span class="material-icons">brightness_4</span>
+    </button>
+
+
+
             <button id="print-btn" class="material-button" onclick="window.print()">Print <span class="material-icons">print</span></button>
         </div>
     </div>
+
+
+    <!-- opacity slider  -->
+    <!-- Your slider element -->
+    <label for="opacity-slider">Opacity: </label>
+    <input type="range" id="opacity-slider" min="0" max="100" step="10" value="100">
 
 
     <!-- Color Picker Section -->
@@ -79,6 +91,8 @@
     <script defer type="text/javascript" src="color_palette.js"></script>
     <script defer type="text/javascript" src="last_used_color.js"></script>
     <script defer type="text/javascript" src="read_excel_file.js"></script>
+    <script defer type="text/javascript" src="opacity-slider.js"></script>
+    <script defer type="text/javascript" src="dark-mode.js"></script>
 
 
 </body>
