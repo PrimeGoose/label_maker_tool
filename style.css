@@ -397,11 +397,61 @@ img {
 
 
 .color-active {
-    border: 2px solid white;
+    border: 2px solid #6200ea;
 }
 
 
 a,
 label {
     white-space: nowrap;
+}
+
+
+
+
+
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+    padding-top: 60px;
+}
+
+.modal-content {
+    display: flex;
+        flex-direction: column;
+        line-height: 2em;
+        background-color: #fefefe;
+        margin: 5%;
+        padding-left: 5em;
+        border: 1px solid #888;
+        width: 80%;
+        padding-right: 5em;
+    }
+}
+
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-excel-img{
+    object-fit: scale-down;
+    align-self: center;
 }

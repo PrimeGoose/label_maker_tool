@@ -12,6 +12,34 @@
 </head>
 
 <body>
+<div id="how-to-use-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h2>How to Use the Rack Label Tool:</h2>
+
+        <h3>Creating & Uploading Excel File:</h3>
+        <ol>
+            <li>Prepare an Excel file with a single column.</li>
+            <li>Enter the header "Label" in cell A1.</li>
+            <li>List down all your locations in the subsequent cells (A2, A3, and so on).</li>
+            <li>Save the file and use the 'Upload File' button to upload it to the tool.</li>
+        </ol>
+
+        <h3>Editing Labels:</h3>
+        <p>On the start screen, you can edit each label individually. This is especially useful if you want to make specific changes to a particular
+            label.</p>
+
+        <h3>Customizing Label Appearance:</h3>
+        <p>Choose from a range of yellow shades for your labels. Additionally, the tool provides an option to adjust the alpha level of the yellow,
+            letting you determine its transparency for a more personalized appearance.</p>
+
+    <img class="modal-excel-img" src="screenshot.png" alt="">
+    </div>
+</div>
+
+
+
+
     <!-- material file upload button -->
     <!-- top tool bar -->
     <div class="top-tool-bar">
@@ -20,29 +48,26 @@
             <label for="upload" class="material-button">Upload File <span class="material-icons">file_upload</span></label>
             <input style="display: none;" type="file" id="upload" />
 
-            <a href="https://github.com/PrimeGoose/label_maker_tool" target="_blank" class="material-button">How to use? <span
-                    class="material-icons">help</span></a>
+            <!-- <a href="https://github.com/PrimeGoose/label_maker_tool" target="_blank" class="material-button"> -->
+            <!-- </a> -->
+
+            <button class="material-button" id="how-to-use">
+                How to use? <span class="material-icons">help</span>
+            </button>
             <!-- tis button opens a color picker, it also spawns a color preview box and a save button, if finished  -->
             <!-- <div class="button-container">
                 <button class="material-button" onclick="toggleColorPicker()">Color Picker <span class="material-icons">color_lens</span></button>
             </div> -->
 
-    <button id="theme-toggle-button" class="material-button">
-        <span class="material-icons">brightness_4</span>
-    </button>
+            <button id="theme-toggle-button" class="material-button">
+                <span class="material-icons">brightness_4</span>
+            </button>
 
 
 
             <button id="print-btn" class="material-button" onclick="window.print()">Print <span class="material-icons">print</span></button>
         </div>
     </div>
-
-
-    <!-- opacity slider  -->
-    <!-- Your slider element -->
-    <label for="opacity-slider">Opacity: </label>
-    <input type="range" id="opacity-slider" min="0" max="100" step="10" value="100">
-
 
     <!-- Color Picker Section -->
     <div class="color-picker-section">
@@ -55,6 +80,18 @@
         </div>
     </div>
     <br>
+
+
+    <!-- opacity slider  -->
+    <!-- Your slider element -->
+    <label for="opacity-slider">Opacity: </label>
+    <input type="range" id="opacity-slider" min="0" max="100" step="10" value="100">
+<br>
+<br>
+<br>
+
+
+ 
 
     <!-- the rack label -->
     <div class="label-container" id="render-here">
@@ -89,10 +126,11 @@
 
     <script defer type="text/javascript" src="content_editable_navigation.js"></script>
     <script defer type="text/javascript" src="color_palette.js"></script>
-    <script defer type="text/javascript" src="last_used_color.js"></script>
     <script defer type="text/javascript" src="read_excel_file.js"></script>
     <script defer type="text/javascript" src="opacity-slider.js"></script>
+    <script defer type="text/javascript" src="how-to-use.js"></script>
     <script defer type="text/javascript" src="dark-mode.js"></script>
+    <script defer type="text/javascript" src="last_used_color.js"></script>
 
 
 </body>

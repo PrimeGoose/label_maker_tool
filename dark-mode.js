@@ -1,58 +1,16 @@
-document.addEventListener('DOMContentLoaded', async (event) => {
+document.addEventListener('DOMContentLoaded', (event) => {
+    let theme = getCookie('theme') || 'light';
+    updateTheme(theme);
 
-    let isDark = false;
-    /**
-    * Toggles between light and dark themes.
-    */
-    function toggleTheme() {
-        const body = document.body;
-        const colorPalette = document.querySelector('.color-palette');
-        const topToolBar = document.querySelector('.top-tool-bar');
-        const themeToggleButton = document.getElementById('theme-toggle-button');
-        const icon = themeToggleButton.querySelector('.material-icons');
-        if (body.style.backgroundColor === 'orangered') {
-            isDark = true;
-            setcookie('theme', 'dark', 365);
-            // Switch to light mode
-            body.style.backgroundColor = 'white';
-            colorPalette.style.backgroundColor = 'white';
-            topToolBar.style.backgroundColor = 'white';
-            icon.textContent = 'brightness_4';  // Change icon to moon (dark mode icon)
-        } else {
-            isDark = false;
-            setcookie('theme', 'light', 365);
-            // Switch to dark mode
-            body.style.backgroundColor = 'orangered';
-            colorPalette.style.backgroundColor = '#2f4f4f3d';
-            topToolBar.style.backgroundColor = '#000000';
-            icon.textContent = 'brightness_7';  // Change icon to sun (light mode icon)
-        }
-    }
+    document.getElementById('theme-toggle-button').addEventListener('click', () => {
+        theme = theme === 'light' ? 'dark' : theme === 'dark' ? 'orange' : 'light';
+        toggleTheme(theme);
+    });
+});
 
-    // Add click event listener to the theme toggle button
-    document.getElementById('theme-toggle-button').addEventListener('click', toggleTheme);
-
-    // Set initial theme    
-    let theme = getCookie('theme');
-    if (theme === 'dark') {
-        isDark = true;
-        toggleTheme();
-    } else if (theme === 'light') {
-        isDark = false;
-        toggleTheme();
-    }
-
-
-
-
-
-
-
-}); // DOMContentLoaded  end here 
-
-function setcookie(name, value, days) {
+function setCookie(name, value, days) {
     var d = new Date();
-    d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000)); //days * hours * minutes * seconds * milliseconds
+    d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
     var expires = "expires=" + d.toUTCString();
     document.cookie = name + "=" + value + ";" + expires + ";path=/";
 }
@@ -65,5 +23,60 @@ function getCookie(name) {
         while (c.charAt(0) === ' ') c = c.substring(1, c.length);
         if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
     }
-    return null;
+    return '';
+}
+
+/**
+ * Toggles between light, dark, and orange themes.
+ * 
+ * @param {string} theme - The current theme setting.
+ */
+function toggleTheme(theme) {
+    updateTheme(theme);
+    setCookie('theme', theme, 365);
+}
+
+/**
+ * Updates the theme based on the theme parameter.
+ * 
+ * @param {string} theme - The current theme setting.
+ */
+function updateTheme(theme) {
+    const body = document.body;
+    const colorPalette = document.querySelector('.color-palette');
+    const topToolBar = document.querySelector('.top-tool-bar');
+    const themeToggleButton = document.getElementById('theme-toggle-button');
+    const icon = themeToggleButton.querySelector('.material-icons');
+    const modalContent = document.querySelector('.modal-content');
+    const closeBtn = document.querySelector('.close-btn');
+    // .color-active
+
+    if (theme === 'dark') {
+        body.style.backgroundColor = '#181818';
+        body.style.color = '#E0E0E0';
+        colorPalette.style.backgroundColor = '#2f4f4f3d';
+        topToolBar.style.backgroundColor = '#303030';
+        icon.textContent = 'brightness_7';
+        modalContent.style.backgroundColor = '#181818';
+        modalContent.style.color = '#E0E0E0';
+        closeBtn.style.color = '#BB86FC';
+    } else if (theme === 'orange') {
+        body.style.backgroundColor = 'orangered';
+        body.style.color = '#E0E0E0';
+        colorPalette.style.backgroundColor = '#2f4f4f3d';
+        topToolBar.style.backgroundColor = '#303030';
+        icon.textContent = 'brightness_7';
+        modalContent.style.backgroundColor = '#181818';
+        modalContent.style.color = '#E0E0E0';
+        closeBtn.style.color = '#BB86FC';
+    } else {
+        body.style.backgroundColor = 'white';
+        body.style.color = 'black';
+        colorPalette.style.backgroundColor = 'white';
+        topToolBar.style.backgroundColor = 'white';
+        icon.textContent = 'brightness_4';
+        modalContent.style.backgroundColor = 'white';
+        modalContent.style.color = 'black';
+        closeBtn.style.color = 'black';
+    }
 }
