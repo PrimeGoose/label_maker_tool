@@ -57,8 +57,8 @@ function updateLabels(data) {
         locationTop.className = 'location bg-yellow border-bottom-black';
 
         if (group.top) {
-            labelDigitTop.innerHTML = `<div class="digit-text">${group.top.labelDigitText}</div>`;
-            locationTop.innerHTML = `<div class="location-text">${group.top.locationText}</div>`;
+            labelDigitTop.innerHTML = `<div class='digit-text' contenteditable='true'>${group.top.labelDigitText}</div>`;
+            locationTop.innerHTML = `<div class='location-text' contenteditable='true'>${group.top.locationText}</div>`;
         }
 
         labelTop.appendChild(labelDigitTop);
@@ -75,8 +75,8 @@ function updateLabels(data) {
         locationBottom.className = 'location bg-white border-top-black';
 
         if (group.bottom) {
-            labelDigitBottom.innerHTML = `<div class="digit-text">${group.bottom.labelDigitText}</div>`;
-            locationBottom.innerHTML = `<div class="location-text">${group.bottom.locationText}</div>`;
+            labelDigitBottom.innerHTML = `<div class='digit-text' contenteditable='true'>${group.bottom.labelDigitText}</div>`;
+            locationBottom.innerHTML = `<div class='location-text' contenteditable='true'>${group.bottom.locationText}</div>`;
         }
 
         labelBottom.appendChild(labelDigitBottom);
@@ -137,4 +137,30 @@ function updateLabels(data) {
 
     // set selected color to last used
     document.querySelector('.selected-color').innerHTML = last_used;
+    Content_Editable_Arrow_Up_Down();
+}
+
+
+function Content_Editable_Arrow_Up_Down() {
+    document.addEventListener('keydown', (e) => {
+        const editableElements = Array.from(document.querySelectorAll(`[contenteditable='true']`));
+        const currentFocus = document.activeElement;
+
+        if (editableElements.includes(currentFocus)) {
+            let index = editableElements.indexOf(currentFocus);
+
+            switch (e.key) {
+                case 'ArrowUp':
+                    index = index - 1 < 0 ? editableElements.length - 1 : index - 1;
+                    break;
+                case 'ArrowDown':
+                    index = (index + 1) % editableElements.length;
+                    break;
+                default:
+                    return; // Allow other keys to function normally
+            }
+
+            editableElements[index].focus();
+        }
+    });
 }
