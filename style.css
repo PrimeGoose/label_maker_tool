@@ -426,15 +426,14 @@ label {
 
 .modal-content {
     display: flex;
-        flex-direction: column;
-        line-height: 2em;
-        background-color: #fefefe;
-        margin: 5%;
-        padding-left: 5em;
-        border: 1px solid #888;
-        width: 80%;
-        padding-right: 5em;
-    }
+    flex-direction: column;
+    line-height: 2em;
+    background-color: #fefefe;
+    margin: 4em auto;
+    padding-left: 5em;
+    border: 1px solid #888;
+    padding-right: 5em;
+    max-width: 18cm;
 }
 
 .close-btn {
@@ -451,7 +450,7 @@ label {
     cursor: pointer;
 }
 
-.modal-excel-img{
+.modal-excel-img {
     object-fit: scale-down;
     align-self: center;
 }
