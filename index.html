@@ -12,30 +12,32 @@
 </head>
 
 <body>
-<div id="how-to-use-modal" class="modal">
-    <div class="modal-content">
-        <span class="close-btn">&times;</span>
-        <h2>How to Use the Rack Label Tool:</h2>
+    <div id="how-to-use-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>How to Use the Rack Label Tool:</h2>
 
-        <h3>Creating & Uploading Excel File:</h3>
-        <ol>
-            <li>Prepare an Excel file with a single column.</li>
-            <li>Enter the header "Label" in cell A1.</li>
-            <li>List down all your locations in the subsequent cells (A2, A3, and so on).</li>
-            <li>Save the file and use the 'Upload File' button to upload it to the tool.</li>
-        </ol>
+            <h3>Creating & Uploading Excel File:</h3>
+            <ol>
+                <li>Prepare an Excel file with a single column.</li>
+                <li>Enter the header "Label" in cell A1.</li>
+                <li>List down all your locations in the subsequent cells (A2, A3, and so on).</li>
+                <li>Save the file and use the 'Upload File' button to upload it to the tool.</li>
+            </ol>
 
-        <h3>Editing Labels:</h3>
-        <p>On the start screen, you can edit each label individually. This is especially useful if you want to make specific changes to a particular
-            label.</p>
+            <h3>Editing Labels:</h3>
+            <p>On the start screen, you can edit each label individually. This is especially useful if you want to make specific changes to a
+                particular
+                label.</p>
 
-        <h3>Customizing Label Appearance:</h3>
-        <p>Choose from a range of yellow shades for your labels. Additionally, the tool provides an option to adjust the alpha level of the yellow,
-            letting you determine its transparency for a more personalized appearance.</p>
+            <h3>Customizing Label Appearance:</h3>
+            <p>Choose from a range of yellow shades for your labels. Additionally, the tool provides an option to adjust the alpha level of the
+                yellow,
+                letting you determine its transparency for a more personalized appearance.</p>
 
-    <img class="modal-excel-img" src="screenshot.png" alt="">
+            <img class="modal-excel-img" src="screenshot.png" alt="">
+        </div>
     </div>
-</div>
 
 
 
@@ -48,16 +50,12 @@
             <label for="upload" class="material-button">Upload File <span class="material-icons">file_upload</span></label>
             <input style="display: none;" type="file" id="upload" />
 
-            <!-- <a href="https://github.com/PrimeGoose/label_maker_tool" target="_blank" class="material-button"> -->
-            <!-- </a> -->
+
 
             <button class="material-button" id="how-to-use">
                 How to use? <span class="material-icons">help</span>
             </button>
-            <!-- tis button opens a color picker, it also spawns a color preview box and a save button, if finished  -->
-            <!-- <div class="button-container">
-                <button class="material-button" onclick="toggleColorPicker()">Color Picker <span class="material-icons">color_lens</span></button>
-            </div> -->
+
 
             <button id="theme-toggle-button" class="material-button">
                 <span class="material-icons">brightness_4</span>
@@ -81,17 +79,37 @@
     </div>
     <br>
 
+    <div class="tools"
+        style="display: flex; flex-direction: row; min-width: 15cm; margin-bottom: 2em; align-items: center; justify-content: space-evenly;">
 
-    <!-- opacity slider  -->
-    <!-- Your slider element -->
-    <label for="opacity-slider">Opacity: </label>
-    <input type="range" id="opacity-slider" min="0" max="100" step="10" value="100">
-<br>
-<br>
-<br>
+        <!-- opacity slider  -->
+        <div style="display: flex; flex-direction: column; align-items: center;">
 
+            <label for="opacity-slider">Opacity: <span id="opacity-value">100</span>%</label>
+            <input type="range" id="opacity-slider" min="0" max="100" step="10" value="100" style="width: 160px;">
+        </div>
 
- 
+        <!-- height adjust-->
+        <div style="display: flex; flex-direction: column;">
+            <div class="height-adjust" style="display: flex; flex-direction: column; align-items: center;">
+                <span class="height-in-mm" id="height-display" style="margin-left: 2em; margin-right: 2em;">22mm</span>
+                <div style="display: flex; flex-direction: row; ">
+
+                    <button class="material-icons" id="decreaseHeight">remove</button>
+                    <button class="material-icons" id="increaseHeight">add</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- font-weigth  toggle-->
+        <div class="material-icons">
+            <label class="switch">
+                <input type="checkbox" id="font-toggle">
+                <span class="slider round"></span>
+            </label>
+        </div>
+
+    </div>
 
     <!-- the rack label -->
     <div class="label-container" id="render-here">
@@ -122,20 +140,20 @@
 
 
 
-<div class="arrow-keys">
-    <div class="arrow-key arrow-key-up">
-        <span class="material-icons">
-            keyboard_arrow_up
-        </span>
-        <div class="tooltip">Select the label part you wish to edit and use the keyboard up arrow to navigate to the previous editable area.</div>
+    <div class="arrow-keys">
+        <div class="arrow-key arrow-key-up">
+            <span class="material-icons">
+                keyboard_arrow_up
+            </span>
+            <div class="tooltip">Select the label part you wish to edit and use the keyboard up arrow to navigate to the previous editable area.</div>
+        </div>
+        <div class="arrow-key arrow-key-down">
+            <span class="material-icons">
+                keyboard_arrow_down
+            </span>
+            <div class="tooltip">Select the label part you wish to edit and use the keyboard down arrow to navigate to the next editable area.</div>
+        </div>
     </div>
-    <div class="arrow-key arrow-key-down">
-        <span class="material-icons">
-            keyboard_arrow_down
-        </span>
-        <div class="tooltip">Select the label part you wish to edit and use the keyboard down arrow to navigate to the next editable area.</div>
-    </div>
-</div>
 
 
 
@@ -149,6 +167,10 @@
     <script defer type="text/javascript" src="how-to-use.js"></script>
     <script defer type="text/javascript" src="dark-mode.js"></script>
     <script defer type="text/javascript" src="last_used_color.js"></script>
+    <script defer type="text/javascript" src="label_height.js"></script>
+    <script defer type="text/javascript" src="font-weigth.js"></script>
+
+
 
 
 </body>
