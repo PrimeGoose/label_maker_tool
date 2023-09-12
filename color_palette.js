@@ -58,6 +58,10 @@ function initializeColorPalette() {
             selectColor(color)
 
 
+            document.querySelector('#opacity-slider').value = 100;
+            document.querySelector('#opacity-value').innerHTML = 100;
+
+
         });
 
         colorPalette.appendChild(colorItem);
