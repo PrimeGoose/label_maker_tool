@@ -86,13 +86,13 @@
     body *:not(.label-container):not(.label-container *) {
         display: none;
         /* Hide all elements except for .label-container and its child elements */
+        
+        /* Force background colors and images to print */
+        -webkit-print-color-adjust: exact;
+        color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+        color-adjust: exact;
     }
-
-    /* Force background colors and images to print */
-    -webkit-print-color-adjust: exact;
-    color-adjust: exact;
-    -webkit-print-color-adjust: exact;
-    color-adjust: exact;
 }
 
 
@@ -198,11 +198,11 @@ img {
     border-top: 1mm solid black;
     border-bottom: 1mm solid black;
     border-right: 1mm solid black;
-    border-i
+    
 }
 
 .location-text {
-    text-transform: uppercase;
+    text-transform:uppercase;
     display: flex;
     justify-content: center;
     font-family: var(--location-font-family);
@@ -355,7 +355,7 @@ img {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    background-color: #white;
+    background-color: white;
     gap: 1em;
 }
 
