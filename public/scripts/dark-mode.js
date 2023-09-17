@@ -61,7 +61,7 @@ function updateTheme(theme) {
         modalContent.style.color = '#E0E0E0';
         closeBtn.style.color = '#BB86FC';
     } else if (theme === 'orange') {
-        body.style.backgroundColor = 'orangered';
+        body.style.backgroundColor = 'darkorange';
         body.style.color = '#E0E0E0';
         colorPalette.style.backgroundColor = '#2f4f4f3d';
         topToolBar.style.backgroundColor = '#303030';
