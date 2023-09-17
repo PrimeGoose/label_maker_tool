@@ -73,7 +73,7 @@ function updateTheme(theme) {
         body.style.backgroundColor = 'white';
         body.style.color = 'black';
         colorPalette.style.backgroundColor = 'white';
-        topToolBar.style.backgroundColor = 'white';
+        topToolBar.style.backgroundColor = '#303030';
         icon.textContent = 'brightness_4';
         modalContent.style.backgroundColor = 'white';
         modalContent.style.color = 'black';

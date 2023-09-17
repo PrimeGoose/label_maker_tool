@@ -82,23 +82,27 @@
         color: black;
     }
 
-    body > *:not(.container) {
-        display: none!important;
+    body>*:not(.container) {
+        display: none !important;
     }
-.tools{
-    display: none!important;
-}
-    .container > *:not(.label-container) {
+
+    .tools {
+        display: none !important;
+    }
+
+    .container>*:not(.label-container) {
         display: none;
     }
 
-    .label-container, .label-container * {
+    .label-container,
+    .label-container * {
         display: block;
         color-adjust: exact;
         -webkit-print-color-adjust: exact;
     }
-    .container{
-        opacity: 1!important;
+
+    .container {
+        opacity: 1 !important;
     }
 }
 
@@ -128,6 +132,7 @@ body.dark-mode {
     align-items: center;
     background-color: darkorange;
 }
+
 /* updated color */
 
 
@@ -207,11 +212,11 @@ img {
     border-top: 1mm solid black;
     border-bottom: 1mm solid black;
     border-right: 1mm solid black;
-    
+
 }
 
 .location-text {
-    text-transform:uppercase;
+    text-transform: uppercase;
     display: flex;
     justify-content: center;
     font-family: var(--location-font-family);
@@ -312,8 +317,8 @@ img {
     height: 4rem;
     padding: 0 1rem;
     margin-bottom: 4em;
-    background-color: white;
-    color: white;
+    background-color: rgb(48, 48, 48);
+    color: rgb(48, 48, 48);
     box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2);
 
 
@@ -327,8 +332,8 @@ img {
     height: 4rem;
     padding: 0 1rem;
     margin-bottom: 4em;
-    background-color: #000000;
-    color: white;
+    background-color: rgb(48, 48, 48);
+    color: rgb(48, 48, 48);
     box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2);
 }
 
@@ -580,15 +585,15 @@ label {
     transition: .4s;
 }
 
-input:checked + .slider {
+input:checked+.slider {
     background-color: #2196F3;
 }
 
-input:focus + .slider {
+input:focus+.slider {
     box-shadow: 0 0 1px #2196F3;
 }
 
-input:checked + .slider:before {
+input:checked+.slider:before {
     transform: translateX(26px);
 }
 
@@ -608,12 +613,13 @@ input:checked + .slider:before {
     font-weight: bold;
     color: black;
     font-family: 'Inconsolata Bold';
-  }
-  .not-pressed {
+}
+
+.not-pressed {
     font-weight: normal;
     color: grey;
     font-family: 'Inconsolata Black';
-  }
+}
 
 /* filename: styles.css */
 /* .container {
