@@ -1,5 +1,8 @@
 # Labels tool
 
+## ⭐
+
+
 ![Labels tool](screenshots/screenshot.png)
 
 ![](screenshots/screenshot2.png)
