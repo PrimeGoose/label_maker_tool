@@ -599,10 +599,10 @@ input:checked + .slider:before {
 .pressed {
     font-weight: bold;
     color: black;
-    font-family: 'Inconsolata Black';
+    font-family: 'Inconsolata Bold';
   }
   .not-pressed {
     font-weight: normal;
     color: grey;
-    font-family: 'Inconsolata Bold';
+    font-family: 'Inconsolata Black';
   }
