@@ -67,6 +67,8 @@
     box-sizing: border-box;
 }
 
+/* filename: styles.css */
+
 @media print {
     * {
         margin: 0;
@@ -75,25 +77,30 @@
     }
 
     body {
-
         background-color: white;
-        /* Set the body background color to white for print */
         color: black;
-        /* Set the body text color to black for print */
     }
 
-    img,
-    body *:not(.label-container):not(.label-container *) {
+    body > *:not(.container) {
+        display: none!important;
+    }
+.tools{
+    display: none!important;
+}
+    .container > *:not(.label-container) {
         display: none;
-        /* Hide all elements except for .label-container and its child elements */
-        
-        /* Force background colors and images to print */
-        -webkit-print-color-adjust: exact;
+    }
+
+    .label-container, .label-container * {
+        display: block;
         color-adjust: exact;
         -webkit-print-color-adjust: exact;
-        color-adjust: exact;
+    }
+    .container{
+        opacity: 1!important;
     }
 }
+
 
 
 
@@ -606,3 +613,35 @@ input:checked + .slider:before {
     color: grey;
     font-family: 'Inconsolata Black';
   }
+
+/* filename: styles.css */
+/* .container {
+    opacity: 0.5;
+    transition: opacity 1.3s ease-in-out;
+  }
+  .container:hover {
+    opacity: 1;
+  }
+  @keyframes fadeIn {
+    from {
+      opacity: 0.5;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0.5;
+    }
+  }
+  .container:hover {
+    animation: fadeIn 0.3s ease-in-out forwards;
+  }
+  .container:not(:hover) {
+    animation: fadeOut 0.3s ease-in-out forwards;
+  }
+   */

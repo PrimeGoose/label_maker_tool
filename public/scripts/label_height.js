@@ -5,7 +5,7 @@ function updateHeightDisplay(height) {
     try {
         const heightDisplay = document.getElementById('height-display');
         if (heightDisplay) {
-            heightDisplay.textContent = `${height}mm`;
+            heightDisplay.textContent = `Height: ${height}mm`;
         } else {
             console.error('Height display element not found in the document.');
         }
