@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 
 // public 
-app.use(express.static('public'));
+app.use(express.static(__dirname));
 
 // body parser 
 app.use(express.urlencoded({ extended: true }));

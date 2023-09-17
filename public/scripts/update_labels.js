@@ -1,87 +1,3 @@
-
-
-
-
-
-
-
-
-document.addEventListener('DOMContentLoaded', (event) => {
-    const labels = document.querySelectorAll('.location-text, .digit-text');
-
-    labels.forEach(label => {
-        label.addEventListener('input', () => {
-
-        });
-    });
-
-
-    document.addEventListener('keydown', (e) => {
-        const editableElements = Array.from(document.querySelectorAll('[contenteditable="true"]'));
-        const currentFocus = document.activeElement;
-
-        if (editableElements.includes(currentFocus)) {
-            let index = editableElements.indexOf(currentFocus);
-
-            switch (e.key) {
-                case 'ArrowUp':
-                    index = index - 1 < 0 ? editableElements.length - 1 : index - 1;
-                    break;
-                case 'ArrowDown':
-                    index = (index + 1) % editableElements.length;
-                    break;
-                default:
-                    return; // Allow other keys to function normally
-            }
-
-            editableElements[index].focus();
-        }
-    });
-
-
-
-// Your script here
-document.getElementById('upload').addEventListener('change', handleFile);
-
-function handleFile(e) {
-    let files = e.target.files, f = files[0];
-    let reader = new FileReader();
-    reader.onload = function (e) {
-        let data = new Uint8Array(e.target.result);
-        let workbook = XLSX.read(data, { type: 'array' });
-        let firstSheetName = workbook.SheetNames[0];
-        let worksheet = workbook.Sheets[firstSheetName];
-        let sheetData = XLSX.utils.sheet_to_json(worksheet);
-
-        updateLabels(sheetData);
-    };
-    reader.readAsArrayBuffer(f);
-}
-
-document.getElementById('upload').addEventListener('change', handleFile);
-
-function handleFile(e) {
-    let files = e.target.files, f = files[0];
-    let reader = new FileReader();
-
-    reader.onload = function (e) {
-        let data = new Uint8Array(e.target.result);
-        let workbook = XLSX.read(data, { type: 'array' });
-        let firstSheetName = workbook.SheetNames[0];
-        let worksheet = workbook.Sheets[firstSheetName];
-        let sheetData = XLSX.utils.sheet_to_json(worksheet);
-
-        updateLabels(sheetData);
-    };
-
-    reader.readAsArrayBuffer(f);
-
-    // Clear the input file value after reading the file
-    e.target.value = '';
-
-
-}
-
 function updateLabels(data) {
     console.log(data);
 
@@ -91,7 +7,6 @@ function updateLabels(data) {
     mainContainer.innerHTML = ''; // Clear existing labels
 
     // Group data by prefix
-
     data.forEach(row => {
         const [labelDigitText, ...locationParts] = row['label'].split(' ');
         const locationText = locationParts.join(' ');
@@ -159,6 +74,41 @@ function updateLabels(data) {
     });
 
 
+    let last_used = getCookie('lastUsedColorHex')
+    console.log('lastUsedColorHex', last_used);
 
+    /**
+ * Colors data
+ * @type {Array<{name: string, hex: string, rgb: string}>}
+ */
+    const colors = [
+        { name: "Yellow", hex: "#FFFF00", rgb: "rgb(255, 255, 0)" },
+        { name: "Amber", hex: "#FFBF00", rgb: "rgb(255, 191, 0)" },
+        { name: "Bright Yellow", hex: "#FFEA00", rgb: "rgb(255, 234, 0)" },
+        { name: "Cadmium Yellow", hex: "#FDDA0D", rgb: "rgb(253, 218, 13)" },
+        { name: "Chartreuse", hex: "#DFFF00", rgb: "rgb(223, 255, 0)" },
+        { name: "Citrine", hex: "#E4D00A", rgb: "rgb(228, 208, 10)" },
+        { name: "Gold", hex: "#FFD700", rgb: "rgb(255, 215, 0)" },
+        { name: "Golden Yellow", hex: "#FFC000", rgb: "rgb(255, 192, 0)" },
+        { name: "Icterine", hex: "#FCF55F", rgb: "rgb(252, 245, 95)" },
+        { name: "Jasmine", hex: "#F8DE7E", rgb: "rgb(248, 222, 126)" },
+        { name: "Lemon Yellow", hex: "#FAFA33", rgb: "rgb(250, 250, 51)" },
+        { name: "Maize", hex: "#FBEC5D", rgb: "rgb(251, 236, 93)" },
+        { name: "Mustard Yellow", hex: "#FFDB58", rgb: "rgb(255, 219, 88)" },
+        { name: "Naples Yellow", hex: "#FADA5E", rgb: "rgb(250, 218, 94)" },
+        { name: "Saffron", hex: "#F4C430", rgb: "rgb(244, 196, 48)" },
+    ];
+
+    document.querySelector('.selected-color').innerHTML = last_used;
+    // bg-yellow set all nodes to the last used color
+    document.querySelectorAll('.bg-yellow').forEach(async (item) => {
+        console.log(last_used.toLowerCase());
+        const colorObj = colors.find(color => color.name.toLowerCase() === last_used.toLowerCase());
+        if (colorObj) {
+            item.style.setProperty('background-color', colorObj.hex, 'important');
+        }
+    });
 }
-});
+
+// Export updateLabels to be able to use it in read_excel_file.js
+export { updateLabels };

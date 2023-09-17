@@ -1,9 +1,9 @@
 # Labels tool
 
-![Labels tool](screenshot.png)
+![Labels tool](screenshots/screenshot.png)
 
-![](screenshot2.png)
+![](screenshots/screenshot2.png)
 
-![](screenshot_print_scale.png)
+![](screenshots/screenshot_print_scale.png)
 
-![](screenshot_landscape.png)
+![](screenshots/screenshot_landscape.png)
