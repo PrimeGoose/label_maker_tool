@@ -592,3 +592,17 @@ input:checked + .slider:before {
 .slider.round:before {
     border-radius: 50%;
 }
+
+
+/* --digit-font-family: 'Inconsolata Bold'; */
+/* --location-font-family: 'Inconsolata Bold'; */
+.pressed {
+    font-weight: bold;
+    color: black;
+    font-family: 'Inconsolata Black';
+  }
+  .not-pressed {
+    font-weight: normal;
+    color: grey;
+    font-family: 'Inconsolata Bold';
+  }

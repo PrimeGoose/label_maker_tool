@@ -1,4 +1,22 @@
 document.addEventListener('DOMContentLoaded', () => {
+
+    document.getElementById('font-toggle').addEventListener('click', () => {
+        const button = document.getElementById('font-toggle');
+        
+        if (button.classList.contains('not-pressed')) {
+          button.classList.remove('not-pressed');
+          button.classList.add('pressed');
+            updateFontDisplay('Black');
+            toggleFontWeight();
+
+        } else {
+          button.classList.remove('pressed');
+          button.classList.add('not-pressed');
+            updateFontDisplay('Bold');
+            toggleFontWeight();
+
+        }
+      });
     /**
      * Function to update the font display label
      */
