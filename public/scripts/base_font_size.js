@@ -72,7 +72,7 @@ window.addEventListener('beforeprint', () => {
     const opacityValue = document.getElementById('opacity-value').textContent;
     const selectedColor = document.querySelector('.selected-color').textContent;
 
-    document.title = `${fontDisplay}, ${heightDisplay}, Opacity: ${opacityValue}%, Color: ${selectedColor} url:https://primegoose.github.io/label_maker_tool/`;
+    document.title = `${fontDisplay}, ${heightDisplay}, Opacity: ${opacityValue}%, Color: ${selectedColor}`;
 });
 
 
