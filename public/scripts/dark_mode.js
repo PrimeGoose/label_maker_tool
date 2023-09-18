@@ -52,21 +52,21 @@ function updateTheme(theme) {
     // .color-active
 
     if (theme === 'dark') {
-        body.style.backgroundColor = '#181818';
+        body.style.backgroundColor = '#272727';
         body.style.color = '#E0E0E0';
-        colorPalette.style.backgroundColor = '#2f4f4f3d';
+        colorPalette.style.backgroundColor = '#2f4f4f00';
         topToolBar.style.backgroundColor = '#303030';
         icon.textContent = 'brightness_7';
-        modalContent.style.backgroundColor = '#181818';
+        modalContent.style.backgroundColor = '#272727';
         modalContent.style.color = '#E0E0E0';
         closeBtn.style.color = '#BB86FC';
     } else if (theme === 'orange') {
         body.style.backgroundColor = 'darkorange';
         body.style.color = '#E0E0E0';
-        colorPalette.style.backgroundColor = '#2f4f4f3d';
+        colorPalette.style.backgroundColor = '#2f4f4f00';
         topToolBar.style.backgroundColor = '#303030';
         icon.textContent = 'brightness_7';
-        modalContent.style.backgroundColor = '#181818';
+        modalContent.style.backgroundColor = '#272727';
         modalContent.style.color = '#E0E0E0';
         closeBtn.style.color = '#BB86FC';
     } else {
