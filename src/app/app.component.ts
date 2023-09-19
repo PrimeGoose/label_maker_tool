@@ -34,6 +34,40 @@ export class AppComponent {
       // Fetching all rows as an array of objects using the correct worksheet
       let sheetDataJson:any = XLSX.utils.sheet_to_json(worksheet);
       console.log(sheetDataJson[0].label)
+      // Continue the function...
+
+      // Extract the data from column "A" and format it
+      let formattedData:any = sheetDataJson.map((row:any) => row.label.trim().split(' ').join(' ') );
+
+      // Extract and group labels by their racking address and location number
+      let groupedLabels:any = {};
+
+      formattedData.forEach((label:any) => {
+        let digit = label.slice(0, 3);  // Extract digit
+        let rackAddress = label.slice(4, 6).toUpperCase();  // Extract racking address
+        let locationNumber = label.slice(6, 8);  // Extract location number
+        let side = label.slice(8, 9).toUpperCase(); // Extract side (A or B)
+        let level = label.slice(-1);  // Extract level (1 or 2)
+
+        let key = rackAddress + locationNumber;
+        if (!groupedLabels[key]) {
+          groupedLabels[key] = {};
+        }
+
+        if (level === '1') {
+          groupedLabels[key].digit_L1 = digit;
+          groupedLabels[key].location_L1 = `${rackAddress} ${locationNumber} ${side}${level}`;
+        } else if (level === '2') {
+          groupedLabels[key].digit_L2 = digit;
+          groupedLabels[key].location_L2 = `${rackAddress} ${locationNumber} ${side}${level}`;
+        }
+      });
+
+      // Convert the groupedLabels object to an array of objects
+      let result = Object.values(groupedLabels);
+
+      console.log(result);  // For debugging purposes
+      return result;
 
 
 
