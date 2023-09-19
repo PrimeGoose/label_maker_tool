@@ -1,0 +1,50 @@
+// var --digit-width 50mm
+// var --label-width 130mm
+// var digit-height 25mm
+// var label-height 25mm
+
+$digit-width: 50mm;
+$digit-height: 25mm;
+
+$location-width: 130mm;
+$location-height: 25mm;
+
+.main-container {
+}
+
+.label {
+}
+
+.label-l2 {
+}
+.digit-l2 {
+  height: $digit-height;
+  width: $digit-width;
+}
+.location-l2 {
+  height: $location-height;
+  width: $location-width;
+}
+.name-l2 {
+}
+.number-l2 {
+}
+.level-l2 {
+}
+.label-l1 {
+}
+.digit-l1 {
+  width: $digit-width;
+  height: $digit-height;
+}
+
+.location-l1 {
+  width: $location-width;
+  height: $location-height;
+}
+.name-l1 {
+}
+.number-l1 {
+}
+.level-l1 {
+}
