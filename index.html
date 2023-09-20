@@ -13,21 +13,15 @@
 
 <body>
 
-    
     <div class="main-container">
-
-
-
-
 
         <!-- material file upload button -->
         <!-- top tool bar -->
         <div class="top-tool-bar">
-            
+
             <div class="button-container">
 
-                <label for="upload" class="material-button">Upload File <span
-                        class="material-icons">file_upload</span></label>
+                <label for="upload" class="material-button">Excel File <span class="material-icons">file_upload</span></label>
                 <input style="display: none;" type="file" id="upload" />
 
 
@@ -36,90 +30,83 @@
                     How to use? <span class="material-icons">help</span>
                 </button>
 
-
                 <button id="theme-toggle-button" class="material-button">
                     <span class="material-icons">brightness_4</span>
                 </button>
 
 
 
-                <button id="print-btn" class="material-button" onclick="window.print()">Print <span
-                        class="material-icons">print</span></button>
+                <button id="print-btn" class="material-button" onclick="window.print()">Print <span class="material-icons">print</span></button>
             </div>
         </div>
 
 
-      
 
-            <div class="tools"
-                style="display: flex; flex-direction: column; min-width: 15cm; margin-bottom: 2em; align-items: flex-end; justify-content: space-evenly;">
 
-                <!-- Color Picker Section -->
-                <div class="color-picker-section">
-                    <div class="color-picker-title">
-                        <span class="material-icons favorite-icon ${isFavorite ? 'favorite' : ''}"
-                            data-hex="${color.hex}">star</span>
-                        <span class="selected-color">Selected Color</span>
-                    </div>
-                    <div class="color-palette">
-                        <!-- Color Items will be injected here through JavaScript -->
-                    </div>
+        <div class="tools"
+            style="display: flex; flex-direction: column; min-width: 15cm; margin-bottom: 2em; align-items: flex-end; justify-content: space-evenly;">
+
+            <!-- Color Picker Section -->
+            <div class="color-picker-section">
+                <div class="color-picker-title">
+                    <span class="material-icons favorite-icon ${isFavorite ? 'favorite' : ''}" data-hex="${color.hex}">star</span>
+                    <span class="selected-color">Selected Color</span>
                 </div>
-                <br>
-
-                <div
-                    style="display: flex; flex-direction: row; align-items: flex-end; width: 100%; justify-content: space-evenly;">
-
-                    <!-- opacity slider  -->
-                    <div style="display: flex; flex-direction: column; align-items: center;">
-
-                        <label for="opacity-slider">Opacity: <span id="opacity-value">100</span>%</label>
-                        <input type="range" id="opacity-slider" min="0" max="100" step="10" value="100"
-                            style="width: 160px;">
-                    </div>
-
-                    <!-- height adjust-->
-                    <div style="display: flex; flex-direction: column; width: 160px;">
-                        <div class="height-adjust" style="display: flex; flex-direction: column; align-items: center;">
-                            <span class="height-in-mm" id="height-display"
-                                style="margin-left: 2em; margin-right: 2em;">22mm</span>
-                            <div style="display: flex; flex-direction: row; ">
-
-                                <button class="material-icons" id="decreaseHeight">remove</button>
-                                <button class="material-icons" id="increaseHeight">add</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- font adjust-->
-                    <div style="display: flex; flex-direction: column; width: 160px;">
-                        <div class="font-adjust" style="display: flex; flex-direction: column; align-items: center;">
-                            <span class="font-size-in-px" id="font-display-px"
-                                style="margin-left: 2em; margin-right: 2em;">Font: 70px</span>
-                            <div style="display: flex; flex-direction: row; ">
-
-                                <button class="material-icons decreaseFont" id="decreaseHeight">remove</button>
-                                <button class="material-icons increaseFont" id="increaseHeight">add</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- font-weigth  toggle-->
-                    <div
-                        style="display: flex; flex-direction: row; gap: 1em; align-items: center; width: 160px; justify-content: center; ">
-                        <div class="font-adjust" style="display: flex; flex-direction: column; align-items: center;">
-                            <span class="font-size-in-px" id="font-display"
-                                style="margin-left: 2em; margin-right: 2em;">Bold</span>
-                            <button class="material-icons not-pressed" id="font-toggle"
-                                style="width: 1.25em;">B</button>
-                        </div>
-                    </div>
-
+                <div class="color-palette">
+                    <!-- Color Items will be injected here through JavaScript -->
                 </div>
             </div>
+            <br>
 
-            <!-- the rack label -->
-            <div class="label-container" id="render-here">
+            <div style="display: flex; flex-direction: row; align-items: flex-end; width: 100%; justify-content: space-evenly;">
+
+                <!-- opacity slider  -->
+                <div style="display: flex; flex-direction: column; align-items: center;">
+
+                    <label for="opacity-slider">Opacity: <span id="opacity-value">100</span>%</label>
+                    <input type="range" id="opacity-slider" min="0" max="100" step="10" value="100" style="width: 160px;">
+                </div>
+
+                <!-- height adjust-->
+                <div style="display: flex; flex-direction: column; width: 160px;">
+                    <div class="height-adjust" style="display: flex; flex-direction: column; align-items: center;">
+                        <span class="height-in-mm" id="height-display" style="margin-left: 2em; margin-right: 2em;">22mm</span>
+                        <div style="display: flex; flex-direction: row; ">
+
+                            <button class="material-icons" id="decreaseHeight">remove</button>
+                            <button class="material-icons" id="increaseHeight">add</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- font adjust-->
+                <div style="display: flex; flex-direction: column; width: 160px;">
+                    <div class="font-adjust" style="display: flex; flex-direction: column; align-items: center;">
+                        <span class="font-size-in-px" id="font-display-px" style="margin-left: 2em; margin-right: 2em;">Font: 70px</span>
+                        <div style="display: flex; flex-direction: row; ">
+
+                            <button class="material-icons decreaseFont" id="decreaseHeight">remove</button>
+                            <button class="material-icons increaseFont" id="increaseHeight">add</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- font-weigth  toggle-->
+                <div style="display: flex; flex-direction: row; gap: 1em; align-items: center; width: 160px; justify-content: center; ">
+                    <div class="font-adjust" style="display: flex; flex-direction: column; align-items: center;">
+                        <span class="font-size-in-px" id="font-display" style="margin-left: 2em; margin-right: 2em;">Bold</span>
+                        <button class="material-icons not-pressed" id="font-toggle" style="width: 1.25em;">B</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- the rack label -->
+        <div class="label-container" id="render-here">
+
+            <div class="label-pair">
+
                 <!-- Level 2 -->
                 <div class="label">
                     <!-- check digit -->
@@ -128,7 +115,12 @@
                     </div>
                     <!-- location  l2-->
                     <div class="location bg-yellow border-bottom-black">
-                        <div class="location-text" contenteditable="true" spellcheck="false">KB 22 A2</div>
+                        <div class="location-text" contenteditable="true" spellcheck="false"
+                            style="display: flex; justify-content: space-between; padding-left: 1rem; padding-right: 1rem;">
+                            <span class="address">KB</span>
+                            <span class="number">22</span>
+                            <span class="side-level">A2</span>
+                        </div>
                     </div>
                 </div>
                 <!-- Level 1 -->
@@ -139,38 +131,41 @@
                     </div>
                     <!-- check digit -->
                     <div class="location bg-white border-top-black">
-                        <div class="location-text" contenteditable="true" spellcheck="false">KB 22 A1</div>
+                        <div class="location-text" contenteditable="true" spellcheck="false"
+                            style="display: flex; justify-content: space-between; padding-left: 1rem; padding-right: 1rem;">
+
+                            <span class="address">KB</span>
+                            <span class="number">22</span>
+                            <span class="side-level">A1</span>
+                        </div>
                     </div>
-
                 </div>
+
             </div>
 
 
+        </div>
 
-            <div class="arrow-keys">
-                <div class="arrow-key arrow-key-up">
-                    <span class="material-icons">
-                        keyboard_arrow_up
-                    </span>
-                    <div class="tooltip">Select the label part you wish to edit and use the keyboard up arrow to
-                        navigate to
-                        the previous editable area.</div>
-                </div>
-                <div class="arrow-key arrow-key-down">
-                    <span class="material-icons">
-                        keyboard_arrow_down
-                    </span>
-                    <div class="tooltip">Select the label part you wish to edit and use the keyboard down arrow to
-                        navigate
-                        to the next editable area.</div>
-                </div>
+
+
+        <div class="arrow-keys">
+            <div class="arrow-key arrow-key-up">
+                <span class="material-icons">
+                    keyboard_arrow_up
+                </span>
+                <div class="tooltip">Select the label part you wish to edit and use the keyboard up arrow to
+                    navigate to
+                    the previous editable area.</div>
             </div>
-
-    
-
-
-
-
+            <div class="arrow-key arrow-key-down">
+                <span class="material-icons">
+                    keyboard_arrow_down
+                </span>
+                <div class="tooltip">Select the label part you wish to edit and use the keyboard down arrow to
+                    navigate
+                    to the next editable area.</div>
+            </div>
+        </div>
 
         <script defer type="text/javascript" src="public/scripts/opacity_slider.js"></script>
         <script defer type="text/javascript" src="public/scripts/how_to_use.js"></script>
@@ -183,9 +178,6 @@
         <script defer type="text/javascript" src="public/scripts/read_excel_file.js"></script>
         <script defer type="text/javascript" src="public/scripts/color_palette.js"></script>
 
-
-
-
     </div>
 </body>
 
@@ -193,32 +185,33 @@
 <div id="how-to-use-modal" class="modal">
     <div class="modal-content">
         <span class="close-btn">&times;</span>
-        <h2>How to Use the Rack Label Tool:</h2>
+        <h2>How to Utilize the Rack Label Tool Effectively:</h2>
 
-        <h3>Creating & Uploading Excel File:</h3>
+        <h3>Preparing & Uploading the Excel File:</h3>
         <ol>
-            <li>Prepare an Excel file with a single column.</li>
-            <li>Enter the header "Label" in cell A1.</li>
-            <li>List down all your locations in the subsequent cells (A2, A3, and so on).</li>
-            <li>Save the file and use the 'Upload File' button to upload it to the tool.</li>
+            <li>Prepare an Excel file; the tool will only read locations from column "A". You are free to use other columns for your organizational
+                purposes, such as noting down completed and pending locations.</li>
+            <li>Ensure that the check digit precedes the location data in your entries. For instance, a valid input can be "A1E DD 01 A1". You can
+                choose to either include or exclude spaces in the data.</li>
+            <li>if the data is icomplete, then the label pair for that specific location will not be generated.</li>
+            <li>Save your file and upload it using the 'Upload File' button.</li>
         </ol>
 
         <h3>Editing Labels:</h3>
-        <p>On the start screen, you can edit each label individually. This is especially useful if you want to
-            make
-            specific changes to a
-            particular
-            label.</p>
+        <p>Once uploaded, you have the freedom to edit each label individually on the start screen. This functionality is crucial when you wish to
+            apply specific changes to a particular label.</p>
 
-        <h3>Customizing Label Appearance:</h3>
-        <p>Choose from a range of yellow shades for your labels. Additionally, the tool provides an option to
-            adjust
-            the alpha level of the
-            yellow,
-            letting you determine its transparency for a more personalized appearance.</p>
+        <h3>Personalizing Label Appearance:</h3>
+        <p>The tool offers a palette of yellow shades for your labels, alongside an option to adjust the alpha level of the selected yellow, allowing
+            for controlled transparency and a tailored appearance to suit your preferences.</p>
+
+        <h3>Automated Label Pairing:</h3>
+        <p>The tool automates the process of pairing labels, hence the sequence of locations in your Excel file is not a concern. The application
+            smartly matches and groups all locations to create respective label pairs, simplifying your workflow considerably.</p>
 
         <img class="modal-excel-img" src="screenshots/screenshot.png" alt="">
     </div>
 </div>
+
 
 </html>

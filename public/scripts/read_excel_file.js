@@ -1,144 +1,196 @@
 document.addEventListener('DOMContentLoaded', (event) => {
     document.getElementById('upload').addEventListener('change', handleFile);
 });
-
+let Labels = []
 function handleFile(e) {
-    let files = e.target.files, f = files[0];
+    Labels = []
+
+    function extractColumn(data, columnKey) {
+        return Object.keys(data)
+            .filter(key => key.startsWith(columnKey))
+            .map(key => data[key].v);
+    }
+
+    let file = e.target.files[0];
     let reader = new FileReader();
-    reader.onload = function (e) {
-        let data = new Uint8Array(e.target.result);
+    reader.onload = (e) => {
+        let data = new Uint8Array((e.target).result);
         let workbook = XLSX.read(data, { type: 'array' });
         let firstSheetName = workbook.SheetNames[0];
         let worksheet = workbook.Sheets[firstSheetName];
-        let sheetData = XLSX.utils.sheet_to_json(worksheet);
-        updateLabels(sheetData);
+
+        const columnKey = 'A';
+        const columnValues = extractColumn(worksheet, columnKey);
+        // console.log(columnValues);
+        let formattedData = columnValues.map((row) => {
+            let label = row.trim().toUpperCase();
+            let removeAllsybbols_and_spaces = label.replace(/[^a-zA-Z0-9]/g, "");
+            return removeAllsybbols_and_spaces;
+        });
+        let temp_labels = [];
+        formattedData.forEach((label) => {
+            let level = label.slice(-1)
+            if (level != 1 && level != 2) { return }
+            if (label.length < 9) { return }
+            if (level == 1) {
+                let digit = label.slice(0, 3)// needs to be 3 characters
+                if (digit.length != 3) {
+                    console.log("digit is not 3 characters", digit, "in:", label)
+                    return
+                }
+                let street = label.slice(3, 5)// Alphabetical characters only ,two characters
+                if (street.length != 2) {
+                    console.log("street is not 2 characters", street, "in:", label)
+                    return
+                }
+                let number = label.slice(5, 7)// two digits
+                if (number.length != 2) {
+                    console.log("number is not 2 digits", number, "in:", label)
+                    return
+                }
+                let side = label.slice(7, 8) // can only be A or B
+                if (side !== "A" && side !== "B") {
+                    console.log("l1 side is not A or B", side == 'A', "in:", label)
+                    return
+                }
+
+                temp_labels.push({
+                    level1: {
+                        digit: digit,
+                        street: street,
+                        number: number,
+                        side: side,
+                        level: level
+                    }
+                })
+            }
+            if (level == 2) {
+                let digit = label.slice(0, 3)// needs to be 3 characters
+                if (digit.length != 3) {
+                    console.log("digit is not 3 characters", digit, "in:", label)
+                    return
+                }
+                let street = label.slice(3, 5)// Alphabetical characters only ,two characters
+                if (street.length != 2) {
+                    console.log("street is not 2 characters", street, "in:", label)
+                    return
+                }
+                let number = label.slice(5, 7)// two digits
+                if (number.length != 2) {
+                    console.log("number is not 2 digits", number, "in:", label)
+                    return
+                }
+                let side = label.slice(7, 8) // can only be A or B
+                if (side.toUpperCase() !== "A" && side !== "B") {
+                    console.log("side is not A or B", side, "in:", label)
+                    return
+                }
+                temp_labels.push({
+                    level2: {
+                        digit: digit,
+                        street: street,
+                        number: number,
+                        side: side,
+                        level: level
+                    }
+                })
+            }
+        });// end of forEach
+
+        temp_labels.forEach((label1) => {
+            if (label1.level1) {
+                let match = temp_labels.find((label2) => {
+                    return label2.level2 &&
+                        label1.level1.street === label2.level2.street &&
+                        label1.level1.number === label2.level2.number &&
+                        label1.level1.side === label2.level2.side;
+                });
+
+                if (match) {
+                    Labels.push({
+                        level1: label1.level1,
+                        level2: match.level2
+                    });
+                }
+            }
+        });
+        console.log("match", Labels)
+        renderLabels(Labels);
+
     };
-
-    reader.readAsArrayBuffer(f);
-    // Clear the input file value after reading the file
+    reader.readAsArrayBuffer(file);
     e.target.value = '';
+    return Labels
+
 }
 
-function updateLabels(data) {
-    console.log(data);
-    let groupedData = {};
-    const mainContainer = document.querySelector('#render-here');
-    mainContainer.innerHTML = ''; // Clear existing labels
-    // Group data by prefix
-    data.forEach(row => {
-        const [labelDigitText, ...locationParts] = row['label'].split(' ');
-        const locationText = locationParts.join(' ');
-        const prefix = locationText.slice(0, -1);
+// filename: renderLabels.js
 
-        if (!groupedData[prefix]) {
-            groupedData[prefix] = {};
-        }
-
-        if (locationText.endsWith('2')) {
-            groupedData[prefix].top = { labelDigitText, locationText };
-        } else if (locationText.endsWith('1')) {
-            groupedData[prefix].bottom = { labelDigitText, locationText };
-        }
-    });
-
-    // Create labels from grouped data
-    Object.values(groupedData).forEach(group => {
-        const labelContainer = document.createElement('div');
-        labelContainer.className = 'label-container';
-
-        // Create top label part
-        const labelTop = document.createElement('div');
-        labelTop.className = 'label';
-
-        const labelDigitTop = document.createElement('div');
-        labelDigitTop.className = 'label-digit bg-black border-bottom-white';
-
-        const locationTop = document.createElement('div');
-        locationTop.className = 'location bg-yellow border-bottom-black';
-
-        if (group.top) {
-            labelDigitTop.innerHTML = `<div class='digit-text' contenteditable='true'>${group.top.labelDigitText}</div>`;
-            locationTop.innerHTML = `<div class='location-text' contenteditable='true'>${group.top.locationText}</div>`;
-        }
-
-        labelTop.appendChild(labelDigitTop);
-        labelTop.appendChild(locationTop);
-
-        // Create bottom label part
-        const labelBottom = document.createElement('div');
-        labelBottom.className = 'label';
-
-        const labelDigitBottom = document.createElement('div');
-        labelDigitBottom.className = 'label-digit bg-black border-top-white';
-
-        const locationBottom = document.createElement('div');
-        locationBottom.className = 'location bg-white border-top-black';
-
-        if (group.bottom) {
-            labelDigitBottom.innerHTML = `<div class='digit-text' contenteditable='true'>${group.bottom.labelDigitText}</div>`;
-            locationBottom.innerHTML = `<div class='location-text' contenteditable='true'>${group.bottom.locationText}</div>`;
-        }
-
-        labelBottom.appendChild(labelDigitBottom);
-        labelBottom.appendChild(locationBottom);
-
-        // Append both labels to the label container
-        labelContainer.appendChild(labelTop);
-        labelContainer.appendChild(labelBottom);
-
-        // Append the label container to the main container
-        mainContainer.appendChild(labelContainer);
-        mainContainer.appendChild(document.createElement('br'));
-    });
-
-
-    let last_used = getCookie('lastUsedColorHex')
-    console.log('lastUsedColorHex', last_used);
-
-    /**
- * Colors data
- * @type {Array<{name: string, hex: string, rgb: string}>}
+/**
+ * Renders labels using the provided data array
+ * @param {Array} data - Array of objects containing label data
  */
-    const colors = [
-        { name: "Yellow", hex: "#FFFF00", rgb: "rgb(255, 255, 0)" },
-        { name: "Amber", hex: "#FFBF00", rgb: "rgb(255, 191, 0)" },
-        { name: "Bright Yellow", hex: "#FFEA00", rgb: "rgb(255, 234, 0)" },
-        { name: "Cadmium Yellow", hex: "#FDDA0D", rgb: "rgb(253, 218, 13)" },
-        { name: "Chartreuse", hex: "#DFFF00", rgb: "rgb(223, 255, 0)" },
-        { name: "Citrine", hex: "#E4D00A", rgb: "rgb(228, 208, 10)" },
-        { name: "Gold", hex: "#FFD700", rgb: "rgb(255, 215, 0)" },
-        { name: "Golden Yellow", hex: "#FFC000", rgb: "rgb(255, 192, 0)" },
-        { name: "Icterine", hex: "#FCF55F", rgb: "rgb(252, 245, 95)" },
-        { name: "Jasmine", hex: "#F8DE7E", rgb: "rgb(248, 222, 126)" },
-        { name: "Lemon Yellow", hex: "#FAFA33", rgb: "rgb(250, 250, 51)" },
-        { name: "Maize", hex: "#FBEC5D", rgb: "rgb(251, 236, 93)" },
-        { name: "Mustard Yellow", hex: "#FFDB58", rgb: "rgb(255, 219, 88)" },
-        { name: "Naples Yellow", hex: "#FADA5E", rgb: "rgb(250, 218, 94)" },
-        { name: "Saffron", hex: "#F4C430", rgb: "rgb(244, 196, 48)" },
-    ];
-    document.querySelectorAll('.color-item').forEach(item => item.classList.remove('color-active'));
-    document.querySelectorAll('.color-preview').forEach((item, index) => {
-        console.log(item.dataset.name, "?????");
-        if (item.dataset.name.toLowerCase() === last_used.toLowerCase()) {
-            document.querySelectorAll('.color-item')[index].classList.add('color-active');
-        }
+function renderLabels(data) {
+    const container = document.getElementById('render-here');
+
+    if (!container) {
+        console.error('Container not found');
+        return;
+    }
+
+    container.innerHTML = '';
+
+    data.forEach(item => {
+        const labelPair = document.createElement('div');
+        labelPair.classList.add('label-pair');
+
+        ['level2', 'level1'].forEach(level => {
+            const label = document.createElement('div');
+            label.classList.add('label');
+
+            const labelDigit = document.createElement('div');
+            labelDigit.classList.add('label-digit', 'bg-black', level === 'level2' ? 'border-bottom-white' : 'border-top-white');
+            const digitText = document.createElement('div');
+            digitText.classList.add('digit-text');
+            digitText.setAttribute('contenteditable', 'true');
+            digitText.setAttribute('spellcheck', 'false');
+            digitText.textContent = item[level].digit;
+
+            labelDigit.appendChild(digitText);
+            label.appendChild(labelDigit);
+
+            const location = document.createElement('div');
+            location.classList.add('location', level === 'level2' ? 'bg-yellow' : 'bg-white', 'border-bottom-black');
+            const locationText = document.createElement('div');
+            locationText.classList.add('location-text');
+            locationText.setAttribute('contenteditable', 'true');
+            locationText.setAttribute('spellcheck', 'false');
+            locationText.style.cssText = 'display: flex; justify-content: space-between; padding-left: 1rem; padding-right: 1rem;';
+
+            const address = document.createElement('span');
+            address.classList.add('address');
+            address.textContent = item[level].street;
+            const number = document.createElement('span');
+            number.classList.add('number');
+            number.textContent = item[level].number;
+            const sideLevel = document.createElement('span');
+            sideLevel.classList.add('side-level');
+            sideLevel.textContent = item[level].side + item[level].level;
+
+            locationText.appendChild(address);
+            locationText.appendChild(number);
+            locationText.appendChild(sideLevel);
+            location.appendChild(locationText);
+            label.appendChild(location);
+
+            labelPair.appendChild(label);
+        });
+
+        container.appendChild(labelPair);
     });
-
-    document.querySelectorAll('.bg-yellow').forEach(async (item) => {
-        // set all bg colors to last used
-        const colorObj = colors.find(color => color.name.toLowerCase() === last_used.toLowerCase());
-        if (colorObj) {
-            item.style.setProperty('background-color', colorObj.hex, 'important');
-        }
-    });
-
-
-
-
-    // set selected color to last used
-    document.querySelector('.selected-color').innerHTML = last_used;
-    Content_Editable_Arrow_Up_Down();
 }
+
+
 
 
 function Content_Editable_Arrow_Up_Down() {

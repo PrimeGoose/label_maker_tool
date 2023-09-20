@@ -152,6 +152,10 @@ img {
     width: var(--label-width);
 
 }
+.label-pair{
+    margin-bottom: 1rem;
+    background-color: white;
+}
 
 .label-digit {
     display: flex;
