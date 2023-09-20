@@ -1,8 +1,8 @@
 <mat-toolbar>
-<input type="file" hidden #fileInput accept=".xls, .xlsx" (change)="useExcelFile($event)" />
-<button mat-raised-button class="bg-blue-500 text-white" (click)="fileInput.click()">
-  Use Excel File
-</button>
+  <input type="file" hidden #fileInput accept=".xls, .xlsx" (change)="useExcelFile($event)" />
+  <button mat-raised-button class="bg-blue-500 text-white" (click)="fileInput.click()">
+    Use Excel File
+  </button>
 
   <!-- app.component.html -->
   <button mat-raised-button class="bg-green-500 text-white px-4 py-2" (click)="printLabels()">
@@ -13,8 +13,9 @@
 </mat-toolbar>
 
 
-<div id="main-container" class="flex justify-center">
-  <div class="label border-black w-auto h-auto bg-white flex flex-col border">
+<div id="main-container" class="flex flex-col  justify-center items-center">
+  <!-- default label -->
+  <div class="label border-black w-auto h-auto bg-white flex flex-col  border mb-4">
     <div class="label-l2 flex flex-row">
       <div class="digit-l2 flex items-center justify-center text-white bg-slate-900 whitespace-nowrap font-mono text-6xl border-b-2 font-semibold">
         Q0I
@@ -32,5 +33,32 @@
         <span class="name-l1">AA</span><span class="number-l1">01</span><span class="level-l1">A1</span>
       </div>
     </div>
+  </div>
+  <!-- labels from excel -->
+  <!-- app.component.html -->
+
+  <div *ngFor="let label of Labels" class="label border-black w-auto h-auto bg-white flex flex-col border mb-4">
+
+
+    <div class="label-l2 flex flex-row">
+      <div class="digit-l2 flex items-center justify-center text-white bg-slate-900 whitespace-nowrap font-mono text-6xl border-b-2 font-semibold">
+        {{ label.level2.digit }}
+      </div>
+      <div class="location-l2 bg-yellow-300 flex items-center whitespace-nowrap  font-sans text-8xl border-black border-b-2 justify-between px-4">
+        <span class="name-l2">{{ label.level2.street }}</span><span class="number-l2">{{ label.level2.number }}</span><span class="level-l2">{{
+          label.level2.side }}{{ label.level2.level }}</span>
+      </div>
+    </div>
+
+    <div class="label-l1 flex flex-row">
+      <div class="digit-l1 flex items-center justify-center text-white bg-slate-900 whitespace-nowrap font-mono text-6xl border-t-2 font-semibold">
+        {{ label.level1.digit }}
+      </div>
+      <div class="location-l1 bg-white flex items-center justify-between whitespace-nowrap font-sans text-8xl border-black border-t-2 px-4">
+        <span class="name-l1">{{ label.level1.street }}</span><span class="number-l1">{{ label.level1.number }}</span><span class="level-l1">{{
+          label.level1.side }}{{ label.level1.level }}</span>
+      </div>
+    </div>
+
   </div>
 </div>
