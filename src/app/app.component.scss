@@ -47,3 +47,24 @@ $label-height: 25mm;
 }
 .level-l1 {
 }
+
+span{
+  background: none;
+}
+
+
+@media print {
+  body *:not(.label) {
+    display: none!important;
+  }
+  mat-toolbar{
+    display:none;
+  }
+
+  .label {
+    display: block;
+    print-color-adjust:exact;
+    -webkit-print-color-adjust: exact;
+  }
+}
+
