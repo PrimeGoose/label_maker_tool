@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import * as XLSX from "xlsx";
+
 interface Label {
   level1: {
     digit: string,
@@ -40,35 +41,32 @@ export class AppComponent {
    * @param {Event} event - The event containing the uploaded file.
    */
   useExcelFile(event: any): void {
+    function extractColumn(data: any, columnKey: any) {
+      return Object.keys(data)
+        .filter(key => key.startsWith(columnKey))
+        .map(key => data[key].v);
+    }
+
     let file = event.target.files[0];
     let reader = new FileReader();
     reader.onload = (e) => {
       let data = new Uint8Array((e.target as any).result);
       let workbook = XLSX.read(data, { type: 'array' });
-
       let firstSheetName = workbook.SheetNames[0];
       let worksheet = workbook.Sheets[firstSheetName];
-
-      // Fetching all rows as an array of objects using the correct worksheet
-      let sheetDataJson: any = XLSX.utils.sheet_to_json(worksheet);
-      // Continue the function...
-
+      
+      const columnKey = 'B';
+      // Getting the column values
+      const columnValues = extractColumn(worksheet, columnKey);
+      console.log(columnValues);
       // Extract the data from column "A" and format it
-      let formattedData: any = sheetDataJson.map((row: any) => {
-
-        let label = row.label.trim().toUpperCase();
+      let formattedData: any = columnValues.map((row: any) => {
+        let label = row.trim().toUpperCase();
         let removeAllsybbols_and_spaces = label.replace(/[^a-zA-Z0-9]/g, "");
         return removeAllsybbols_and_spaces;
-
-
-
       });
-
       // Extract and group labels by their racking address and number number
       let temp_labels: any = [];
-
-
-
       formattedData.forEach((label: any) => {
         let level = label.slice(-1)
         if (level != 1 && level != 2) { return }
@@ -102,13 +100,8 @@ export class AppComponent {
               number: number,
               side: side,
               level: level
-
-
             }
           })
-
-
-
         }
         if (level == 2) {
           let digit = label.slice(0, 3)// needs to be 3 characters
@@ -138,14 +131,10 @@ export class AppComponent {
               number: number,
               side: side,
               level: level
-
-
             }
           })
         }
       });// end of forEach
-
-      // if level1 street number and side are the same as level2 street number and side then they are a pair put them as pair in  labels array
 
       temp_labels.forEach((label1: any) => {
         if (label1.level1) {
