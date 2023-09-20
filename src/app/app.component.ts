@@ -54,8 +54,8 @@ export class AppComponent {
       let workbook = XLSX.read(data, { type: 'array' });
       let firstSheetName = workbook.SheetNames[0];
       let worksheet = workbook.Sheets[firstSheetName];
-      
-      const columnKey = 'B';
+
+      const columnKey = 'A';
       // Getting the column values
       const columnValues = extractColumn(worksheet, columnKey);
       console.log(columnValues);
