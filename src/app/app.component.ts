@@ -56,16 +56,13 @@ export class AppComponent {
       let worksheet = workbook.Sheets[firstSheetName];
 
       const columnKey = 'A';
-      // Getting the column values
       const columnValues = extractColumn(worksheet, columnKey);
       console.log(columnValues);
-      // Extract the data from column "A" and format it
       let formattedData: any = columnValues.map((row: any) => {
         let label = row.trim().toUpperCase();
         let removeAllsybbols_and_spaces = label.replace(/[^a-zA-Z0-9]/g, "");
         return removeAllsybbols_and_spaces;
       });
-      // Extract and group labels by their racking address and number number
       let temp_labels: any = [];
       formattedData.forEach((label: any) => {
         let level = label.slice(-1)
