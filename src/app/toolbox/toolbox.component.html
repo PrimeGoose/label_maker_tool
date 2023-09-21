@@ -1,0 +1,39 @@
+<mat-card>
+  <mat-card-content>
+
+    <label class="height-value-label">{{slider.value}}</label>
+    <mat-slider class="height-adjust" min="22" max="30" step="1">
+      <input matSliderThumb #slider>
+    </mat-slider>
+
+    <label class="opacity-value-label">{{opacity.value}}</label>
+    <mat-slider class="opacity-adjust" min="0" max="100" step="10">
+      <input matSliderThumb #opacity>
+    </mat-slider>
+
+    <br>
+    <mat-form-field>
+      <mat-label>Colors</mat-label>
+      <mat-select class="">
+        <mat-option>
+          <div style="height:45px ;width: 212px;" class="bg-yellow-50 text-xl  m-0 p-0  font-bold relative  ">Yellow 50</div>
+          <div style="height:45px ;width: 212px;" class="bg-yellow-100 text-xl m-0 p-0  font-bold relative ">Yellow 100</div>
+          <div style="height:45px ;width: 212px;" class="bg-yellow-200 text-xl m-0 p-0  font-bold relative ">Yellow 200</div>
+          <div style="height:45px ;width: 212px;" class="bg-yellow-300 text-xl m-0 p-0  font-bold relative ">Yellow 300</div>
+          <div style="height:45px ;width: 212px;" class="bg-yellow-500 text-xl m-0 p-0  font-bold relative ">Yellow 500</div>
+          <div style="height:45px ;width: 212px;" class="bg-yellow-500 text-xl m-0 p-0  font-bold relative ">Yellow 500</div>
+          <div style="height:45px ;width: 212px;" class="bg-yellow-600 text-xl m-0 p-0  font-bold relative ">Yellow 600</div>
+          <div style="height:45px ;width: 212px;" class="bg-yellow-700 text-xl m-0 p-0  font-bold relative ">Yellow 700</div>
+          <div style="height:45px ;width: 212px;" class="bg-yellow-800 text-xl m-0 p-0  font-bold relative ">Yellow 800</div>
+          <div style="height:45px ;width: 212px;" class="bg-yellow-900 text-xl m-0 p-0  font-bold relative ">Yellow 900</div>
+
+
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+
+
+  </mat-card-content>
+</mat-card>
