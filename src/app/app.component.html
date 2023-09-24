@@ -97,11 +97,13 @@
 
 
     <div class="label-l2 flex flex-row">
-      <div contenteditable="true"
-        class="digit-l2 flex items-center justify-center text-white bg-slate-900 whitespace-nowrap font-mono text-6xl border-b-2 font-semibold">
+      <div contenteditable="true" [style.height.mm]="slider.value"
+        class="digit-l2 flex items-center justify-center text-white bg-slate-900 whitespace-nowrap font-mono text-6xl border-b-2 font-semibold"
+        >
+
         {{ label.level2.digit }}
       </div>
-      <div class="location-l2 bg-yellow-300 flex items-center whitespace-nowrap  font-sans text-8xl border-black border-b-2 justify-between px-4">
+      <div  [ngClass]="[selectedClass ,  opacityClass]" [style.height.mm]="slider.value" class="location-l2 bg-yellow-300 flex items-center whitespace-nowrap  font-sans text-8xl border-black border-b-2 justify-between px-4">
         <span contenteditable="true" class="name-l2">{{ label.level2.street }}</span><span contenteditable="true" class="number-l2">{{
           label.level2.number }}</span><span contenteditable="true" class="level-l2">{{
           label.level2.side }}{{ label.level2.level }}</span>
@@ -109,11 +111,11 @@
     </div>
 
     <div class="label-l1 flex flex-row">
-      <div contenteditable="true"
+      <div contenteditable="true" [style.height.mm]="slider.value"
         class="digit-l1 flex items-center justify-center text-white bg-slate-900 whitespace-nowrap font-mono text-6xl border-t-2 font-semibold">
         {{ label.level1.digit }}
       </div>
-      <div class="location-l1 bg-white flex items-center justify-between whitespace-nowrap font-sans text-8xl border-black border-t-2 px-4">
+      <div [style.height.mm]="slider.value" class="location-l1 bg-white flex items-center justify-between whitespace-nowrap font-sans text-8xl border-black border-t-2 px-4">
         <span contenteditable="true" class="name-l1">{{ label.level1.street }}</span><span contenteditable="true" class="number-l1">{{
           label.level1.number }}</span><span contenteditable="true" class="level-l1">{{
           label.level1.side }}{{ label.level1.level }}</span>
