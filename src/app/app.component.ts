@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import * as XLSX from "xlsx";
-
+import { ElementRef, ChangeDetectorRef } from '@angular/core';
 interface Label {
   level1: {
     digit: string,
@@ -15,18 +15,58 @@ interface Label {
     number: string,
     side: string,
     level: string
-
   }
 }
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
+  constructor(private el: ElementRef, private cdRef: ChangeDetectorRef) { }
   title = 'rack-label-tool';
   Labels: Label[] = [];
+  /**
+ * @property {string} selectedColor - The value of the selected color option
+ */
+  selectedColor: string = "yellow-300"
+  /**
+  * @property {string} selectedClass - The full class string based on selectedColor
+  */
+  selectedClass: string = 'bg-yellow-300';
+  /**
+  * This method updates the selectedClass whenever selectedColor changes.
+  */
+  updateSelectedClass() {
+    this.selectedClass = `bg-${this.selectedColor}`;
+  }
+  /**
+ * @property {number} sliderOpacity - The value for the background opacity
+ */
+  sliderOpacity: number = 100; // Default opacity set to 1 (100%)
+  opacityClass: string = 'bg-opacity-100';
+  return_bg_opacity_sliderOpacity(opacity: any) {
+    // console.log("return_bg_opacity_sliderOpacity", opacity.value)
+    this.sliderOpacity = opacity
+    this.opacityClass = `bg-opacity-${this.sliderOpacity}`
+  }
+  /**
+   * @property {Array} colors - The array of color options available for selection
+   */
+  colors = [
+    { name: 'Yellow 50', value: 'yellow-50', class: 'bg-yellow-50 text-xl m-0 p-0 font-bold relative' },
+    { name: 'Yellow 100', value: 'yellow-100', class: 'bg-yellow-100 text-xl m-0 p-0 font-bold relative' },
+    { name: 'Yellow 200', value: 'yellow-200', class: 'bg-yellow-200 text-xl m-0 p-0 font-bold relative' },
+    { name: 'Yellow 300', value: 'yellow-300', class: 'bg-yellow-300 text-xl m-0 p-0 font-bold relative' },
+    { name: 'Yellow 400', value: 'yellow-400', class: 'bg-yellow-400 text-xl m-0 p-0 font-bold relative' },
+    { name: 'Yellow 500', value: 'yellow-500', class: 'bg-yellow-500 text-xl m-0 p-0 font-bold relative' },
+    // { name: 'Yellow 600', value: 'yellow-600', class: 'bg-yellow-600 text-xl m-0 p-0 font-bold relative' },
+    // { name: 'Yellow 700', value: 'yellow-700', class: 'bg-yellow-700 text-xl m-0 p-0 font-bold relative' },
+    // { name: 'Yellow 800', value: 'yellow-800', class: 'bg-yellow-800 text-xl m-0 p-0 font-bold relative' },
+    // { name: 'Yellow 900', value: 'yellow-900', class: 'bg-yellow-900 text-xl m-0 p-0 font-bold relative' },
+
+
+  ];
 
   /**
    * Handler to trigger the print dialog and print the labels present on the page.
@@ -34,8 +74,6 @@ export class AppComponent {
   printLabels(): void {
     window.print();
   }
-
-
   /**
    * Reads column "A" from the first sheet of the uploaded Excel file and logs the values.
    * @param {Event} event - The event containing the uploaded file.
@@ -46,7 +84,7 @@ export class AppComponent {
         .filter(key => key.startsWith(columnKey))
         .map(key => data[key].v);
     }
-
+    this.Labels = []
     let file = event.target.files[0];
     let reader = new FileReader();
     reader.onload = (e) => {

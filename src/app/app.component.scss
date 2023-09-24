@@ -48,23 +48,32 @@ $label-height: 25mm;
 .level-l1 {
 }
 
-span{
+span {
   background: none;
 }
 
-
 @media print {
   body *:not(.label) {
-    display: none!important;
+    display: none !important;
   }
-  mat-toolbar{
-    display:none;
+  mat-toolbar,
+  .toolbox,
+  .toolbox-card {
+    display: none;
   }
 
   .label {
     display: block;
-    print-color-adjust:exact;
+    print-color-adjust: exact;
     -webkit-print-color-adjust: exact;
   }
 }
 
+.toolbox {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  // height: 200px;
+  width: 180mm;
+}

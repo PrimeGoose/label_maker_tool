@@ -15,28 +15,76 @@
 
 
 
-<div id="main-container" class="flex flex-col  justify-center items-center uppercase">
-  <app-toolbox></app-toolbox>
+<div id="main-container" class="flex flex-col  justify-center items-center align-middle uppercase">
+  <mat-card class="toolbox-card h-36 justify-center">
+    <mat-card-content class="toolbox">
+      <div class="flex flex-col items-center align-middle justify-evenly w-1/3">
+
+        <label for="">height</label>
+        <div class="o-slider flex flex-row  items-center">
+
+          <label class="height-value-label">{{slider.value}}<span style="text-transform: lowercase;">mm</span></label>
+          <mat-slider class="height-adjust" min="22" max="30" step="1">
+            <input matSliderThumb #slider value="25">
+          </mat-slider>
+        </div>
+      </div>
+
+      <div class="flex flex-col items-center align-middle justify-evenly w-1/3">
+
+        <label for="">Opacity</label>
+
+
+
+        <div class="o-slider flex flex-row  items-center">
+
+          <label class="opacity-value-label">{{opacity.value}}</label>
+          <mat-slider class="opacity-adjust" min="0" max="100" step="10">
+            <input matSliderThumb #opacity (input)="return_bg_opacity_sliderOpacity(opacity.value)" value="100">
+          </mat-slider>
+        </div>
+      </div>
+
+
+
+      <!-- tool box -->
+      <mat-form-field>
+        <mat-label>Colors</mat-label>
+        <mat-select [(value)]="selectedColor" (valueChange)="updateSelectedClass()">
+          <mat-option *ngFor="let color of colors" [value]="color.value">
+            <div [style.height]="'45px'" [style.width]="'212px'" [ngClass]="color.class">
+              {{ color.name }}
+            </div>
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-card-content>
+  </mat-card>
+
   <!-- default label -->
 
   <div *ngIf="!(Labels.length > 0)" class="label default-label  border-black w-auto h-auto bg-white  border mb-4">
     <div class="label-l2 flex flex-row">
-      <div contenteditable="true"
+      <div contenteditable="true" [style.height.mm]="slider.value"
         class="digit-l2 flex items-center justify-center text-white bg-slate-900 whitespace-nowrap font-mono text-6xl border-b-2 font-semibold">
         Q0I
       </div>
-      <div class="location-l2 bg-yellow-300 flex items-center whitespace-nowrap  font-sans text-8xl border-black border-b-2 justify-between px-4">
+      <div [style.height.mm]="slider.value"
+        class="location-l2  flex items-center whitespace-nowrap  font-sans text-8xl border-black border-b-2 justify-between px-4"
+        [ngClass]="[selectedClass ,  opacityClass]">
+
         <span contenteditable="true" class="name-l2">AA</span><span contenteditable="true" class="number-l2">01</span><span contenteditable="true"
           class="level-l2">A2</span>
       </div>
     </div>
 
     <div class="label-l1 flex flex-row">
-      <div contenteditable="true"
+      <div contenteditable="true" [style.height.mm]="slider.value"
         class="digit-l1 flex items-center justify-center text-white bg-slate-900 whitespace-nowrap font-mono text-6xl border-t-2 font-semibold">
         O01
       </div>
-      <div class="location-l1 flex items-center justify-between whitespace-nowrap font-sans text-8xl border-black border-t-2 px-4">
+      <div [style.height.mm]="slider.value"
+        class="location-l1 flex items-center justify-between whitespace-nowrap font-sans text-8xl border-black border-t-2 px-4">
         <span contenteditable="true" class="name-l1">AA</span><span contenteditable="true" class="number-l1">01</span><span contenteditable="true"
           class="level-l1">A1</span>
       </div>
