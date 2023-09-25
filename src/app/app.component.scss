@@ -17,6 +17,8 @@ $label-height: 25mm;
 .location-l2 {
   height: $label-height;
   width: $location-width;
+  font-family: "Roboto";
+  align-items: center;
 }
 // .name-l2 {
 // }
@@ -34,8 +36,11 @@ $label-height: 25mm;
 .location-l1 {
   width: $location-width;
   height: $label-height;
+  font-family: "Roboto";
+  align-items: center;
 }
 // .name-l1 {
+
 // }
 // .number-l1 {
 // }
@@ -74,3 +79,11 @@ span {
 .value-mm {
   text-transform: lowercase;
 }
+.color-options:hover {
+}
+
+.color-options {
+}
+
+
+

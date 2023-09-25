@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import * as XLSX from "xlsx";
 import { ElementRef, ChangeDetectorRef } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { HowToUseComponent } from './how-to-use/how-to-use.component';
 interface Label {
   level1: {
     digit: string,
@@ -23,9 +25,41 @@ interface Label {
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  constructor(private el: ElementRef, private cdRef: ChangeDetectorRef) { }
+  constructor(public dialog: MatDialog, private el: ElementRef, private cdRef: ChangeDetectorRef) { }
   title = 'rack-label-tool';
-  Labels: Label[] = [];
+  Labels: Label[] = [{
+    level1: {
+      digit: "01O",
+      street: "kB",
+      number: "30",
+      side: "A",
+      level: "1"
+    },
+    level2: {
+      digit: "qie",
+      street: "kB",
+      number: "30",
+      side: "A",
+      level: "2"
+    },
+  }];
+  openDialog() {
+    this.dialog.open(HowToUseComponent);
+  }
+  updateSelectedClass() {
+    this.selectedClass = `bg-${this.selectedColor}`;
+  }
+
+  heightValue: number = 22; // New property to store height value
+  opacityValue: number = 100; // New property to store opacity value
+
+  handleHeightChange(value: number) {
+    this.heightValue = value;
+  }
+
+  handleOpacityChange(value: number) {
+    this.opacityValue = value;
+  }
   /**
  * @property {string} selectedColor - The value of the selected color option
  */
@@ -37,9 +71,6 @@ export class AppComponent {
   /**
   * This method updates the selectedClass whenever selectedColor changes.
   */
-  updateSelectedClass() {
-    this.selectedClass = `bg-${this.selectedColor}`;
-  }
   /**
  * @property {number} sliderOpacity - The value for the background opacity
  */

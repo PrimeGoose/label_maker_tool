@@ -31,13 +31,17 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { ToolboxComponent } from './toolbox/toolbox.component';
 import { FormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
+import { HowToUseComponent } from './how-to-use/how-to-use.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ToolboxComponent,
+    HowToUseComponent,
   ],
   imports: [
+    MatDialogModule,
     FormsModule,
     BrowserModule,
     AppRoutingModule,
