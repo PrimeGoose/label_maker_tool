@@ -1,11 +1,11 @@
 <mat-toolbar>
   <input type="file" hidden #fileInput accept=".xls, .xlsx" (change)="useExcelFile($event)" />
-  <button mat-raised-button class="bg-blue-500 text-white" (click)="fileInput.click()">
+  <button type="button" mat-raised-button class="bg-blue-500 text-white" (click)="fileInput.click()">
     Use Excel File
   </button>
 
   <!-- app.component.html -->
-  <button mat-raised-button class="bg-green-500 text-white px-4 py-2" (click)="printLabels()">
+  <button type="button" mat-raised-button class="bg-green-500 text-white px-4 py-2" (click)="printLabels()">
     Print Labels
   </button>
 
@@ -23,9 +23,9 @@
         <label for="">height</label>
         <div class="o-slider flex flex-row  items-center">
 
-          <label class="height-value-label">{{slider.value}}<span style="text-transform: lowercase;">mm</span></label>
+          <label form="height-slider" class="height-value-label">{{slider.value}}<span class="value-mm">mm</span></label>
           <mat-slider class="height-adjust" min="22" max="30" step="1">
-            <input matSliderThumb #slider value="25">
+            <input matSliderThumb #slider title="height-slider" value="25">
           </mat-slider>
         </div>
       </div>
@@ -38,9 +38,9 @@
 
         <div class="o-slider flex flex-row  items-center">
 
-          <label class="opacity-value-label">{{opacity.value}}</label>
+          <label form="opacity-slider" class="opacity-value-label">{{opacity.value}}</label>
           <mat-slider class="opacity-adjust" min="0" max="100" step="10">
-            <input matSliderThumb #opacity (input)="return_bg_opacity_sliderOpacity(opacity.value)" value="100">
+            <input title="opacity-slider" matSliderThumb #opacity (input)="return_bg_opacity_sliderOpacity(opacity.value)" value="100">
           </mat-slider>
         </div>
       </div>
