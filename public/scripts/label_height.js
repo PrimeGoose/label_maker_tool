@@ -36,7 +36,7 @@ function increaseHeight() {
 function decreaseHeight() {
     try {
         let height = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--digit-height'));
-        if (height > 22) {
+        if (height > 20) {
             height -= 1;
             document.documentElement.style.setProperty('--digit-height', `${height}mm`);
             updateHeightDisplay(height*2);
