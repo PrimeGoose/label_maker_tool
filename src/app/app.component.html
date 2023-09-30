@@ -15,6 +15,18 @@
 <div id="main-container" class="flex flex-col  justify-center items-center align-middle uppercase">
   <mat-card class="toolbox-card h-36 justify-center">
     <mat-card-content class="toolbox">
+
+      <!-- toggle butons for 5 6 7 label pairs per a4 sheet -->
+<p>
+  <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+    <mat-button-toggle (click)="setFive()" value="five">A4/5</mat-button-toggle>
+    <mat-button-toggle (click)="setSix()" value="six">A4/6</mat-button-toggle>
+    <mat-button-toggle (click)="setSeven()" value="seven">A4/7</mat-button-toggle>
+  </mat-button-toggle-group>
+</p>
+
+
+
       <!-- height slider -->
       <!-- <div class="flex flex-col items-center align-middle justify-evenly w-1/3">
         <label for>height</label>
@@ -55,12 +67,12 @@
     <!-- Level 2 -->
     <div class="label-l2 flex flex-row">
       <!-- level 2 digit -->
-      <div contenteditable="true" [style.height.mm]="slider.value"
+      <div contenteditable="true" [style.height.mm]="labelHeight"
         class="digit-l2 flex items-center justify-center text-white bg-slate-900 whitespace-nowrap font-mono text-6xl border-b-2 font-semibold">
         {{ label.level2.digit }}
       </div>
       <!-- level 2 location -->
-      <div [ngClass]="[selectedClass,opacityClass]" [style.height.mm]="slider.value"
+      <div [ngClass]="[selectedClass,opacityClass]" [style.height.mm]="labelHeight"
         class="location-l2 flex bg-yellow-300 whitespace-nowrap text-8xl border-black border-b-2  px-4">
         <span contenteditable="true" class="name-l2 flex flex-row place-content-start  w-1/3">{{ label.level2.street }}</span>
         <span contenteditable="true" class="number-l2 flex flex-row place-content-center  w-1/3">{{label.level2.number }}</span>
@@ -70,12 +82,12 @@
     <!-- Level 1 -->
     <div class="label-l1 flex flex-row">
       <!-- level 1 digit -->
-      <div contenteditable="true" [style.height.mm]="slider.value"
+      <div contenteditable="true" [style.height.mm]="labelHeight"
         class="digit-l1 flex items-center justify-center text-white bg-slate-900 whitespace-nowrap font-mono text-6xl border-t-2 font-semibold">
         {{ label.level1.digit }}
       </div>
       <!-- level 1 location -->
-      <div [style.height.mm]="slider.value" class="location-l1 flex bg-white whitespace-nowrap  text-8xl border-black border-t-2 px-4 ">
+      <div [style.height.mm]="labelHeight" class="location-l1 flex bg-white whitespace-nowrap  text-8xl border-black border-t-2 px-4 ">
         <span contenteditable="true" class="name-l1 flex flex-row place-content-start  w-1/3">{{ label.level1.street }}</span>
         <span contenteditable="true" class="number-l1 flex flex-row place-content-center  w-1/3">{{label.level1.number }}</span>
         <span contenteditable="true" class="level-l1 flex flex-row  place-content-end w-1/3">{{label.level1.side }}{{ label.level1.level }}</span>

@@ -27,6 +27,7 @@ interface Label {
 export class AppComponent {
   constructor(public dialog: MatDialog, private el: ElementRef, private cdRef: ChangeDetectorRef) { }
   title = 'rack-label-tool';
+  labelHeight: string = '40';
   Labels: Label[] = [{
     level1: {
       digit: "01O",
@@ -48,6 +49,15 @@ export class AppComponent {
   }
   updateSelectedClass() {
     this.selectedClass = `bg-${this.selectedColor}`;
+  }
+  setFive() {
+this.labelHeight= '28'
+  }
+  setSix() {
+    this.labelHeight='23.25'
+  }
+  setSeven() {
+    this.labelHeight="20"
   }
 
   heightValue: number = 22; // New property to store height value
