@@ -15,10 +15,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
         return;
     }
 
-    let baseFontSize = 70;
+    let baseFontSize = 16;
 
-    document.documentElement.style.setProperty('--base-font-size', `${baseFontSize}px`);
-    fontDisplay.textContent = `Font: ${baseFontSize}px`;
+    document.documentElement.style.setProperty('--base-font-size', `${baseFontSize}mm`);
+    fontDisplay.textContent = `Font: ${baseFontSize}mm`;
 
     const increaseButton = document.querySelector('.increaseFont');
     const decreaseButton = document.querySelector('.decreaseFont');
@@ -37,10 +37,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
      */
     increaseButton.addEventListener('click', () => {
         console.log('increase');
-        if (baseFontSize < 70) {
+        if (baseFontSize < 20) {
             baseFontSize += 1;
-            document.documentElement.style.setProperty('--base-font-size', `${baseFontSize}px`);
-            fontDisplay.textContent =  `Font: ${baseFontSize}px`;
+            document.documentElement.style.setProperty('--base-font-size', `${baseFontSize}mm`);
+            fontDisplay.textContent =  `Font: ${baseFontSize}mm`;
         }
     });
 
@@ -53,10 +53,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
      */
     decreaseButton.addEventListener('click', () => {
             console.log('decrease');
-        if (baseFontSize > 60) {
+        if (baseFontSize > 16) {
             baseFontSize -= 1;
-            document.documentElement.style.setProperty('--base-font-size', `${baseFontSize}px`);
-            fontDisplay.textContent = `Font: ${baseFontSize}px`;
+            document.documentElement.style.setProperty('--base-font-size', `${baseFontSize}mm`);
+            fontDisplay.textContent = `Font: ${baseFontSize}mm`;
         }
     });
 
