@@ -23,21 +23,19 @@
           <!-- app.component.html -->
           <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
             <!-- Tooltip to describe how many labels fit on an A4 page with minimal margins when using setting "five" -->
-            <mat-button-toggle matTooltip="Using minimal margins, this setting yields 5 56mm labels per A4 page." (click)="setFive()"
+            <mat-button-toggle matTooltip="Using minimal margins, this setting yields 5 200x56mm labels per A4 page." (click)="setFive()"
               value="five">A4/5</mat-button-toggle>
 
             <!-- Tooltip to describe how many labels fit on an A4 page with minimal margins when using setting "six" -->
-            <mat-button-toggle matTooltip="Using minimal margins, this setting yields 6 46.5mm labels per A4 page." (click)="setSix()"
+            <mat-button-toggle matTooltip="Using minimal margins, this setting yields 6 192x46.5mm labels per A4 page." (click)="setSix()"
               value="six">A4/6</mat-button-toggle>
 
             <!-- Tooltip to describe how many labels fit on an A4 page with minimal margins when using setting "seven" -->
-            <mat-button-toggle matTooltip="Using minimal margins, this setting yields 7 40mm labels per A4 page." (click)="setSeven()" value="seven"
+            <mat-button-toggle matTooltip="Using minimal margins, this setting yields 7 180x40mm labels per A4 page." (click)="setSeven()" value="seven"
               [checked]="true">A4/7</mat-button-toggle>
           </mat-button-toggle-group>
 
         </div>
-
-
 
         <!-- opacity slider -->
         <div class="flex flex-col items-center align-middle justify-evenly w-1/3">
@@ -60,12 +58,12 @@
       <!-- Level 2 -->
       <div class="label-l2 flex flex-row">
         <!-- level 2 digit -->
-        <div contenteditable="true" [style.height.mm]="labelHeight" [style.fontSize.mm]="digitFontSize"
+        <div contenteditable="true" [style.height.mm]="labelHeight" [style.width.mm]="digitWidth"  [style.fontSize.mm]="digitFontSize"
           class="digit-l2 flex items-center justify-center text-white bg-slate-900 whitespace-nowrap font-mono  border-b-2 font-semibold">
           {{ label.level2.digit }}
         </div>
         <!-- level 2 location -->
-        <div [ngClass]="[yellowOpacityClass]" [style.height.mm]="labelHeight" [style.fontSize.mm]="locationFontSize"
+        <div [ngClass]="[yellowOpacityClass]" [style.height.mm]="labelHeight" [style.width.mm]="locationWidth" [style.fontSize.mm]="locationFontSize"
           class="location-l2 flex bg-yellow-300 whitespace-nowrap  border-black border-b-2  px-4">
           <span contenteditable="true" class="name-l2 flex flex-row place-content-start  w-1/3">{{ label.level2.street }}</span>
           <span contenteditable="true" class="number-l2 flex flex-row place-content-center  w-1/3">{{label.level2.number }}</span>
@@ -75,12 +73,12 @@
       <!-- Level 1 -->
       <div class="label-l1 flex flex-row">
         <!-- level 1 digit -->
-        <div contenteditable="true" [style.height.mm]="labelHeight" [style.fontSize.mm]="digitFontSize"
+        <div contenteditable="true" [style.height.mm]="labelHeight" [style.width.mm]="digitWidth" [style.fontSize.mm]="digitFontSize"
           class="digit-l1 flex items-center justify-center text-white bg-slate-900 whitespace-nowrap font-mono  border-t-2 font-semibold">
           {{ label.level1.digit }}
         </div>
         <!-- level 1 location -->
-        <div [style.fontSize.mm]="locationFontSize" [style.height.mm]="labelHeight"
+        <div [style.fontSize.mm]="locationFontSize" [style.height.mm]="labelHeight" [style.width.mm]="locationWidth"
           class="location-l1 flex bg-white whitespace-nowrap   border-black border-t-2 px-4 ">
           <span contenteditable="true" class="name-l1 flex flex-row place-content-start  w-1/3">{{ label.level1.street }}</span>
           <span contenteditable="true" class="number-l1 flex flex-row place-content-center  w-1/3">{{label.level1.number }}</span>

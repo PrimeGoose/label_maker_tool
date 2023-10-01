@@ -71,6 +71,8 @@ export class AppComponent {
   labelHeight: string = '20';
   digitFontSize: string = '15';
   locationFontSize: string = `23`;
+  digitWidth = '50';
+  locationWidth = '130';
 
   /**
  * Sets the dimensions for  "Five labels per A4 sheet".
@@ -79,6 +81,9 @@ export class AppComponent {
     this.labelHeight = `${20 * 1.4}`
     this.locationFontSize = `${23 * 1.121875}`
     this.digitFontSize = `${15 * 1.121875}`
+
+    this.digitWidth = `56`
+    this.locationWidth =`144`
   }
 
   /**
@@ -88,6 +93,9 @@ export class AppComponent {
     this.labelHeight = `${20 * 1.1625}`
     this.locationFontSize = `${23 * 1.08125}`
     this.digitFontSize = `${15 * 1.08125}`
+
+    this.digitWidth = '54'
+    this.locationWidth='138'
   }
 
   /**
@@ -97,6 +105,9 @@ export class AppComponent {
     this.labelHeight = "20"
     this.locationFontSize = '23'
     this.digitFontSize = '15'
+
+    this.digitWidth = '50'
+    this.locationWidth='130'
   }
 
   /** Opacity related properties */
