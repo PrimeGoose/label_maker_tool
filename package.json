@@ -12,12 +12,8 @@
     "ng": "ng",
     "ngh": "ngh",
     "start": "ng serve --host='0.0.0.0'",
-    "build": "ng build",
-    "prod": "ng build --configuration production  --progress --output-hashing=none --vendor-chunk=true --named-chunks=false --build-optimizer=true --optimization=true --source-map=false --watch=false --output-path=dist",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "build-gh-pages": "ng build --configuration production --base-href https://PrimeGoose.github.io/label_maker_tool/",
-    "deploy-gh-pages": "ngh --dir=dist/label-maker-tool"
+    "build": "ng build --configuration production --base-href https://PrimeGoose.github.io/label_maker_tool/",
+    "deploy": "ngh --dir=dist/label-maker-tool"
   },
   "private": true,
   "dependencies": {
