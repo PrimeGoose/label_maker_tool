@@ -18,12 +18,23 @@
       <div class="tools-row  flex flex-row items-center justify-evenly">
 
         <!-- toggle butons for 5 6 7 label pairs per a4 sheet -->
-        <div>
+        <div class="flex flex-col items-center">
+
+          <!-- app.component.html -->
           <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
-            <mat-button-toggle (click)="setFive()" value="five">A4/5</mat-button-toggle>
-            <mat-button-toggle (click)="setSix()" value="six">A4/6</mat-button-toggle>
-            <mat-button-toggle (click)="setSeven()" value="seven" [checked]="true">A4/7</mat-button-toggle>
+            <!-- Tooltip to describe how many labels fit on an A4 page with minimal margins when using setting "five" -->
+            <mat-button-toggle matTooltip="Using minimal margins, this setting yields 5 labels per A4 page." (click)="setFive()"
+              value="five">A4/5</mat-button-toggle>
+
+            <!-- Tooltip to describe how many labels fit on an A4 page with minimal margins when using setting "six" -->
+            <mat-button-toggle matTooltip="Using minimal margins, this setting yields 6 labels per A4 page." (click)="setSix()"
+              value="six">A4/6</mat-button-toggle>
+
+            <!-- Tooltip to describe how many labels fit on an A4 page with minimal margins when using setting "seven" -->
+            <mat-button-toggle matTooltip="Using minimal margins, this setting yields 7 labels per A4 page." (click)="setSeven()" value="seven"
+              [checked]="true">A4/7</mat-button-toggle>
           </mat-button-toggle-group>
+
         </div>
 
 
