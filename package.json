@@ -1,13 +1,23 @@
 {
   "name": "rack-label-tool",
   "version": "0.0.0",
-  "scripts": {
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PrimeGoose/label_maker_tool",
+    "branch": "Angular",
+    "path": "label_maker_tool"
+  }
+  ,
+  "scripts":{
     "ng": "ng",
+    "ngh": "ngh",
     "start": "ng serve --host='0.0.0.0'",
     "build": "ng build",
-    "prod":"ng build --configuration production  --progress --output-hashing=none --vendor-chunk=true --named-chunks=false --build-optimizer=true --optimization=true --source-map=false --watch=false --output-path=dist",
+    "prod": "ng build --configuration production  --progress --output-hashing=none --vendor-chunk=true --named-chunks=false --build-optimizer=true --optimization=true --source-map=false --watch=false --output-path=dist",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "build-gh-pages": "ng build --configuration production --base-href https://PrimeGoose.github.io/label_maker_tool/",
+    "deploy-gh-pages": "ngh --dir=dist/label-maker-tool"
   },
   "private": true,
   "dependencies": {
@@ -35,6 +45,7 @@
     "@tailwindcss/line-clamp": "latest",
     "@tailwindcss/typography": "latest",
     "@types/jasmine": "~4.3.0",
+    "angular-cli-ghpages": "^1.0.7",
     "autoprefixer": "^10.4.7",
     "jasmine-core": "~4.6.0",
     "karma": "~6.4.0",

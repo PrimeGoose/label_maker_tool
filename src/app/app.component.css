@@ -80,7 +80,7 @@ span {
     position: absolute;
     top: 0;
     visibility: visible;
-    color-adjust: exact;
+    print-color-adjust: exact;
 
 
   }
@@ -89,7 +89,7 @@ span {
     position: absolute;
     top: 0;
     visibility: visible;
-    color-adjust:exact;
+    print-color-adjust:exact;
   }
   .main-container{
     display: block!important;
@@ -123,7 +123,8 @@ span {
     position: relative;
     top: 0;
     visibility: visible;
-    color-adjust: exact;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust: exact;
       page-break-inside: avoid;
   }
 
@@ -146,7 +147,7 @@ span {
   width: 2mm;
   border-bottom: 0.25mm red double;
   -webkit-print-color-adjust: exact;
-  color-adjust: exact;
+  print-color-adjust: exact;
   background-color: darkorange;
   position: relative;
   top: 0mm;
@@ -162,7 +163,7 @@ span {
   width: 2mm;
   border-bottom: 0.25mm red double;
   -webkit-print-color-adjust: exact;
-  color-adjust: exact;
+  print-color-adjust: exact;
   background-color: darkorange;
   position: relative;
   bottom: 0mm;
