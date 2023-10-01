@@ -173,21 +173,19 @@ img {
 }
 
 .label-pair::after {
-    content: '';
+content: '';
     display: block;
     color: darkorange;
     height: 0mm;
     width: 182mm;
-    border-bottom: 2mm red double;
+    border-bottom: 1mm red double;
     -webkit-print-color-adjust: exact;
     color-adjust: exact;
     background-color: darkorange;
-    /* right: -180mm; */
     position: relative;
-    margin-top: -1mm;
+    margin-top: -0.5mm;
     margin-left: -1mm;
     z-index: -1;
-
 
 }
 
