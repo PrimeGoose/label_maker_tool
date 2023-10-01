@@ -13,7 +13,7 @@
     "ngh": "ngh",
     "start": "ng serve --host='0.0.0.0'",
     "build": "ng build --configuration production --base-href https://PrimeGoose.github.io/label_maker_tool/",
-    "deploy": "ngh --dir=dist/label-maker-tool"
+    "deploy": "ngh --dir=dist/rack-label-tool"
   },
   "private": true,
   "dependencies": {
