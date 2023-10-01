@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component,ViewEncapsulation } from '@angular/core';
 import * as XLSX from "xlsx";
-import { ElementRef, ChangeDetectorRef } from '@angular/core';
+import { ElementRef, ChangeDetectorRef,Renderer2 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { HowToUseComponent } from './how-to-use/how-to-use.component';
 interface Label {
@@ -22,12 +22,13 @@ interface Label {
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  styleUrls: ['./app.component.css'],
+  encapsulation: ViewEncapsulation.None
+
 })
 export class AppComponent {
-  constructor(public dialog: MatDialog, private el: ElementRef, private cdRef: ChangeDetectorRef) { }
+  constructor(public dialog: MatDialog,private renderer:Renderer2, private el: ElementRef, private cdRef: ChangeDetectorRef) { }
   title = 'rack-label-tool';
-  labelHeight: string = '40';
   Labels: Label[] = [{
     level1: {
       digit: "01O",
@@ -47,18 +48,32 @@ export class AppComponent {
   openDialog() {
     this.dialog.open(HowToUseComponent);
   }
-  updateSelectedClass() {
-    this.selectedClass = `bg-${this.selectedColor}`;
-  }
+
+
+  labelHeight: string = '20';
+  digitFontSize:string = '16'
+  locationFontSize: string = `25`
+  
   setFive() {
-this.labelHeight= '28'
+    this.labelHeight = `${20*1.4}`
+    this.locationFontSize = `${25 * 1.1625}`
+    this.digitFontSize = `${16 * 1.1625}`
+
   }
   setSix() {
-    this.labelHeight='23.25'
+    this.labelHeight = `${20*1.1625}`
+    this.locationFontSize = `${25*1.08125}`
+    this.digitFontSize = `${16*1.08125}`
+
+
   }
   setSeven() {
-    this.labelHeight="20"
+    this.labelHeight = "20"
+    this.locationFontSize = '25'
+    this.digitFontSize = '16'
   }
+
+
 
   heightValue: number = 22; // New property to store height value
   opacityValue: number = 100; // New property to store opacity value

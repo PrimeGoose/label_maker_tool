@@ -1,0 +1,152 @@
+/* filename: styles.css */
+
+:root {
+  --base-font-size: 16mm;
+  --digit-width: 50mm;
+  --location-width: 130mm;
+  --label-height: 20mm;
+}
+
+.label-pair{
+
+}
+
+.digit-l2 {
+  height: var(--label-height);
+  width: var(--digit-width);
+  font-size: var(--base-font-size);
+  border-top: 1mm solid rgb(15 23 42 / var(--tw-bg-opacity));
+}
+
+.location-l2 {
+  height: var(--label-height);
+  width: var(--location-width);
+  font-family: 'Roboto Condensed';
+  align-items: center;
+  font-size: var(--base-font-size);
+  border-top: 0.5mm solid white;
+}
+
+.digit-l1 {
+  height: var(--label-height);
+  width: var(--digit-width);
+  font-size: var(--base-font-size);
+  border-bottom: 0.5mm solid rgb(15 23 42 / var(--tw-bg-opacity));
+}
+
+.location-l1 {
+  height: var(--label-height);
+  width: var(--location-width);
+  font-family: 'Roboto Condensed';
+  align-items: center;
+  font-size: var(--base-font-size);
+  border-bottom: 0.5mm solid white;
+}
+
+span {
+  background: none;
+}
+
+
+
+.toolbox {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: calc(var(--location-width) + var(--digit-width));
+}
+
+.value-mm {
+  text-transform: lowercase;
+}
+
+.color-options:hover {}
+
+.color-options {}
+
+
+
+/* @media print {
+  body  {
+    visibility: hidden;
+  }
+
+
+
+  .label-pair {
+    display: block;
+    page-break-inside: avoid;
+    position: absolute;
+    top: 0;
+    visibility: visible;
+    color-adjust: exact;
+
+
+  }
+  .label-pair-container{
+    display: block;
+    position: absolute;
+    top: 0;
+    visibility: visible;
+    color-adjust:exact;
+  }
+  .main-container{
+    display: block!important;
+  }
+}
+
+
+    .label-pair-container{
+      display: block;
+    } */
+
+
+/* print.css */
+@media print {
+
+  body {
+    visibility: hidden;
+  }
+
+
+  .label-pair-container {
+    display: block;
+    visibility: visible;
+    position: absolute;
+    top: 0;
+  }
+
+  .label-pair {
+    display: block;
+    position: relative;
+    top: 0;
+    visibility: visible;
+    color-adjust: exact;
+  }
+
+
+
+
+}
+
+
+
+.label-pair::after {
+  content: '';
+    display: block;
+    color: darkorange;
+    height: 0mm;
+    width: 182mm;
+    /* border-bottom: 2mm red double; */
+    border-bottom: 1mm red double;
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+    background-color: darkorange;
+    /* right: -180mm; */
+    position: relative;
+    margin-top: -1mm;
+    margin-top: -0.5mm;
+    margin-left: -1mm;
+    z-index: -1;
+}

@@ -9,7 +9,12 @@ html,
 body {
   height: 100%;
 }
+
+@font-face {
+  font-family: 'Roboto Condensed';
+  src: url('./assets/RobotoCondensed-Regular.ttf');
+}
 body {
   margin: 0;
-  font-family: Roboto;
+  font-family: 'Roboto Condensed';
 }
