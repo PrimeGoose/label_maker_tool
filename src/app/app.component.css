@@ -8,7 +8,7 @@
 }
 
 .label-pair {
-    page-break-inside: avoid;
+  page-break-inside: avoid;
 }
 
 .digit-l2 {
@@ -123,9 +123,9 @@ span {
     position: relative;
     top: 0;
     visibility: visible;
-    -webkit-print-color-adjust:exact;
+    -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
-      page-break-inside: avoid;
+    page-break-inside: avoid;
   }
 
 
@@ -140,7 +140,7 @@ span {
 /* styles.css */
 
 /* Top left */
- .label-pair::before {
+.label-pair::before {
   content: '';
   display: block;
   height: 0mm;
@@ -156,11 +156,11 @@ span {
 }
 
 /* Bottom right */
- .label-pair::after {
+.label-pair::after {
   content: '';
   display: block;
   height: 0mm;
-  width: 2mm;
+  width: 22mm;
   border-bottom: 0.25mm red double;
   -webkit-print-color-adjust: exact;
   print-color-adjust: exact;
@@ -184,4 +184,160 @@ span {
   justify-content: space-evenly;
   align-items: center;
 
+}
+
+
+/* on mobile device if width is less than 800 and more than 750 set initial scale to 0.95 */
+@media only screen and (max-width: 800px) and (min-width: 750px) {
+  body {
+    transform: scale(0.95);
+    /* Sets the transform origin to top and center */
+    transform-origin: top center;
+    position: relative;
+    top: 0;
+  }
+}
+
+@media only screen and (max-width: 750px) and (min-width: 700px) {
+  body {
+    transform: scale(0.89);
+    /* Sets the transform origin to top and center */
+    transform-origin: top center;
+    position: relative;
+    top: 0;
+  }
+}
+
+@media only screen and (max-width: 700px) and (min-width: 650px) {
+  body {
+    transform: scale(0.83);
+    /* Sets the transform origin to top and center */
+    transform-origin: top center;
+    position: relative;
+    top: 0;
+  }
+}
+
+@media only screen and (max-width: 650px) and (min-width: 600px) {
+  body {
+    transform: scale(0.77);
+    /* Sets the transform origin to top and center */
+    transform-origin: top center;
+    position: relative;
+    top: 0;
+  }
+}
+
+
+@media only screen and (max-width: 600px) and (min-width: 550px) {
+  body {
+    transform: scale(0.71);
+    /* Sets the transform origin to top and center */
+    transform-origin: top center;
+    position: relative;
+    top: 0;
+  }
+}
+
+@media only screen and (max-width: 550px) and (min-width: 500px) {
+  body {
+    transform: scale(0.65);
+    /* Sets the transform origin to top and center */
+    transform-origin: top center;
+    position: relative;
+    top: 0;
+  }
+}
+
+@media only screen and (max-width: 500px) and (min-width: 450px) {
+  body {
+    transform: scale(0.59);
+    /* Sets the transform origin to top and center */
+    transform-origin: top center;
+    position: relative;
+    top: 0;
+  }
+}
+
+@media only screen and (max-width: 450px) and (min-width: 400px) {
+  body {
+    transform: scale(0.53);
+    /* Sets the transform origin to top and center */
+    transform-origin: top center;
+    position: relative;
+    top: 0;
+  }
+}
+
+@media only screen and (max-width: 400px) and (min-width: 350px) {
+  body {
+    transform: scale(0.47);
+    /* Sets the transform origin to top and center */
+    transform-origin: top center;
+    position: relative;
+    top: 0;
+  }
+}
+
+@media only screen and (max-width: 350px) and (min-width: 300px) {
+  body {
+    transform: scale(0.41);
+    /* Sets the transform origin to top and center */
+    transform-origin: top center;
+    position: relative;
+    top: 0;
+  }
+}
+
+@media only screen and (max-width: 300px) and (min-width: 250px) {
+  body {
+    transform: scale(0.35);
+    /* Sets the transform origin to top and center */
+    transform-origin: top center;
+    position: relative;
+    top: 0;
+  }
+}
+
+@media only screen and (max-width: 250px) and (min-width: 200px) {
+  body {
+    transform: scale(0.29);
+    /* Sets the transform origin to top and center */
+    transform-origin: top center;
+    position: relative;
+    top: 0;
+  }
+}
+
+@media only screen and (max-width: 200px) and (min-width: 150px) {
+  body {
+    transform: scale(0.23);
+    /* Sets the transform origin to top and center */
+    transform-origin: top center;
+    position: relative;
+    top: 0;
+
+  }
+}
+
+@media only screen and (max-width: 150px) and (min-width: 100px) {
+  body {
+    transform: scale(0.17);
+    /* Sets the transform origin to top and center */
+    transform-origin: top center;
+    position: relative;
+    top: 0;
+
+  }
+}
+
+@media only screen and (max-width: 100px) and (min-width: 50px) {
+  body {
+    transform: scale(0.11);
+    /* Sets the transform origin to top and center */
+    transform-origin: top center;
+    position: relative;
+    top: 0;
+
+  }
 }
