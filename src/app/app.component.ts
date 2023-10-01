@@ -1,8 +1,11 @@
-import { Component,ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import * as XLSX from "xlsx";
-import { ElementRef, ChangeDetectorRef,Renderer2 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { HowToUseComponent } from './how-to-use/how-to-use.component';
+
+/**
+ * Label interface defining the structure of labels.
+ */
 interface Label {
   level1: {
     digit: string,
@@ -19,6 +22,10 @@ interface Label {
     level: string
   }
 }
+
+/**
+ * AppComponent class defining the core logic.
+ */
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -27,110 +34,94 @@ interface Label {
 
 })
 export class AppComponent {
-  constructor(public dialog: MatDialog,private renderer:Renderer2, private el: ElementRef, private cdRef: ChangeDetectorRef) { }
+  /**
+ * @param {MatDialog} dialog - Material dialog service for opening dialogs.
+ */
+  constructor(public dialog: MatDialog) { }
+
+  /** Title of the app */
   title = 'rack-label-tool';
+
+  /** Array to hold label objects */
   Labels: Label[] = [{
     level1: {
-      digit: "01O",
-      street: "kB",
-      number: "30",
-      side: "A",
+      digit: "5L4",
+      street: "en",
+      number: "61",
+      side: "b",
       level: "1"
     },
     level2: {
-      digit: "qie",
-      street: "kB",
-      number: "30",
-      side: "A",
+      digit: "5UQ",
+      street: "en",
+      number: "61",
+      side: "b",
       level: "2"
     },
   }];
+
+  /**
+   * Opens the "How To Use" dialog.
+   */
   openDialog() {
     this.dialog.open(HowToUseComponent);
   }
 
-
+  /** Font and size related properties */
   labelHeight: string = '20';
-  digitFontSize:string = '15'
-  locationFontSize: string = `23`
+  digitFontSize: string = '15';
+  locationFontSize: string = `23`;
 
+  /**
+ * Sets the dimensions for  "Five labels per A4 sheet".
+ */
   setFive() {
-    this.labelHeight = `${20*1.4}`
-    this.locationFontSize = `${23 * 1.1625}`
-    this.digitFontSize = `${15 * 1.1625}`
-
+    this.labelHeight = `${20 * 1.4}`
+    this.locationFontSize = `${23 * 1.121875}`
+    this.digitFontSize = `${15 * 1.121875}`
   }
+
+  /**
+   * Sets the dimensions for the "Six labels per A4 sheet".
+   */
   setSix() {
-    this.labelHeight = `${20*1.1625}`
-    this.locationFontSize = `${23*1.08125}`
-    this.digitFontSize = `${15*1.08125}`
-
-
+    this.labelHeight = `${20 * 1.1625}`
+    this.locationFontSize = `${23 * 1.08125}`
+    this.digitFontSize = `${15 * 1.08125}`
   }
+
+  /**
+  * Sets the dimensions for the "Seven labels per A4 sheet".
+  */
   setSeven() {
     this.labelHeight = "20"
     this.locationFontSize = '23'
     this.digitFontSize = '15'
   }
 
+  /** Opacity related properties */
+  yellowSlider: number = 100; // Default opacity set to 1 (100%)
+  yellowOpacityClass: string = 'bg-opacity-100';
 
-
-  heightValue: number = 22; // New property to store height value
-  opacityValue: number = 100; // New property to store opacity value
-
-  handleHeightChange(value: number) {
-    this.heightValue = value;
-  }
-
-  handleOpacityChange(value: number) {
-    this.opacityValue = value;
-  }
   /**
- * @property {string} selectedColor - The value of the selected color option
- */
-  selectedColor: string = "yellow-300"
-  /**
-  * @property {string} selectedClass - The full class string based on selectedColor
+  * Function to set the background opacity.
+  * @param {any} opacity - The opacity value.
   */
-  selectedClass: string = 'bg-yellow-300';
-  /**
-  * This method updates the selectedClass whenever selectedColor changes.
-  */
-  /**
- * @property {number} sliderOpacity - The value for the background opacity
- */
-  sliderOpacity: number = 100; // Default opacity set to 1 (100%)
-  opacityClass: string = 'bg-opacity-100';
-  return_bg_opacity_sliderOpacity(opacity: any) {
-    // console.log("return_bg_opacity_sliderOpacity", opacity.value)
-    this.sliderOpacity = opacity
-    this.opacityClass = `bg-opacity-${this.sliderOpacity}`
+  return_bg_opacity_yellowSlider(opacity: any) {
+    this.yellowSlider = opacity
+    this.yellowOpacityClass = `bg-opacity-${this.yellowSlider}`
   }
-  /**
-   * @property {Array} colors - The array of color options available for selection
-   */
-  colors = [
-    { name: 'Yellow 50', value: 'yellow-50', class: 'bg-yellow-50 text-xl m-0 p-0 font-bold relative' },
-    { name: 'Yellow 100', value: 'yellow-100', class: 'bg-yellow-100 text-xl m-0 p-0 font-bold relative' },
-    { name: 'Yellow 200', value: 'yellow-200', class: 'bg-yellow-200 text-xl m-0 p-0 font-bold relative' },
-    { name: 'Yellow 300', value: 'yellow-300', class: 'bg-yellow-300 text-xl m-0 p-0 font-bold relative' },
-    { name: 'Yellow 400', value: 'yellow-400', class: 'bg-yellow-400 text-xl m-0 p-0 font-bold relative' },
-    { name: 'Yellow 500', value: 'yellow-500', class: 'bg-yellow-500 text-xl m-0 p-0 font-bold relative' },
-    // { name: 'Yellow 600', value: 'yellow-600', class: 'bg-yellow-600 text-xl m-0 p-0 font-bold relative' },
-    // { name: 'Yellow 700', value: 'yellow-700', class: 'bg-yellow-700 text-xl m-0 p-0 font-bold relative' },
-    // { name: 'Yellow 800', value: 'yellow-800', class: 'bg-yellow-800 text-xl m-0 p-0 font-bold relative' },
-    // { name: 'Yellow 900', value: 'yellow-900', class: 'bg-yellow-900 text-xl m-0 p-0 font-bold relative' },
 
-
-  ];
 
   /**
-   * Handler to trigger the print dialog and print the labels present on the page.
-   */
+    * Triggers the print dialog.
+    */
   printLabels(): void {
     window.print();
   }
+
   /**
+   * Handles Excel file uploads.
    * Reads column "A" from the first sheet of the uploaded Excel file and logs the values.
    * @param {Event} event - The event containing the uploaded file.
    */
