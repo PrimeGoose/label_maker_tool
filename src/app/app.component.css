@@ -7,8 +7,8 @@
   --label-height: 20mm;
 }
 
-.label-pair{
-
+.label-pair {
+    page-break-inside: avoid;
 }
 
 .digit-l2 {
@@ -115,6 +115,7 @@ span {
     visibility: visible;
     position: absolute;
     top: 0;
+    page-break-inside: avoid;
   }
 
   .label-pair {
@@ -123,6 +124,7 @@ span {
     top: 0;
     visibility: visible;
     color-adjust: exact;
+      page-break-inside: avoid;
   }
 
 
@@ -132,21 +134,53 @@ span {
 
 
 
-.label-pair::after {
+/* styles.css */
+
+/* styles.css */
+
+/* Top left */
+ .label-pair::before {
   content: '';
-    display: block;
-    color: darkorange;
-    height: 0mm;
-    width: 182mm;
-    /* border-bottom: 2mm red double; */
-    border-bottom: 1mm red double;
-    -webkit-print-color-adjust: exact;
-    color-adjust: exact;
-    background-color: darkorange;
-    /* right: -180mm; */
-    position: relative;
-    margin-top: -1mm;
-    margin-top: -0.5mm;
-    margin-left: -1mm;
-    z-index: -1;
+  display: block;
+  height: 0mm;
+  width: 2mm;
+  border-bottom: 0.25mm red double;
+  -webkit-print-color-adjust: exact;
+  color-adjust: exact;
+  background-color: darkorange;
+  position: relative;
+  top: 0mm;
+  left: -2mm;
+  z-index: -1;
+}
+
+/* Bottom right */
+ .label-pair::after {
+  content: '';
+  display: block;
+  height: 0mm;
+  width: 2mm;
+  border-bottom: 0.25mm red double;
+  -webkit-print-color-adjust: exact;
+  color-adjust: exact;
+  background-color: darkorange;
+  position: relative;
+  bottom: 0mm;
+  right: 2mm;
+  z-index: -1;
+}
+
+
+
+.mat-toolbar-row,
+.mat-toolbar-single-row {
+  display: flex;
+  box-sizing: border-box;
+  padding: 0 16px;
+  width: 100%;
+  flex-direction: row;
+  white-space: nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+
 }

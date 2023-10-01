@@ -51,26 +51,26 @@ export class AppComponent {
 
 
   labelHeight: string = '20';
-  digitFontSize:string = '16'
-  locationFontSize: string = `25`
-  
+  digitFontSize:string = '15'
+  locationFontSize: string = `23`
+
   setFive() {
     this.labelHeight = `${20*1.4}`
-    this.locationFontSize = `${25 * 1.1625}`
-    this.digitFontSize = `${16 * 1.1625}`
+    this.locationFontSize = `${23 * 1.1625}`
+    this.digitFontSize = `${15 * 1.1625}`
 
   }
   setSix() {
     this.labelHeight = `${20*1.1625}`
-    this.locationFontSize = `${25*1.08125}`
-    this.digitFontSize = `${16*1.08125}`
+    this.locationFontSize = `${23*1.08125}`
+    this.digitFontSize = `${15*1.08125}`
 
 
   }
   setSeven() {
     this.labelHeight = "20"
-    this.locationFontSize = '25'
-    this.digitFontSize = '16'
+    this.locationFontSize = '23'
+    this.digitFontSize = '15'
   }
 
 
