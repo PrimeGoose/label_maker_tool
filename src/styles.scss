@@ -1,6 +1,6 @@
 @import "tailwindcss/base";
 
-@import "tailwindcss/components";
+// @import "tailwindcss/components";
 
 @import "tailwindcss/utilities";
 /* You can add global styles to this file, and also import other style files */
@@ -11,10 +11,151 @@ body {
 }
 
 @font-face {
-  font-family: 'Roboto Condensed';
-  src: url('./assets/RobotoCondensed-Regular.ttf');
+  font-family: "Roboto Condensed";
+  src: url("./assets/RobotoCondensed-Regular.ttf");
 }
+// CONSOLA.TTF
+@font-face {
+  font-family: "Consolas";
+  src: url("./assets/CONSOLA.TTF");
+}
+
 body {
   margin: 0;
-  font-family: 'Roboto Condensed';
+  font-family: "Roboto Condensed";
+}
+
+@media only screen and (max-width: 800px) and (min-width: 750px) {
+  body {
+    transform: scale(0.95);
+    transform-origin: top center;
+    position: relative;
+    top: 0;
+  }
+}
+
+@media only screen and (max-width: 750px) and (min-width: 700px) {
+  body {
+    transform: scale(0.89);
+    transform-origin: top center;
+    position: relative;
+    top: 0;
+  }
+}
+
+@media only screen and (max-width: 700px) and (min-width: 650px) {
+  body {
+    transform: scale(0.83);
+    transform-origin: top center;
+    position: relative;
+    top: 0;
+  }
+}
+
+@media only screen and (max-width: 650px) and (min-width: 600px) {
+  body {
+    transform: scale(0.77);
+    transform-origin: top center;
+    position: relative;
+    top: 0;
+  }
+}
+
+@media only screen and (max-width: 600px) and (min-width: 550px) {
+  body {
+    transform: scale(0.71);
+    transform-origin: top center;
+    position: relative;
+    top: 0;
+  }
+}
+
+@media only screen and (max-width: 550px) and (min-width: 500px) {
+  body {
+    transform: scale(0.65);
+    transform-origin: top center;
+    position: relative;
+    top: 0;
+  }
+}
+
+@media only screen and (max-width: 500px) and (min-width: 450px) {
+  body {
+    transform: scale(0.59);
+    transform-origin: top center;
+    position: relative;
+    top: 0;
+  }
+}
+
+@media only screen and (max-width: 450px) and (min-width: 400px) {
+  body {
+    transform: scale(0.53);
+    transform-origin: top center;
+    position: relative;
+    top: 0;
+  }
+}
+
+@media only screen and (max-width: 400px) and (min-width: 350px) {
+  body {
+    transform: scale(0.47);
+    transform-origin: top center;
+    position: relative;
+    top: 0;
+  }
+}
+
+@media only screen and (max-width: 350px) and (min-width: 300px) {
+  body {
+    transform: scale(0.41);
+    transform-origin: top center;
+    position: relative;
+    top: 0;
+  }
+}
+
+@media only screen and (max-width: 300px) and (min-width: 250px) {
+  body {
+    transform: scale(0.35);
+    transform-origin: top center;
+    position: relative;
+    top: 0;
+  }
+}
+
+@media only screen and (max-width: 250px) and (min-width: 200px) {
+  body {
+    transform: scale(0.29);
+    transform-origin: top center;
+    position: relative;
+    top: 0;
+  }
+}
+
+@media only screen and (max-width: 200px) and (min-width: 150px) {
+  body {
+    transform: scale(0.23);
+    transform-origin: top center;
+    position: relative;
+    top: 0;
+  }
+}
+
+@media only screen and (max-width: 150px) and (min-width: 100px) {
+  body {
+    transform: scale(0.17);
+    transform-origin: top center;
+    position: relative;
+    top: 0;
+  }
+}
+
+@media only screen and (max-width: 100px) and (min-width: 50px) {
+  body {
+    transform: scale(0.11);
+    transform-origin: top center;
+    position: relative;
+    top: 0;
+  }
 }
