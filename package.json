@@ -11,7 +11,7 @@
   "scripts":{
     "ng": "ng",
     "ngh": "ngh",
-    "start": "ng serve --host='0.0.0.0'",
+    "start": "ng serve --host=0.0.0.0 --disable-host-check",
     "build": "ng build --configuration production --base-href https://PrimeGoose.github.io/label_maker_tool/",
     "deploy": "ngh --dir=dist/rack-label-tool"
   },
