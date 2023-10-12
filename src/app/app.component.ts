@@ -70,7 +70,7 @@ export class AppComponent {
   /** Font and size related properties */
   labelHeight: string = '20';
   digitFontSize: string = '15';
-  locationFontSize: string = `23`;
+  locationFontSize: string = `21`;
   digitWidth = '50';
   locationWidth = '130';
 
@@ -79,7 +79,7 @@ export class AppComponent {
  */
   setFive() {
     this.labelHeight = `${20 * 1.4}`
-    this.locationFontSize = `${23 * 1.121875}`
+    this.locationFontSize = `${26 * 1.121875}`
     this.digitFontSize = `${15 * 1.121875}`
 
     this.digitWidth = `56`
@@ -103,7 +103,7 @@ export class AppComponent {
   */
   setSeven() {
     this.labelHeight = "20"
-    this.locationFontSize = '23'
+    this.locationFontSize = '21'
     this.digitFontSize = '15'
 
     this.digitWidth = '50'
