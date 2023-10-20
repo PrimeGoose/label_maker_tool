@@ -1,5 +1,5 @@
-import { Component, ViewEncapsulation } from '@angular/core';
-import * as XLSX from "xlsx";
+import { Component, ViewEncapsulation, OnInit } from '@angular/core';
+import * as XLSX from 'xlsx';
 import { MatDialog } from '@angular/material/dialog';
 import { HowToUseComponent } from './how-to-use/how-to-use.component';
 
@@ -8,19 +8,19 @@ import { HowToUseComponent } from './how-to-use/how-to-use.component';
  */
 interface Label {
   level1: {
-    digit: string,
-    street: string,
-    number: string,
-    side: string,
-    level: string
-  },
+    digit: string;
+    street: string;
+    number: string;
+    side: string;
+    level: string;
+  };
   level2: {
-    digit: string,
-    street: string,
-    number: string,
-    side: string,
-    level: string
-  }
+    digit: string;
+    street: string;
+    number: string;
+    side: string;
+    level: string;
+  };
 }
 
 /**
@@ -32,15 +32,29 @@ interface Label {
   styleUrls: ['./app.component.css'],
   encapsulation: ViewEncapsulation.None,
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   /**
    * @param {MatDialog} dialog - Material dialog service for opening dialogs.
    */
   constructor(public dialog: MatDialog) {}
 
+  ngOnInit(): void {
+    this.setLandscape3();
+  }
+
+  message = '';
+  matTooltip7 =
+    'Using minimal margins, this setting yields 7 180x40mm labels per A4 page';
+  matTooltip6 =
+    'Using minimal margins, this setting yields 6 192x46.5mm labels per A4 page';
+  matTooltip5 =
+    'Using minimal margins, this setting yields 5 200x56mm labels per A4 page';
+  matTooltip3 =
+    'Using minimal margins, this setting yields 3 252x56mm labels per A4 page in Landscape mode';
+
   /** Title of the app */
   title = 'rack-label-tool';
-
+  orientation: 'portrait' | 'landscape' = 'portrait';
   /** Array to hold label objects */
   Labels: Label[] = [
     {
@@ -74,17 +88,18 @@ export class AppComponent {
   locationFontSize: string = `21`;
   digitWidth = '50';
   locationWidth = '130';
-
+  width: string = '210';
   /**
    * Sets the dimensions for  "Five labels per A4 sheet".
    */
   setFive() {
-    this.labelHeight = `${20 * 1.4}`
-    this.locationFontSize = `${26 * 1.121875}`
-    this.digitFontSize = `${15 * 1.121875}`
-
+    this.labelHeight = `${20 * 1.4}`;
+    this.locationFontSize = `${26 * 1.121875}`;
+    this.digitFontSize = `${15 * 1.121875}`;
+    this.orientation = 'portrait';
     this.digitWidth = `56`;
     this.locationWidth = `144`;
+    this.message = this.matTooltip7;
   }
 
   /**
@@ -94,21 +109,33 @@ export class AppComponent {
     this.labelHeight = `${20 * 1.1625}`;
     this.locationFontSize = `${23 * 1.08125}`;
     this.digitFontSize = `${15 * 1.08125}`;
-
     this.digitWidth = '54';
     this.locationWidth = '138';
+    this.orientation = 'portrait';
+    this.message = this.matTooltip6;
   }
 
   /**
    * Sets the dimensions for the "Seven labels per A4 sheet".
    */
   setSeven() {
-    this.labelHeight = "20"
-    this.locationFontSize = '21'
-    this.digitFontSize = '15'
-
+    this.labelHeight = '20';
+    this.locationFontSize = '21';
+    this.digitFontSize = '15';
+    this.orientation = 'portrait';
     this.digitWidth = '50';
     this.locationWidth = '130';
+    this.message = this.matTooltip5;
+  }
+
+  setLandscape3() {
+    this.labelHeight = 20 * 1.4 + '';
+    this.locationFontSize = 21 * 1.4 + '';
+    this.digitFontSize = 15 * 1.4 + '';
+    this.orientation = 'landscape';
+    this.digitWidth = 50 * 1.4 + '';
+    this.locationWidth = 130 * 1.4 + '';
+    this.message = this.matTooltip3;
   }
 
   /** Opacity related properties */
@@ -256,10 +283,10 @@ export class AppComponent {
     reader.readAsArrayBuffer(file);
   }
 
-  fontWeightClass: 'font-black' | '' = '';
-  buldToggleLabel='B'
+  fontWeightClass: 'font-black' | '' = 'font-black';
+  buldToggleLabel = 'B';
   toggleBold() {
-    this.fontWeightClass = this.fontWeightClass === 'font-black' ? '' : 'font-black';
+    this.fontWeightClass =
+      this.fontWeightClass === 'font-black' ? '' : 'font-black';
   }
-
 }

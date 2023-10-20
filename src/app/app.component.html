@@ -1,7 +1,7 @@
 <!-- main conntainer -->
-<div id="main-container" class="flex flex-col  justify-center  items-center align-middle uppercase">
-  <mat-card class="toolbox-card h-40 justify-center mb-8">
-    <mat-card-content class="toolbox flex">
+<div id="main-container" class="flex flex-col  justify-center  items-center align-middle uppercase w-full">
+  <mat-card class="toolbox-card h-40  justify-center mb-8 items-center">
+    <mat-card-content class="toolbox ">
 
       <!-- card item 1/2 -->
       <mat-toolbar class="mb-4">
@@ -15,54 +15,70 @@
         <button type="button" mat-raised-button (click)="openDialog()">How To Use</button>
       </mat-toolbar>
 
+
+
+
       <!-- card item 2/2 -->
       <div class="tools-row  flex flex-row justify-evenly">
 
-        <!-- toggle butons for 5 6 7 label pairs per a4 sheet -->
+        <!-- toggle butons for 3 5 6 7 label pairs per a4 sheet -->
         <div class="size-toggle">
 
           <!-- app.component.html -->
           <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
-            <!-- Tooltip to describe how many labels fit on an A4 page with minimal margins when using setting "five" -->
-            <mat-button-toggle matTooltip="Using minimal margins, this setting yields 5 200x56mm labels per A4 page."
-              (click)="setFive()" value="five">A4/5</mat-button-toggle>
-
-            <!-- Tooltip to describe how many labels fit on an A4 page with minimal margins when using setting "six" -->
-            <mat-button-toggle matTooltip="Using minimal margins, this setting yields 6 192x46.5mm labels per A4 page."
-              (click)="setSix()" value="six">A4/6</mat-button-toggle>
 
             <!-- Tooltip to describe how many labels fit on an A4 page with minimal margins when using setting "seven" -->
-            <mat-button-toggle matTooltip="Using minimal margins, this setting yields 7 180x40mm labels per A4 page."
-              (click)="setSeven()" value="seven" [checked]="true">A4/7</mat-button-toggle>
+            <mat-button-toggle matTooltipPosition="above" matTooltip="Using minimal margins, this setting yields 7 180x40mm labels per A4 page."
+              (click)="setSeven()" value="seven">A4/7</mat-button-toggle>
+
+            <!-- Tooltip to describe how many labels fit on an A4 page with minimal margins when using setting "six" -->
+            <mat-button-toggle matTooltipPosition="above" matTooltip="Using minimal margins, this setting yields 6 192x46.5mm labels per A4 page."
+              (click)="setSix()" value="six">A4/6</mat-button-toggle>
+
+            <!-- Tooltip to describe how many labels fit on an A4 page with minimal margins when using setting "five" -->
+            <mat-button-toggle matTooltipPosition="above" matTooltip="Using minimal margins, this setting yields 5 200x56mm labels per A4 page."
+              (click)="setFive()" value="five">A4/5</mat-button-toggle>
+
+            <!-- 252x56 in ladscape mode a4 page 5 labels -->
+            <mat-button-toggle matTooltipPosition="above" [checked]="true"
+              matTooltip="Using minimal margins, this setting yields 3 252x56mm labels per A4 page." (click)="setLandscape3()"
+              value="five">A4/3</mat-button-toggle>
+
+
           </mat-button-toggle-group>
+
+
+
 
         </div>
 
         <!-- opacity slider -->
-        <div class="flex flex-row items-center align-middle justify-between w-1/3">
+        <div class="flex flex-row items-center align-middle justify-between  w-1/3">
           <label for>Yellow</label>
           <div class="o-slider flex flex-row  items-center">
             <mat-slider class="opacity-adjust" min="0" max="100" step="10">
-              <input title="opacity-slider" matSliderThumb #opacity
-                (input)="return_bg_opacity_yellowSlider(opacity.value)" value="100">
+              <input title="opacity-slider" matSliderThumb #opacity (input)="return_bg_opacity_yellowSlider(opacity.value)" value="100">
             </mat-slider>
             <label form="opacity-slider" class="opacity-value-label ml-4">{{opacity.value}}%</label>
           </div>
         </div>
 
-                  <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
-                    <mat-button-toggle class="w-14"  [ngClass]="[fontWeightClass]" (click)="toggleBold()" >B</mat-button-toggle>
+        <mat-button-toggle-group name="fontStyle" aria-label="Font Style" class=" block w-[52px] h-[48px]">
+          <mat-button-toggle class=" block w-[52px] h-[48px]" [ngClass]="[fontWeightClass]" (click)="toggleBold()">B</mat-button-toggle>
 
-                  </mat-button-toggle-group>
+        </mat-button-toggle-group>
 
 
       </div>
+
     </mat-card-content>
+    <!-- <mat-card-footer>
+        <div class="text-xs normal-case my-4 pb-4 text-center whitespace-nowrap">{{message}}</div>
+
+      </mat-card-footer> -->
   </mat-card>
 
-  <div
-  [ngClass]="[fontWeightClass]"
-  class="label-pair-container">
+  <div [ngClass]="[fontWeightClass]" class="label-pair-container">
 
     <!-- Label-pair -->
     <div *ngFor="let label of Labels" class="label-pair w-auto h-auto bg-white  mb-0">
@@ -75,10 +91,7 @@
           {{ label.level2.digit }}
         </div>
         <!-- level 2 location -->
-        <div [ngClass]="[yellowOpacityClass]" 
-             [style.height.mm]="labelHeight" 
-             [style.width.mm]="locationWidth"
-             [style.fontSize.mm]="locationFontSize"
+        <div [ngClass]="[yellowOpacityClass]" [style.height.mm]="labelHeight" [style.width.mm]="locationWidth" [style.fontSize.mm]="locationFontSize"
           class="location-l2 flex bg-yellow-300 whitespace-nowrap  border-black border-b-2  px-4 justify-between">
           <span spellcheck="false" contenteditable="true" class="name-l2">{{ label.level2.street }}</span>
           <span spellcheck="false" contenteditable="true" class="number-l2">{{label.level2.number }}</span>
@@ -101,6 +114,8 @@
           <span spellcheck="false" contenteditable="true" class="level-l1">{{label.level1.side }}{{ label.level1.level}}</span>
         </div>
       </div>
+      <div class="relative flex w-2 h-0 border-b-[1px] top-[0px] border-red-500 right-0 " style="  width: 2mm;
+  right: -2mm; float: inline-end;"></div>
     </div>
   </div>
 </div>

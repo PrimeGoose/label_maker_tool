@@ -74,6 +74,7 @@ span {
     display: block;
     visibility: visible;
     position: absolute;
+    width: 100%;
     top: 0;
     page-break-inside: avoid;
   }
@@ -104,7 +105,9 @@ span {
   z-index: -1;
 }
 
-.label-pair::after {
+
+
+/* .label-pair::after {
   content: '';
   display: block;
   height: 0mm;
@@ -115,9 +118,9 @@ span {
   background-color: darkorange;
   position: relative;
   bottom: 0mm;
-  right: -180mm;
+  right: -250mm;
   z-index: -1;
-}
+} */
 
 
 
