@@ -1,10 +1,10 @@
 <!-- main conntainer -->
 <div id="main-container" class="  flex flex-col  justify-center  items-center align-middle uppercase w-full">
-  <mat-card class="toolbox-card justify-center  items-center no-print">
-    <mat-card-content class="toolbox ">
+  <mat-card>
 
+    <mat-card-title>
       <!-- card item 1/2 -->
-      <mat-toolbar class="mb-4">
+      <mat-toolbar class="mb-4 flex justify-between ">
         <input type="file" hidden #fileInput accept=".xls, .xlsx" (change)="useExcelFile($event)" />
         <button type="button" mat-raised-button (click)="fileInput.click()">
           Use Excel File
@@ -14,34 +14,58 @@
         </button>
         <button type="button" mat-raised-button (click)="openDialog()">How To Use</button>
       </mat-toolbar>
+    </mat-card-title>
+
+    <mat-card-content class="toolbox">
+
+
 
 
 
 
       <!-- card item 2/2 -->
-      <div class="tools-row  flex flex-row justify-evenly">
+      <div class="tools-row  flex flex-row justify-between">
 
         <!-- toggle butons for 3 5 6 7 label pairs per a4 sheet -->
         <div class="size-toggle">
-
+          <!-- <p>For printing in {{orientation}}</p> -->
           <!-- app.component.html -->
           <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
 
             <!-- Tooltip to describe how many labels fit on an A4 page with minimal margins when using setting "seven" -->
             <mat-button-toggle matTooltip="Using minimal margins, this setting yields 7 180x40mm labels per A4 page." (click)="setSeven()"
-              value="seven">A4/7</mat-button-toggle>
+              value="seven">
+              <span class="flex flex-col h-1 py-2 leading-4">
+                <span>Portrait</span>
+                <span>A4/7</span>
+              </span>
+            </mat-button-toggle>
 
             <!-- Tooltip to describe how many labels fit on an A4 page with minimal margins when using setting "six" -->
             <mat-button-toggle matTooltip="Using minimal margins, this setting yields 6 192x46.5mm labels per A4 page." (click)="setSix()"
-              value="six">A4/6</mat-button-toggle>
+              value="six">
+              <span class="flex flex-col h-1 py-2 leading-4">
+                <span>Portrait</span><span>A4/6</span>
+              </span>
+            </mat-button-toggle>
 
             <!-- Tooltip to describe how many labels fit on an A4 page with minimal margins when using setting "five" -->
             <mat-button-toggle matTooltip="Using minimal margins, this setting yields 5 200x56mm labels per A4 page." (click)="setFive()"
-              value="five">A4/5</mat-button-toggle>
+              value="five">
+
+              <span class="flex flex-col h-12 py-2 leading-4">
+                <span>Portrait</span>
+                <span>A4/5</span>
+              </span>
+            </mat-button-toggle>
 
             <!-- 252x56 in ladscape mode a4 page 5 labels -->
-            <mat-button-toggle [checked]="true" [matTooltip]="matTooltip3"
-              (click)="setLandscape3()" value="five">A4/3</mat-button-toggle>
+            <mat-button-toggle [checked]="true" [matTooltip]="matTooltip3" (click)="setLandscape3()" value="five">
+              <span class="flex flex-col h-1 py-2 leading-4">
+                <span>Landscape</span>
+                <span>A4/3</span>
+              </span>
+            </mat-button-toggle>
 
 
           </mat-button-toggle-group>
@@ -63,7 +87,7 @@
         </div>
 
         <mat-button-toggle-group name="fontStyle" aria-label="Font Style" class=" block w-[52px] h-[48px]">
-          <mat-button-toggle [checked]="true" class=" block w-[52px] h-[48px] text-xl" [ngClass]="[fontWeightClass]"
+          <mat-button-toggle [checked]="fontWeightClass=='font-black'" class=" block w-[52px] h-[48px] text-xl"
             (click)="toggleBold()">B</mat-button-toggle>
 
         </mat-button-toggle-group>
@@ -75,13 +99,22 @@
 
   </mat-card>
 
-  <div [ngClass]="[fontWeightClass,orientationClass]" class="label-pair-container mt-10 ">
+
+
+
+
+
+
+
+
+
+
+  <!-- label pair container -->
+  <div [ngClass]="[fontWeightClass,orientationClass]" class="label-pair-container mt-0 ">
 
     <!-- Label-pair -->
     <div *ngFor="let label of Labels" class="label-pair flex  flex-col bg-white  mt=[1mm]">
-      <!-- cut mark top -->
-      <!-- <div class="relative flex w-2 h-0 border-b-[1px] top-[1px] border-red-500 z-10 right-0 " style="width:calc(100% + 4mm);
-            right: 2mm; float: inline-end;"></div> -->
+
       <!-- Level 2 -->
       <div class="label-l2 flex flex-row">
         <!-- level 2 digit -->
@@ -92,7 +125,7 @@
         </div>
         <!-- level 2 location -->
         <div [ngClass]="[yellowOpacityClass]" [style.height.mm]="labelHeight" [style.width.mm]="locationWidth" [style.fontSize.mm]="locationFontSize"
-          class="location-l2 text-slate-950 flex bg-yellow-300 whitespace-nowrap  border-black   px-4 justify-between">
+          class="location-l2 items-center  text-slate-950 flex bg-yellow-300 whitespace-nowrap  border-black   px-4 justify-between">
           <span spellcheck="false" contenteditable="true" class="name-l2">{{ label.level2.street }}</span>
           <span spellcheck="false" contenteditable="true" class="number-l2">{{label.level2.number }}</span>
           <span spellcheck="false" contenteditable="true" class="level-l2">{{label.level2.side }}{{ label.level2.level}}</span>
@@ -108,15 +141,13 @@
         </div>
         <!-- level 1 location -->
         <div [style.fontSize.mm]="locationFontSize" [style.height.mm]="labelHeight" [style.width.mm]="locationWidth"
-          class="location-l1  text-slate-950 flex bg-white whitespace-nowrap   border-black  px-4 justify-between ">
+          class="location-l1   text-slate-950 flex bg-white whitespace-nowrap   border-black  px-4 justify-between ">
           <span spellcheck="false" contenteditable="true" class="name-l1 ">{{ label.level1.street }}</span>
           <span spellcheck="false" contenteditable="true" class="number-l1">{{label.level1.number }}</span>
           <span spellcheck="false" contenteditable="true" class="level-l1">{{label.level1.side }}{{ label.level1.level}}</span>
         </div>
       </div>
-      <!-- cut mark bottom -->
-      <!-- <div class="relative flex w-2 h-0 border-b-[1px] bottom-[1px] border-red-500 -z-10 right-0 " style="  width:calc(100% + 4mm);
-  right: 2mm; float: inline-end;"></div>
-    </div> -->
+
     </div>
   </div>
+</div>

@@ -20,21 +20,18 @@
   overflow: hidden;
 }
 
-
 .digit-l1 {
   height: var(--label-height);
   width: var(--digit-width);
   font-family: 'Consolas';
   font-size: var(--base-font-size);
   border-top: 0.75mm solid white;
-
 }
 
 .digit-l2 {
   height: var(--label-height);
   width: var(--digit-width);
   font-family: 'Consolas';
-
   font-size: var(--base-font-size);
   border-bottom: 0.75mm solid white;
 }
@@ -52,79 +49,21 @@
   height: var(--label-height);
   width: var(--location-width);
   font-family: 'Roboto Condensed';
-  align-items: center;
   font-size: var(--base-font-size);
   border-bottom: 0.75mm solid black;
 }
 
-
-
-
-
-span {
-  background: none;
-}
-
-
-
 .toolbox {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
   width: calc(var(--location-width) + var(--digit-width));
 }
 
-.value-mm {
-  text-transform: lowercase;
-}
-
-
-
-
 .label-pair::before {
-  content: '';
+  content: "";
   display: block;
-  height: 0mm;
-  width: 2mm;
-  border-bottom: 0.25mm red double;
-  -webkit-print-color-adjust: exact;
-  print-color-adjust: exact;
-  background-color: darkorange;
-  position: relative;
-  top: 0mm;
-  left: -2mm;
+  width: calc(100% + 8mm);
+  height: 1px;
   z-index: -1;
-  page-break-inside: avoid;
-}
-
-
-.label-pair::after {
-  content: '';
-  display: block;
-  height: 0mm;
-  width: 22mm;
-  border-bottom: 0.25mm red double;
-  -webkit-print-color-adjust: exact;
-  print-color-adjust: exact;
-  background-color: darkorange;
-  position: relative;
-  bottom: 0mm;
-  right: -250mm;
-  z-index: -1;
-}
-
-
-
-.mat-toolbar-row,
-.mat-toolbar-single-row {
-  display: flex;
-  box-sizing: border-box;
-  padding: 0 16px;
-  width: 100%;
-  flex-direction: row;
-  white-space: nowrap;
-  justify-content: space-evenly;
-  align-items: center;
-
+  left: -4mm;
+  position: absolute;
+  background-color: red;
 }

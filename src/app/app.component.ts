@@ -92,6 +92,7 @@ export class AppComponent implements OnInit {
   locationWidth = '130';
   labelPairWidthClass: string = 'a3-width';
   orientationClass: string = 'a4-landscape';
+  
   /**
    * Sets the dimensions for  "Five labels per A4 sheet".
    */
