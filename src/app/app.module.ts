@@ -33,12 +33,14 @@ import { ToolboxComponent } from './toolbox/toolbox.component';
 import { FormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { HowToUseComponent } from './how-to-use/how-to-use.component';
+import { A4SheetComponent } from './a4-sheet/a4-sheet.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ToolboxComponent,
     HowToUseComponent,
+    A4SheetComponent,
   ],
   imports: [
     MatDialogModule,
