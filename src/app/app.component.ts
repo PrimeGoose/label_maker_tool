@@ -92,7 +92,6 @@ export class AppComponent implements OnInit {
   locationWidth = '130';
   labelPairWidthClass: string = 'a3-width';
   orientationClass: string = 'a4-landscape';
-  
   /**
    * Sets the dimensions for  "Five labels per A4 sheet".
    */
@@ -151,8 +150,8 @@ export class AppComponent implements OnInit {
   }
 
   /** Opacity related properties */
-  yellowSlider: number = 100; // Default opacity set to 1 (100%)
-  yellowOpacityClass: string = 'bg-opacity-100';
+  yellowSlider: number = 70; // Default opacity set to 1 (100%)
+  yellowOpacityClass: string = 'bg-opacity-70';
 
   /**
    * Function to set the background opacity.

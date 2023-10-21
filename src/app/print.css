@@ -8,6 +8,7 @@
 
   .label-pair-container {
     position: absolute;
+    width: 100%;
     top: 0;
     visibility: visible;
     page-break-inside: avoid;
@@ -15,6 +16,8 @@
   }
 
   .label-pair {
+    position: relative;
+    z-index: 1;
     visibility: visible;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
@@ -26,7 +29,45 @@
   /* Add the following to avoid page breaks in these elements */
   .label-l2,
   .label-l1 {
+
     page-break-inside: avoid !important;
     -webkit-page-break-inside: avoid !important;
   }
+
+    /* .label-pair::after {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 1px;
+      z-index: -1;
+      left: -4mm;
+      top: 1px;
+      position: absolute;
+      background-color: red;
+    } */
+
+
+        /* Line above */
+        /* .label-pair::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 0.25px;
+          background-color: red;
+          z-index: 1;
+        } */
+
+        /* Line below */
+        .label-pair::after {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 0.25px;
+          background-color: red;
+          z-index: 1;
+        }
 }

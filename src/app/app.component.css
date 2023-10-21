@@ -60,7 +60,7 @@
 .label-pair::before {
   content: "";
   display: block;
-  width: calc(100% + 8mm);
+  width: 100%;
   height: 1px;
   z-index: -1;
   left: -4mm;

@@ -1,7 +1,6 @@
 <!-- main conntainer -->
 <div id="main-container" class="  flex flex-col  justify-center  items-center align-middle uppercase w-full">
   <mat-card>
-
     <mat-card-title>
       <!-- card item 1/2 -->
       <mat-toolbar class="mb-4 flex justify-between ">
@@ -15,23 +14,14 @@
         <button type="button" mat-raised-button (click)="openDialog()">How To Use</button>
       </mat-toolbar>
     </mat-card-title>
-
     <mat-card-content class="toolbox">
-
-
-
-
-
 
       <!-- card item 2/2 -->
       <div class="tools-row  flex flex-row justify-between">
 
         <!-- toggle butons for 3 5 6 7 label pairs per a4 sheet -->
         <div class="size-toggle">
-          <!-- <p>For printing in {{orientation}}</p> -->
-          <!-- app.component.html -->
           <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
-
             <!-- Tooltip to describe how many labels fit on an A4 page with minimal margins when using setting "seven" -->
             <mat-button-toggle matTooltip="Using minimal margins, this setting yields 7 180x40mm labels per A4 page." (click)="setSeven()"
               value="seven">
@@ -52,7 +42,6 @@
             <!-- Tooltip to describe how many labels fit on an A4 page with minimal margins when using setting "five" -->
             <mat-button-toggle matTooltip="Using minimal margins, this setting yields 5 200x56mm labels per A4 page." (click)="setFive()"
               value="five">
-
               <span class="flex flex-col h-12 py-2 leading-4">
                 <span>Portrait</span>
                 <span>A4/5</span>
@@ -66,13 +55,7 @@
                 <span>A4/3</span>
               </span>
             </mat-button-toggle>
-
-
           </mat-button-toggle-group>
-
-
-
-
         </div>
 
         <!-- opacity slider -->
@@ -80,7 +63,7 @@
           <label for>Yellow</label>
           <div class="o-slider flex flex-row  items-center">
             <mat-slider class="opacity-adjust" min="0" max="100" step="10">
-              <input title="opacity-slider" matSliderThumb #opacity (input)="return_bg_opacity_yellowSlider(opacity.value)" value="100">
+              <input title="opacity-slider" matSliderThumb #opacity (input)="return_bg_opacity_yellowSlider(opacity.value)" value="70">
             </mat-slider>
             <label form="opacity-slider" class="opacity-value-label ml-4">{{opacity.value}}%</label>
           </div>
@@ -89,14 +72,9 @@
         <mat-button-toggle-group name="fontStyle" aria-label="Font Style" class=" block w-[52px] h-[48px]">
           <mat-button-toggle [checked]="fontWeightClass=='font-black'" class=" block w-[52px] h-[48px] text-xl"
             (click)="toggleBold()">B</mat-button-toggle>
-
         </mat-button-toggle-group>
-
-
       </div>
-
     </mat-card-content>
-
   </mat-card>
 
 
@@ -120,12 +98,12 @@
         <!-- level 2 digit -->
         <div spellcheck="false" contenteditable="true" [style.height.mm]="labelHeight" [style.width.mm]="digitWidth"
           [style.fontSize.mm]="digitFontSize"
-          class="digit-l2 flex items-center place-content-center self-center text-center justify-center text-white bg-slate-950 whitespace-nowrap    font-semibold">
+          class="digit-l2 flex items-center place-content-center self-center text-center justify-center text-white bg-black whitespace-nowrap    font-semibold">
           {{ label.level2.digit }}
         </div>
         <!-- level 2 location -->
         <div [ngClass]="[yellowOpacityClass]" [style.height.mm]="labelHeight" [style.width.mm]="locationWidth" [style.fontSize.mm]="locationFontSize"
-          class="location-l2 items-center  text-slate-950 flex bg-yellow-300 whitespace-nowrap  border-black   px-4 justify-between">
+          class="location-l2 items-center  text-black flex bg-yellow-300 whitespace-nowrap  border-black   px-4 justify-between">
           <span spellcheck="false" contenteditable="true" class="name-l2">{{ label.level2.street }}</span>
           <span spellcheck="false" contenteditable="true" class="number-l2">{{label.level2.number }}</span>
           <span spellcheck="false" contenteditable="true" class="level-l2">{{label.level2.side }}{{ label.level2.level}}</span>
@@ -136,12 +114,12 @@
         <!-- level 1 digit -->
         <div spellcheck="false" contenteditable="true" [style.height.mm]="labelHeight" [style.width.mm]="digitWidth"
           [style.fontSize.mm]="digitFontSize"
-          class="digit-l1 flex items-center place-content-center self-center text-center justify-center text-white bg-slate-950 whitespace-nowrap    font-semibold">
+          class="digit-l1 flex items-center place-content-center self-center text-center justify-center text-white bg-black whitespace-nowrap    font-semibold">
           {{ label.level1.digit }}
         </div>
         <!-- level 1 location -->
         <div [style.fontSize.mm]="locationFontSize" [style.height.mm]="labelHeight" [style.width.mm]="locationWidth"
-          class="location-l1   text-slate-950 flex bg-white whitespace-nowrap   border-black  px-4 justify-between ">
+          class="location-l1   text-black flex bg-white whitespace-nowrap   border-black  px-4 justify-between ">
           <span spellcheck="false" contenteditable="true" class="name-l1 ">{{ label.level1.street }}</span>
           <span spellcheck="false" contenteditable="true" class="number-l1">{{label.level1.number }}</span>
           <span spellcheck="false" contenteditable="true" class="level-l1">{{label.level1.side }}{{ label.level1.level}}</span>
