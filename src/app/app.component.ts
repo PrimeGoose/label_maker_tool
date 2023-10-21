@@ -29,7 +29,7 @@ interface Label {
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  styleUrls: ['./app.component.css','./print.css'],
   encapsulation: ViewEncapsulation.None,
 })
 export class AppComponent implements OnInit {
@@ -88,7 +88,8 @@ export class AppComponent implements OnInit {
   locationFontSize: string = `21`;
   digitWidth = '50';
   locationWidth = '130';
-  width: string = '210';
+  labelPairWidthClass: string = 'a3-width';
+  orientationClass: string = 'a4-landscape';
   /**
    * Sets the dimensions for  "Five labels per A4 sheet".
    */
@@ -100,6 +101,8 @@ export class AppComponent implements OnInit {
     this.digitWidth = `56`;
     this.locationWidth = `144`;
     this.message = this.matTooltip7;
+    this.labelPairWidthClass = 'a5-width';
+    this.orientationClass = 'a4-portrait';
   }
 
   /**
@@ -113,6 +116,8 @@ export class AppComponent implements OnInit {
     this.locationWidth = '138';
     this.orientation = 'portrait';
     this.message = this.matTooltip6;
+    this.labelPairWidthClass = 'a6-width';
+    this.orientationClass = 'a4-portrait';
   }
 
   /**
@@ -126,6 +131,8 @@ export class AppComponent implements OnInit {
     this.digitWidth = '50';
     this.locationWidth = '130';
     this.message = this.matTooltip5;
+    this.labelPairWidthClass = 'a7-width';
+    this.orientationClass = 'a4-portrait';
   }
 
   setLandscape3() {
@@ -136,6 +143,8 @@ export class AppComponent implements OnInit {
     this.digitWidth = 50 * 1.4 + '';
     this.locationWidth = 130 * 1.4 + '';
     this.message = this.matTooltip3;
+    this.labelPairWidthClass = 'a3-width';
+    this.orientationClass = 'a4-landscape';
   }
 
   /** Opacity related properties */
@@ -169,7 +178,24 @@ export class AppComponent implements OnInit {
         .filter((key) => key.startsWith(columnKey))
         .map((key) => data[key].v);
     }
-    this.Labels = [];
+    this.Labels = [
+    {
+      level1: {
+        digit: '5L4',
+        street: 'en',
+        number: '61',
+        side: 'b',
+        level: '1',
+      },
+      level2: {
+        digit: '5UQ',
+        street: 'en',
+        number: '61',
+        side: 'b',
+        level: '2',
+      },
+    },
+  ];
     let file = event.target.files[0];
     let reader = new FileReader();
     reader.onload = (e) => {

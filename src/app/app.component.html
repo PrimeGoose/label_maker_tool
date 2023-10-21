@@ -1,6 +1,6 @@
 <!-- main conntainer -->
-<div id="main-container" class="flex flex-col  justify-center  items-center align-middle uppercase w-full">
-  <mat-card class="toolbox-card h-40  justify-center mb-8 items-center">
+<div id="main-container" class="  flex flex-col  justify-center  items-center align-middle uppercase w-full">
+  <mat-card class="toolbox-card justify-center  items-center no-print">
     <mat-card-content class="toolbox ">
 
       <!-- card item 1/2 -->
@@ -72,27 +72,27 @@
       </div>
 
     </mat-card-content>
-    <!-- <mat-card-footer>
-        <div class="text-xs normal-case my-4 pb-4 text-center whitespace-nowrap">{{message}}</div>
 
-      </mat-card-footer> -->
   </mat-card>
 
-  <div [ngClass]="[fontWeightClass]" class="label-pair-container">
+  <div [ngClass]="[fontWeightClass,orientationClass]" class="label-pair-container mt-10 ">
 
     <!-- Label-pair -->
-    <div *ngFor="let label of Labels" class="label-pair w-auto h-auto bg-white  mb-0">
+    <div *ngFor="let label of Labels" class="label-pair flex  flex-col bg-white  mt=[1mm]">
+      <!-- cut mark top -->
+      <!-- <div class="relative flex w-2 h-0 border-b-[1px] top-[1px] border-red-500 z-10 right-0 " style="width:calc(100% + 4mm);
+            right: 2mm; float: inline-end;"></div> -->
       <!-- Level 2 -->
       <div class="label-l2 flex flex-row">
         <!-- level 2 digit -->
         <div spellcheck="false" contenteditable="true" [style.height.mm]="labelHeight" [style.width.mm]="digitWidth"
           [style.fontSize.mm]="digitFontSize"
-          class="digit-l2 flex items-center place-content-center self-center text-center justify-center text-white bg-slate-900 whitespace-nowrap   border-b-2 font-semibold">
+          class="digit-l2 flex items-center place-content-center self-center text-center justify-center text-white bg-slate-950 whitespace-nowrap    font-semibold">
           {{ label.level2.digit }}
         </div>
         <!-- level 2 location -->
         <div [ngClass]="[yellowOpacityClass]" [style.height.mm]="labelHeight" [style.width.mm]="locationWidth" [style.fontSize.mm]="locationFontSize"
-          class="location-l2 flex bg-yellow-300 whitespace-nowrap  border-black border-b-2  px-4 justify-between">
+          class="location-l2 text-slate-950 flex bg-yellow-300 whitespace-nowrap  border-black   px-4 justify-between">
           <span spellcheck="false" contenteditable="true" class="name-l2">{{ label.level2.street }}</span>
           <span spellcheck="false" contenteditable="true" class="number-l2">{{label.level2.number }}</span>
           <span spellcheck="false" contenteditable="true" class="level-l2">{{label.level2.side }}{{ label.level2.level}}</span>
@@ -103,19 +103,20 @@
         <!-- level 1 digit -->
         <div spellcheck="false" contenteditable="true" [style.height.mm]="labelHeight" [style.width.mm]="digitWidth"
           [style.fontSize.mm]="digitFontSize"
-          class="digit-l1 flex items-center place-content-center self-center text-center justify-center text-white bg-slate-900 whitespace-nowrap   border-b-2 font-semibold">
+          class="digit-l1 flex items-center place-content-center self-center text-center justify-center text-white bg-slate-950 whitespace-nowrap    font-semibold">
           {{ label.level1.digit }}
         </div>
         <!-- level 1 location -->
         <div [style.fontSize.mm]="locationFontSize" [style.height.mm]="labelHeight" [style.width.mm]="locationWidth"
-          class="location-l1 flex bg-white whitespace-nowrap   border-black border-t-2 px-4 justify-between ">
+          class="location-l1  text-slate-950 flex bg-white whitespace-nowrap   border-black  px-4 justify-between ">
           <span spellcheck="false" contenteditable="true" class="name-l1 ">{{ label.level1.street }}</span>
           <span spellcheck="false" contenteditable="true" class="number-l1">{{label.level1.number }}</span>
           <span spellcheck="false" contenteditable="true" class="level-l1">{{label.level1.side }}{{ label.level1.level}}</span>
         </div>
       </div>
-      <div class="relative flex w-2 h-0 border-b-[1px] top-[0px] border-red-500 right-0 " style="  width: 2mm;
-  right: -2mm; float: inline-end;"></div>
+      <!-- cut mark bottom -->
+      <!-- <div class="relative flex w-2 h-0 border-b-[1px] bottom-[1px] border-red-500 -z-10 right-0 " style="  width:calc(100% + 4mm);
+  right: 2mm; float: inline-end;"></div>
+    </div> -->
     </div>
   </div>
-</div>

@@ -1,0 +1,32 @@
+/* File name: styles.css */
+
+@media print {
+
+  body {
+    visibility: hidden;
+  }
+
+  .label-pair-container {
+    position: absolute;
+    top: 0;
+    visibility: visible;
+    page-break-inside: avoid;
+    -webkit-page-break-inside: avoid;
+  }
+
+  .label-pair {
+    visibility: visible;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    page-break-inside: avoid;
+    -webkit-page-break-inside: avoid;
+    overflow: hidden;
+  }
+
+  /* Add the following to avoid page breaks in these elements */
+  .label-l2,
+  .label-l1 {
+    page-break-inside: avoid !important;
+    -webkit-page-break-inside: avoid !important;
+  }
+}
