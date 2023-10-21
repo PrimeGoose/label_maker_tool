@@ -9,7 +9,7 @@
         <button type="button" mat-raised-button (click)="fileInput.click()">
           Use Excel File
         </button>
-        <button type="button" mat-raised-button (click)="printLabels()">
+        <button type="button" mat-raised-button (click)="printLabels()" [matTooltip]="osPrintTooltip">
           Print Labels
         </button>
         <button type="button" mat-raised-button (click)="openDialog()">How To Use</button>
@@ -28,21 +28,20 @@
           <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
 
             <!-- Tooltip to describe how many labels fit on an A4 page with minimal margins when using setting "seven" -->
-            <mat-button-toggle matTooltipPosition="above" matTooltip="Using minimal margins, this setting yields 7 180x40mm labels per A4 page."
-              (click)="setSeven()" value="seven">A4/7</mat-button-toggle>
+            <mat-button-toggle matTooltip="Using minimal margins, this setting yields 7 180x40mm labels per A4 page." (click)="setSeven()"
+              value="seven">A4/7</mat-button-toggle>
 
             <!-- Tooltip to describe how many labels fit on an A4 page with minimal margins when using setting "six" -->
-            <mat-button-toggle matTooltipPosition="above" matTooltip="Using minimal margins, this setting yields 6 192x46.5mm labels per A4 page."
-              (click)="setSix()" value="six">A4/6</mat-button-toggle>
+            <mat-button-toggle matTooltip="Using minimal margins, this setting yields 6 192x46.5mm labels per A4 page." (click)="setSix()"
+              value="six">A4/6</mat-button-toggle>
 
             <!-- Tooltip to describe how many labels fit on an A4 page with minimal margins when using setting "five" -->
-            <mat-button-toggle matTooltipPosition="above" matTooltip="Using minimal margins, this setting yields 5 200x56mm labels per A4 page."
-              (click)="setFive()" value="five">A4/5</mat-button-toggle>
+            <mat-button-toggle matTooltip="Using minimal margins, this setting yields 5 200x56mm labels per A4 page." (click)="setFive()"
+              value="five">A4/5</mat-button-toggle>
 
             <!-- 252x56 in ladscape mode a4 page 5 labels -->
-            <mat-button-toggle matTooltipPosition="above" [checked]="true"
-              matTooltip="Using minimal margins, this setting yields 3 252x56mm labels per A4 page." (click)="setLandscape3()"
-              value="five">A4/3</mat-button-toggle>
+            <mat-button-toggle [checked]="true" [matTooltip]="matTooltip3"
+              (click)="setLandscape3()" value="five">A4/3</mat-button-toggle>
 
 
           </mat-button-toggle-group>
@@ -64,7 +63,8 @@
         </div>
 
         <mat-button-toggle-group name="fontStyle" aria-label="Font Style" class=" block w-[52px] h-[48px]">
-          <mat-button-toggle class=" block w-[52px] h-[48px]" [ngClass]="[fontWeightClass]" (click)="toggleBold()">B</mat-button-toggle>
+          <mat-button-toggle [checked]="true" class=" block w-[52px] h-[48px] text-xl" [ngClass]="[fontWeightClass]"
+            (click)="toggleBold()">B</mat-button-toggle>
 
         </mat-button-toggle-group>
 

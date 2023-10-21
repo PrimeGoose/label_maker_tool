@@ -29,7 +29,7 @@ interface Label {
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css','./print.css'],
+  styleUrls: ['./app.component.css', './print.css'],
   encapsulation: ViewEncapsulation.None,
 })
 export class AppComponent implements OnInit {
@@ -40,8 +40,10 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.setLandscape3();
+    // detectOS
+    this.detectOS();
   }
-
+  osPrintTooltip = "Print using your operating system's print dialog";
   message = '';
   matTooltip7 =
     'Using minimal margins, this setting yields 7 180x40mm labels per A4 page';
@@ -179,23 +181,23 @@ export class AppComponent implements OnInit {
         .map((key) => data[key].v);
     }
     this.Labels = [
-    {
-      level1: {
-        digit: '5L4',
-        street: 'en',
-        number: '61',
-        side: 'b',
-        level: '1',
+      {
+        level1: {
+          digit: '5L4',
+          street: 'en',
+          number: '61',
+          side: 'b',
+          level: '1',
+        },
+        level2: {
+          digit: '5UQ',
+          street: 'en',
+          number: '61',
+          side: 'b',
+          level: '2',
+        },
       },
-      level2: {
-        digit: '5UQ',
-        street: 'en',
-        number: '61',
-        side: 'b',
-        level: '2',
-      },
-    },
-  ];
+    ];
     let file = event.target.files[0];
     let reader = new FileReader();
     reader.onload = (e) => {
@@ -286,6 +288,9 @@ export class AppComponent implements OnInit {
         }
       }); // end of forEach
 
+      // remove the default label from the array
+      this.Labels = [];
+
       temp_labels.forEach((label1: any) => {
         if (label1.level1) {
           let match = temp_labels.find((label2: any) => {
@@ -314,5 +319,36 @@ export class AppComponent implements OnInit {
   toggleBold() {
     this.fontWeightClass =
       this.fontWeightClass === 'font-black' ? '' : 'font-black';
+  }
+
+  /**
+   * Detects the user's operating system.
+   *
+   * @returns {string} The name of the operating system.
+   */
+  detectOS(): string {
+    const userAgent = window.navigator.userAgent;
+    const platform = window.navigator.platform;
+    let os = 'Unknown';
+    // mac: ⌥+⌘+P ,windows:Ctrl+shift+P this prints using the systems dialog
+
+    if (/Mac/.test(platform)) {
+      os = 'MacOS';
+      this.osPrintTooltip = 'Print using ⌥+⌘+P';
+    } else if (/Win/.test(platform)) {
+      os = 'Windows';
+      this.osPrintTooltip = 'Print using Ctrl+shift+P';
+    } else if (/Linux/.test(platform)) {
+      os = 'Linux';
+      this.osPrintTooltip = 'Print using Ctrl+shift+P';
+    } else if (/Android/.test(userAgent)) {
+      os = 'Android';
+      this.osPrintTooltip = '';
+    } else if (/iPhone|iPad|iPod/.test(userAgent)) {
+      os = 'iOS';
+      this.osPrintTooltip = '';
+    }
+
+    return os;
   }
 }
