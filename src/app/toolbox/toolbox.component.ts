@@ -277,7 +277,7 @@ export class ToolboxComponent {
           }
         }
       });
-      this.labelsChanged.emit(this.Labels);
+      
     };
     if (file) {
       reader.readAsArrayBuffer(file);

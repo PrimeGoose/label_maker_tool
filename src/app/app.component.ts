@@ -1,8 +1,7 @@
 import { Component, ViewEncapsulation, OnInit } from '@angular/core';
-import * as XLSX from 'xlsx';
 import { MatDialog } from '@angular/material/dialog';
-import { HowToUseComponent } from './how-to-use/how-to-use.component';
-
+import { ToolboxService } from './toolbox.service';
+import { Subscription } from 'rxjs';
 /**
  * Label interface defining the structure of labels.
  */
