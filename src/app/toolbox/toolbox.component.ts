@@ -1,42 +1,30 @@
 // toolbox.component.ts
 
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnDestroy, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { HowToUseComponent } from '../how-to-use/how-to-use.component';
 import * as XLSX from 'xlsx';
-
-interface Label {
-  level1: {
-    digit: string;
-    street: string;
-    number: string;
-    side: string;
-    level: string;
-  };
-  level2: {
-    digit: string;
-    street: string;
-    number: string;
-    side: string;
-    level: string;
-  };
-}
+import { ToolboxService } from '../toolbox.service';
+import { Label } from '../types';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-toolbox',
   templateUrl: './toolbox.component.html',
   styleUrls: ['./toolbox.component.scss'],
 })
-export class ToolboxComponent {
-  @Output() labelsChanged: EventEmitter<Label[]> = new EventEmitter();
-
-  constructor(public dialog: MatDialog) {}
+export class ToolboxComponent implements OnInit, OnDestroy {
+  constructor(
+    public dialog: MatDialog,
+    private toolboxService: ToolboxService
+  ) {}
 
   ngOnInit(): void {
     this.setLandscape3();
-    // detectOS
     this.detectOS();
   }
+  ngOnDestroy(): void {}
+
   osPrintTooltip = "Print using your operating system's print dialog";
   message = '';
   matTooltip7 =
@@ -50,38 +38,21 @@ export class ToolboxComponent {
 
   orientation: 'portrait' | 'landscape' = 'portrait';
 
-  Labels: Label[] = [
-    {
-      level1: {
-        digit: '5L4',
-        street: 'en',
-        number: '61',
-        side: 'b',
-        level: '1',
-      },
-      level2: {
-        digit: '5UQ',
-        street: 'en',
-        number: '61',
-        side: 'b',
-        level: '2',
-      },
-    },
-  ];
+  private Labels: Label[] = [];
 
-  openDialog() {
+  public openDialog() {
     this.dialog.open(HowToUseComponent);
   }
 
-  labelHeight: string = '20';
-  digitFontSize: string = '15';
-  locationFontSize: string = `21`;
-  digitWidth = '50';
-  locationWidth = '130';
-  labelPairWidthClass: string = 'a3-width';
-  orientationClass: string = 'a4-landscape';
+  private labelHeight: string = '20';
+  private digitFontSize: string = '15';
+  private locationFontSize: string = `21`;
+  private digitWidth = '50';
+  private locationWidth = '130';
+  private labelPairWidthClass: string = 'a3-width';
+  private orientationClass: string = 'a4-landscape';
 
-  setFive() {
+  public setFive() {
     this.labelHeight = `${20 * 1.4}`;
     this.locationFontSize = `${26 * 1.121875}`;
     this.digitFontSize = `${15 * 1.121875}`;
@@ -93,7 +64,7 @@ export class ToolboxComponent {
     this.orientationClass = 'a4-portrait';
   }
 
-  setSix() {
+  public setSix() {
     this.labelHeight = `${20 * 1.1625}`;
     this.locationFontSize = `${23 * 1.08125}`;
     this.digitFontSize = `${15 * 1.08125}`;
@@ -105,7 +76,7 @@ export class ToolboxComponent {
     this.orientationClass = 'a4-portrait';
   }
 
-  setSeven() {
+  public setSeven() {
     this.labelHeight = '20';
     this.locationFontSize = '21';
     this.digitFontSize = '15';
@@ -117,7 +88,7 @@ export class ToolboxComponent {
     this.orientationClass = 'a4-portrait';
   }
 
-  setLandscape3() {
+  public setLandscape3() {
     this.labelHeight = 20 * 1.4 + '';
     this.locationFontSize = 21 * 1.4 + '';
     this.digitFontSize = 15 * 1.4 + '';
@@ -129,25 +100,20 @@ export class ToolboxComponent {
     this.orientationClass = 'a4-landscape';
   }
 
-  yellowSlider: number = 70; // Default opacity set to 1 (100%)
-  yellowOpacityClass: string = 'bg-opacity-70';
+  private yellowSlider: number = 70; // Default opacity set to 1 (100%)
+  private yellowOpacityClass: string = 'bg-opacity-70';
 
-  return_bg_opacity_yellowSlider(opacity: any) {
+  public return_bg_opacity_yellowSlider(opacity: any) {
     this.yellowSlider = opacity;
     this.yellowOpacityClass = `bg-opacity-${this.yellowSlider}`;
   }
 
-  printLabels(): void {
+  public printLabels(): void {
     window.print();
   }
 
-  useExcelFile(event: any): void {
-    function extractColumn(data: any, columnKey: any) {
-      return Object.keys(data)
-        .filter((key) => key.startsWith(columnKey))
-        .map((key) => data[key].v);
-    }
-    this.Labels = [
+  public useExcelFile(event: any): void {
+    this.toolboxService.updateLabels([
       {
         level1: {
           digit: '5L4',
@@ -164,7 +130,14 @@ export class ToolboxComponent {
           level: '2',
         },
       },
-    ];
+    ]);
+
+    function extractColumn(data: any, columnKey: any) {
+      return Object.keys(data)
+        .filter((key) => key.startsWith(columnKey))
+        .map((key) => data[key].v);
+    }
+    this.Labels = [];
     let file = event.target.files[0];
     let reader = new FileReader();
     reader.onload = (e) => {
@@ -277,7 +250,7 @@ export class ToolboxComponent {
           }
         }
       });
-      
+      this.toolboxService.updateLabels(this.Labels);
     };
     if (file) {
       reader.readAsArrayBuffer(file);

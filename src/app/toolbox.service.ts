@@ -2,12 +2,12 @@
 
 import { BehaviorSubject } from 'rxjs';
 import { Injectable } from '@angular/core';
-
+import { Label } from './types';
 @Injectable({
   providedIn: 'root',
 })
 export class ToolboxService {
-  Labels = [
+  Labels: Label[] = [
     {
       level1: {
         digit: '5L4',
@@ -26,20 +26,18 @@ export class ToolboxService {
     },
   ];
 
-  private labelsSubject = new BehaviorSubject<any[]>([
-    // Your initial Labels array
-  ]);
+  private labelsSubject = new BehaviorSubject<any[]>([...this.Labels]);
 
   labels$ = this.labelsSubject.asObservable();
 
-  updateLabels(newLabel: any) {
+  updateLabels(newLabel: Label[]) {
     // Retrieve current value
-    const currentLabels = this.labelsSubject.getValue();
+    const currentLabels: Label[] = this.labelsSubject.getValue();
 
     // Update the value
-    currentLabels.push(newLabel);
+    currentLabels.push(...newLabel);
 
     // Publish the new value
-    this.labelsSubject.next(currentLabels);
+  this.labelsSubject.next([...newLabel]);
   }
 }
