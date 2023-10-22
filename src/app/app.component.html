@@ -1,6 +1,6 @@
 <!-- main conntainer -->
 <div id="main-container" class="  flex flex-col  justify-center  items-center align-middle uppercase w-full">
-<app-toolbox></app-toolbox>
+<app-toolbox (labelsChanged)="updateLabels($event)"></app-toolbox>
 
 
 
@@ -10,5 +10,5 @@
 
 
 
-<app-label-container></app-label-container>
+<app-label-container [Labels]="Labels"></app-label-container>
 </div>

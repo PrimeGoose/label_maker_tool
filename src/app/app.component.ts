@@ -37,9 +37,28 @@ export class AppComponent implements OnInit {
    * @param {MatDialog} dialog - Material dialog service for opening dialogs.
    */
   constructor(public dialog: MatDialog) {}
-
-  ngOnInit(): void {
-
+  Labels: Label[] = [
+    {
+      level1: {
+        digit: '5L4',
+        street: 'en',
+        number: '61',
+        side: 'b',
+        level: '1',
+      },
+      level2: {
+        digit: '5UQ',
+        street: 'en',
+        number: '61',
+        side: 'b',
+        level: '2',
+      },
+    },
+  ];
+  ngOnInit(): void {}
+  // (labelsChanged)="updateLabels($event)" in label-container.component.html
+  updateLabels(newLabels: Label[]) {
+    console.log('newLabels', newLabels);
+    this.Labels = newLabels;
   }
- 
 }

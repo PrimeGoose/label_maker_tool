@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
+// toolbox.component.ts
+
+import { Component, Output, EventEmitter } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { HowToUseComponent } from '../how-to-use/how-to-use.component';
 import * as XLSX from 'xlsx';
-/**
- * Label interface defining the structure of labels.
- */
+
 interface Label {
   level1: {
     digit: string;
@@ -28,9 +28,8 @@ interface Label {
   styleUrls: ['./toolbox.component.scss'],
 })
 export class ToolboxComponent {
-  /**
-   * @param {MatDialog} dialog - Material dialog service for opening dialogs.
-   */
+  @Output() labelsChanged: EventEmitter<Label[]> = new EventEmitter();
+
   constructor(public dialog: MatDialog) {}
 
   ngOnInit(): void {
@@ -49,10 +48,8 @@ export class ToolboxComponent {
   matTooltip3 =
     'Using minimal margins, this setting yields 3 252x56mm labels per A4 page in Landscape mode';
 
-  /** Title of the app */
-  title = 'rack-label-tool';
   orientation: 'portrait' | 'landscape' = 'portrait';
-  /** Array to hold label objects */
+
   Labels: Label[] = [
     {
       level1: {
@@ -72,14 +69,10 @@ export class ToolboxComponent {
     },
   ];
 
-  /**
-   * Opens the "How To Use" dialog.
-   */
   openDialog() {
     this.dialog.open(HowToUseComponent);
   }
 
-  /** Font and size related properties */
   labelHeight: string = '20';
   digitFontSize: string = '15';
   locationFontSize: string = `21`;
@@ -87,9 +80,7 @@ export class ToolboxComponent {
   locationWidth = '130';
   labelPairWidthClass: string = 'a3-width';
   orientationClass: string = 'a4-landscape';
-  /**
-   * Sets the dimensions for  "Five labels per A4 sheet".
-   */
+
   setFive() {
     this.labelHeight = `${20 * 1.4}`;
     this.locationFontSize = `${26 * 1.121875}`;
@@ -102,9 +93,6 @@ export class ToolboxComponent {
     this.orientationClass = 'a4-portrait';
   }
 
-  /**
-   * Sets the dimensions for the "Six labels per A4 sheet".
-   */
   setSix() {
     this.labelHeight = `${20 * 1.1625}`;
     this.locationFontSize = `${23 * 1.08125}`;
@@ -117,9 +105,6 @@ export class ToolboxComponent {
     this.orientationClass = 'a4-portrait';
   }
 
-  /**
-   * Sets the dimensions for the "Seven labels per A4 sheet".
-   */
   setSeven() {
     this.labelHeight = '20';
     this.locationFontSize = '21';
@@ -144,31 +129,18 @@ export class ToolboxComponent {
     this.orientationClass = 'a4-landscape';
   }
 
-  /** Opacity related properties */
   yellowSlider: number = 70; // Default opacity set to 1 (100%)
   yellowOpacityClass: string = 'bg-opacity-70';
 
-  /**
-   * Function to set the background opacity.
-   * @param {any} opacity - The opacity value.
-   */
   return_bg_opacity_yellowSlider(opacity: any) {
     this.yellowSlider = opacity;
     this.yellowOpacityClass = `bg-opacity-${this.yellowSlider}`;
   }
 
-  /**
-   * Triggers the print dialog.
-   */
   printLabels(): void {
     window.print();
   }
 
-  /**
-   * Handles Excel file uploads.
-   * Reads column "A" from the first sheet of the uploaded Excel file and logs the values.
-   * @param {Event} event - The event containing the uploaded file.
-   */
   useExcelFile(event: any): void {
     function extractColumn(data: any, columnKey: any) {
       return Object.keys(data)
@@ -305,22 +277,19 @@ export class ToolboxComponent {
           }
         }
       });
+      this.labelsChanged.emit(this.Labels);
     };
-    reader.readAsArrayBuffer(file);
+    if (file) {
+      reader.readAsArrayBuffer(file);
+    }
   }
 
   fontWeightClass: 'font-black' | '' = 'font-black';
-  buldToggleLabel = 'B';
   toggleBold() {
     this.fontWeightClass =
       this.fontWeightClass === 'font-black' ? '' : 'font-black';
   }
 
-  /**
-   * Detects the user's operating system.
-   *
-   * @returns {string} The name of the operating system.
-   */
   detectOS(): string {
     const userAgent = window.navigator.userAgent;
     const platform = window.navigator.platform;
