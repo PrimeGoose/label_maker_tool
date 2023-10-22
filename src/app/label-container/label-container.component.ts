@@ -1,6 +1,7 @@
 // label-container.component.ts
 import { Component, Input } from '@angular/core';
-
+import { ToolboxService } from '../toolbox.service';
+import { Subscription } from 'rxjs';
 interface Label {
   level1: {
     digit: string;
