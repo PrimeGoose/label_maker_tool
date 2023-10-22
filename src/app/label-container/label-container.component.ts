@@ -1,5 +1,5 @@
 // label-container.component.ts
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { ToolboxService } from '../toolbox.service';
 import { Subscription } from 'rxjs';
 interface Label {
@@ -25,15 +25,16 @@ interface Label {
   styleUrls: ['./label-container.component.scss'],
 })
 export class LabelContainerComponent {
-  @Input() labelHeight = '20';
-  @Input() digitFontSize = '15';
-  @Input() locationFontSize = `21`;
-  @Input() digitWidth = '50';
-  @Input() locationWidth = '130';
-  @Input() orientationClass = 'a4-landscape';
-  @Input() yellowOpacityClass = 'bg-opacity-70';
-  @Input() fontWeightClass: 'font-black' | '' = 'font-black';
-  @Input() Labels: Label[] = [
+  constructor(private toolboxService: ToolboxService) {}
+   labelHeight = '20';
+   digitFontSize = '15';
+   locationFontSize = `21`;
+   digitWidth = '50';
+   locationWidth = '130';
+   orientationClass = 'a4-landscape';
+   yellowOpacityClass = 'bg-opacity-70';
+   fontWeightClass: 'font-black' | '' = 'font-black';
+   Labels: Label[] = [
     {
       level1: {
         digit: '5L4',
