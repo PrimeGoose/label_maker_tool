@@ -1,12 +1,22 @@
 // toolbox.service.ts
 
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Label } from './types';
 @Injectable({
   providedIn: 'root',
 })
 export class ToolboxService {
+  private yellowOpacityClass: string = 'bg-opacity-70';
+  // Initialize settings
+  private initialSettings = {
+    labelHeight: '20',
+    digitFontSize: '15',
+    locationFontSize: '21',
+    digitWidth: '50',
+    locationWidth: '130',
+  };
+  // labels array
   Labels: Label[] = [
     {
       level1: {
@@ -26,18 +36,27 @@ export class ToolboxService {
     },
   ];
 
-  private labelsSubject = new BehaviorSubject<any[]>([...this.Labels]);
+  private labelsSubject: BehaviorSubject<Label[]> = new BehaviorSubject<any[]>([
+    ...this.Labels,
+  ]);
+  private settingsSubject: BehaviorSubject<any> = new BehaviorSubject<any>({
+    ...this.initialSettings,
+  });
 
-  labels$ = this.labelsSubject.asObservable();
+  labels$: Observable<Label[]> = this.labelsSubject.asObservable();
+  settings$: Observable<any> = this.settingsSubject.asObservable();
 
   updateLabels(newLabel: Label[]) {
     // Retrieve current value
     const currentLabels: Label[] = this.labelsSubject.getValue();
-
     // Update the value
     currentLabels.push(...newLabel);
-
     // Publish the new value
-  this.labelsSubject.next([...newLabel]);
+    this.labelsSubject.next([...newLabel]);
+  }
+
+  updateSettings(newSettings: any) {
+    // Update and emit new settings
+    this.settingsSubject.next({ ...newSettings });
   }
 }

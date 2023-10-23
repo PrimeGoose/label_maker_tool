@@ -6,7 +6,6 @@ import { HowToUseComponent } from '../how-to-use/how-to-use.component';
 import * as XLSX from 'xlsx';
 import { ToolboxService } from '../toolbox.service';
 import { Label } from '../types';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-toolbox',
@@ -36,74 +35,59 @@ export class ToolboxComponent implements OnInit, OnDestroy {
   matTooltip3 =
     'Using minimal margins, this setting yields 3 252x56mm labels per A4 page in Landscape mode';
 
-  orientation: 'portrait' | 'landscape' = 'portrait';
-
   private Labels: Label[] = [];
 
-  public openDialog() {
-    this.dialog.open(HowToUseComponent);
+  settings = {
+    labelHeight: '20',
+    digitFontSize: '15',
+    locationFontSize: `21`,
+    digitWidth: '50',
+    locationWidth: '130',
+  };
+  updateSettings() {
+    this.toolboxService.updateSettings(this.settings);
   }
 
-  private labelHeight: string = '20';
-  private digitFontSize: string = '15';
-  private locationFontSize: string = `21`;
-  private digitWidth = '50';
-  private locationWidth = '130';
-  private labelPairWidthClass: string = 'a3-width';
-  private orientationClass: string = 'a4-landscape';
-
   public setFive() {
-    this.labelHeight = `${20 * 1.4}`;
-    this.locationFontSize = `${26 * 1.121875}`;
-    this.digitFontSize = `${15 * 1.121875}`;
-    this.orientation = 'portrait';
-    this.digitWidth = `56`;
-    this.locationWidth = `144`;
-    this.message = this.matTooltip7;
-    this.labelPairWidthClass = 'a5-width';
-    this.orientationClass = 'a4-portrait';
+    this.settings.labelHeight = `${20 * 1.4}`;
+    this.settings.locationFontSize = `${26 * 1.121875}`;
+    this.settings.digitFontSize = `${15 * 1.121875}`;
+    this.settings.digitWidth = `56`;
+    this.settings.locationWidth = `144`;
+    this.toolboxService.updateSettings(this.settings);
   }
 
   public setSix() {
-    this.labelHeight = `${20 * 1.1625}`;
-    this.locationFontSize = `${23 * 1.08125}`;
-    this.digitFontSize = `${15 * 1.08125}`;
-    this.digitWidth = '54';
-    this.locationWidth = '138';
-    this.orientation = 'portrait';
-    this.message = this.matTooltip6;
-    this.labelPairWidthClass = 'a6-width';
-    this.orientationClass = 'a4-portrait';
+    this.settings.labelHeight = `${20 * 1.1625}`;
+    this.settings.locationFontSize = `${23 * 1.08125}`;
+    this.settings.digitFontSize = `${15 * 1.08125}`;
+    this.settings.digitWidth = '54';
+    this.settings.locationWidth = '138';
+    this.toolboxService.updateSettings(this.settings);
   }
 
   public setSeven() {
-    this.labelHeight = '20';
-    this.locationFontSize = '21';
-    this.digitFontSize = '15';
-    this.orientation = 'portrait';
-    this.digitWidth = '50';
-    this.locationWidth = '130';
-    this.message = this.matTooltip5;
-    this.labelPairWidthClass = 'a7-width';
-    this.orientationClass = 'a4-portrait';
+    this.settings.labelHeight = '20';
+    this.settings.locationFontSize = '21';
+    this.settings.digitFontSize = '15';
+    this.settings.digitWidth = '50';
+    this.settings.locationWidth = '130';
+    this.toolboxService.updateSettings(this.settings);
   }
 
   public setLandscape3() {
-    this.labelHeight = 20 * 1.4 + '';
-    this.locationFontSize = 21 * 1.4 + '';
-    this.digitFontSize = 15 * 1.4 + '';
-    this.orientation = 'landscape';
-    this.digitWidth = 50 * 1.4 + '';
-    this.locationWidth = 130 * 1.4 + '';
-    this.message = this.matTooltip3;
-    this.labelPairWidthClass = 'a3-width';
-    this.orientationClass = 'a4-landscape';
+    this.settings.labelHeight = 20 * 1.4 + '';
+    this.settings.locationFontSize = 21 * 1.4 + '';
+    this.settings.digitFontSize = 15 * 1.4 + '';
+    this.settings.digitWidth = 50 * 1.4 + '';
+    this.settings.locationWidth = 130 * 1.4 + '';
+    this.toolboxService.updateSettings(this.settings);
   }
 
   private yellowSlider: number = 70; // Default opacity set to 1 (100%)
   private yellowOpacityClass: string = 'bg-opacity-70';
 
-  public return_bg_opacity_yellowSlider(opacity: any) {
+  public updateYellowOpacityClassName(opacity: any) {
     this.yellowSlider = opacity;
     this.yellowOpacityClass = `bg-opacity-${this.yellowSlider}`;
   }
@@ -287,5 +271,9 @@ export class ToolboxComponent implements OnInit, OnDestroy {
     }
 
     return os;
+  }
+
+  public openDialog() {
+    this.dialog.open(HowToUseComponent);
   }
 }
