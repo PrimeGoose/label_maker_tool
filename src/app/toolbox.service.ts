@@ -36,6 +36,10 @@ export class ToolboxService {
     },
   ];
 
+  private yellowOpacitySubject = new BehaviorSubject<string>(
+    this.yellowOpacityClass
+  );
+
   private labelsSubject: BehaviorSubject<Label[]> = new BehaviorSubject<any[]>([
     ...this.Labels,
   ]);
@@ -45,6 +49,7 @@ export class ToolboxService {
 
   labels$: Observable<Label[]> = this.labelsSubject.asObservable();
   settings$: Observable<any> = this.settingsSubject.asObservable();
+  yellowOpacity$ = this.yellowOpacitySubject.asObservable();
 
   updateLabels(newLabel: Label[]) {
     // Retrieve current value
@@ -58,5 +63,10 @@ export class ToolboxService {
   updateSettings(newSettings: any) {
     // Update and emit new settings
     this.settingsSubject.next({ ...newSettings });
+  }
+
+  updateYellowOpacityClass(opacity: number) {
+    this.yellowOpacityClass = `bg-opacity-${opacity}`;
+    this.yellowOpacitySubject.next(this.yellowOpacityClass);
   }
 }

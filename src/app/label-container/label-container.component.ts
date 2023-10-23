@@ -27,8 +27,12 @@ export class LabelContainerComponent implements OnInit, OnDestroy {
         this.locationWidth = settings.locationWidth;
       })
     );
-// yellowOpacityClass = 'bg-opacity-70';
+    // yellowOpacityClass = 'bg-opacity-70';
     this.subscription.add(
+      this.toolboxService.yellowOpacity$.subscribe((yellowOpacityClass) => {
+        this.yellowOpacityClass = yellowOpacityClass;
+      })
+    );
   }
 
   ngOnDestroy(): void {

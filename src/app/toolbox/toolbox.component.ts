@@ -88,8 +88,7 @@ export class ToolboxComponent implements OnInit, OnDestroy {
   private yellowOpacityClass: string = 'bg-opacity-70';
 
   public updateYellowOpacityClassName(opacity: any) {
-    this.yellowSlider = opacity;
-    this.yellowOpacityClass = `bg-opacity-${this.yellowSlider}`;
+    this.toolboxService.updateYellowOpacityClass(opacity);
   }
 
   public printLabels(): void {
