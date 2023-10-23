@@ -10,11 +10,11 @@ export class ToolboxService {
   private yellowOpacityClass: string = 'bg-opacity-70';
   // Initialize settings
   private initialSettings = {
-    labelHeight: '20',
-    digitFontSize: '15',
-    locationFontSize: '21',
-    digitWidth: '50',
-    locationWidth: '130',
+    labelHeight: 20,
+    digitFontSize: 15,
+    locationFontSize: 21,
+    digitWidth: 50,
+    locationWidth: 130,
   };
   // labels array
   Labels: Label[] = [
@@ -63,6 +63,17 @@ export class ToolboxService {
   updateSettings(newSettings: any) {
     // Update and emit new settings
     this.settingsSubject.next({ ...newSettings });
+  }
+
+  updateSettingsWithFactors(factor: any) {
+    let settings = {
+      labelHeight: 19 * factor,
+      locationFontSize: 21 * factor,
+      digitFontSize: 14 * factor,
+      digitWidth: 45 * factor,
+      locationWidth: 145 * factor,
+    };
+    this.updateSettings(settings);
   }
 
   updateYellowOpacityClass(opacity: number) {

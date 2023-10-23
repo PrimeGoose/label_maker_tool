@@ -19,7 +19,7 @@ export class ToolboxComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.setLandscape3();
+    this.setA4Portrait7;
     this.detectOS();
   }
   ngOnDestroy(): void {}
@@ -38,50 +38,28 @@ export class ToolboxComponent implements OnInit, OnDestroy {
   private Labels: Label[] = [];
 
   settings = {
-    labelHeight: '20',
-    digitFontSize: '15',
-    locationFontSize: `21`,
-    digitWidth: '50',
-    locationWidth: '130',
+    labelHeight: 0,
+    digitFontSize: 0,
+    locationFontSize: 0,
+    digitWidth: 0,
+    locationWidth: 0,
   };
   updateSettings() {
     this.toolboxService.updateSettings(this.settings);
   }
 
-  public setFive() {
-    this.settings.labelHeight = `${20 * 1.4}`;
-    this.settings.locationFontSize = `${26 * 1.121875}`;
-    this.settings.digitFontSize = `${15 * 1.121875}`;
-    this.settings.digitWidth = `56`;
-    this.settings.locationWidth = `144`;
-    this.toolboxService.updateSettings(this.settings);
+  public setA4Portrait7() {
+    this.toolboxService.updateSettingsWithFactors(1);
+  }
+  public setA4Landscape4() {
+    this.toolboxService.updateSettingsWithFactors(1.2);
+  }
+  public setA4Portrait5() {
+    this.toolboxService.updateSettingsWithFactors(1.4);
   }
 
-  public setSix() {
-    this.settings.labelHeight = `${20 * 1.1625}`;
-    this.settings.locationFontSize = `${23 * 1.08125}`;
-    this.settings.digitFontSize = `${15 * 1.08125}`;
-    this.settings.digitWidth = '54';
-    this.settings.locationWidth = '138';
-    this.toolboxService.updateSettings(this.settings);
-  }
-
-  public setSeven() {
-    this.settings.labelHeight = '20';
-    this.settings.locationFontSize = '21';
-    this.settings.digitFontSize = '15';
-    this.settings.digitWidth = '50';
-    this.settings.locationWidth = '130';
-    this.toolboxService.updateSettings(this.settings);
-  }
-
-  public setLandscape3() {
-    this.settings.labelHeight = 20 * 1.4 + '';
-    this.settings.locationFontSize = 21 * 1.4 + '';
-    this.settings.digitFontSize = 15 * 1.4 + '';
-    this.settings.digitWidth = 50 * 1.4 + '';
-    this.settings.locationWidth = 130 * 1.4 + '';
-    this.toolboxService.updateSettings(this.settings);
+  public setA4Landscape3() {
+    this.toolboxService.updateSettingsWithFactors(1.4);
   }
 
   private yellowSlider: number = 70; // Default opacity set to 1 (100%)

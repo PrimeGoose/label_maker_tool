@@ -39,11 +39,11 @@ export class LabelContainerComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  labelHeight = '20';
-  digitFontSize = '15';
-  locationFontSize = `21`;
-  digitWidth = '50';
-  locationWidth = '130';
+  labelHeight = 20;
+  digitFontSize = 15;
+  locationFontSize = 21;
+  digitWidth = 50;
+  locationWidth = 130;
 
   orientationClass = 'a4-landscape';
   yellowOpacityClass = 'bg-opacity-70';
